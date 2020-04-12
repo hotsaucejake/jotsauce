@@ -21,57 +21,54 @@ class AuthController extends Controller
         $user = User::create([
             'username' => $validated['username'],
             'email' => $validated['email'],
-            'password' => bcrypt($validated['password'])
-        ]);   
+            'password' => bcrypt($validated['password']),
+        ]);
 
         return response()->json(['message' => 'Successfully created user!'], 201);
     }
-
 
     public function login(Request $request)
     {
         $validated = $request->validate([
             'email' => 'required|string|email',
             'password' => 'required|string',
-            'remember_me' => 'boolean'
+            'remember_me' => 'boolean',
         ]);
 
-        $credentials = request(['email', 'password']);        
-        if(!Auth::attempt($credentials)){
+        $credentials = request(['email', 'password']);
+        if (! Auth::attempt($credentials)) {
             return response()->json([
-                'message' => 'Unauthorized'
+                'message' => 'Unauthorized',
             ], 401);
         }
-                                
-        $user = $request->user();        
+
+        $user = $request->user();
         $tokenResult = $user->createToken('Personal Access Token');
-        $token = $tokenResult->token;        
-        
-        if ($request->remember_me){
-            $token->expires_at = Carbon::now()->addWeeks(1); 
+        $token = $tokenResult->token;
+
+        if ($request->remember_me) {
+            $token->expires_at = Carbon::now()->addWeeks(1);
         }
-                   
-        $token->save();        
-        
+
+        $token->save();
+
         return response()->json([
             'access_token' => $tokenResult->accessToken,
             'token_type' => 'Bearer',
             'expires_at' => Carbon::parse(
                 $tokenResult->token->expires_at
-            )->toDateTimeString()
+            )->toDateTimeString(),
         ]);
     }
-
 
     public function logout(Request $request)
     {
-        $request->user()->token()->revoke();        
-        
+        $request->user()->token()->revoke();
+
         return response()->json([
-            'message' => 'Successfully logged out'
+            'message' => 'Successfully logged out',
         ]);
     }
-
 
     public function user(Request $request)
     {
