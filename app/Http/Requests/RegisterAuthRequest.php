@@ -40,7 +40,7 @@ class RegisterAuthRequest extends FormRequest
                                                                                             'string',
                                                                                             'min:8',
                                                                                             'confirmed',
-                                                                                           ]
+                                                                                           ],
                ];
     }
 
