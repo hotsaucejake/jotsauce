@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Http\Requests\LoginAuthRequest;
+use App\Http\Requests\RegisterAuthRequest;
 use App\Http\Controllers\Controller;
 use App\User;
 use Carbon\Carbon;
@@ -10,13 +12,9 @@ use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
-    public function register(Request $request)
+    public function register(RegisterAuthRequest $request)
     {
-        $validated = $request->validate([
-            'username' => ['required', 'string', 'max:255', 'unique:users'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
-        ]);
+        $validated = $request->validated();
 
         $user = User::create([
             'username' => $validated['username'],
@@ -27,13 +25,9 @@ class AuthController extends Controller
         return response()->json(['message' => 'Successfully created user!'], 201);
     }
 
-    public function login(Request $request)
+    public function login(LoginAuthRequest $request)
     {
-        $validated = $request->validate([
-            'email' => 'required|string|email',
-            'password' => 'required|string',
-            'remember_me' => 'boolean',
-        ]);
+        $validated = $request->validated();
 
         $credentials = request(['email', 'password']);
         if (! Auth::attempt($credentials)) {
