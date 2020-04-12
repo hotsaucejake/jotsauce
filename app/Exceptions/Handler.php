@@ -49,7 +49,57 @@ class Handler extends ExceptionHandler
      * @throws \Throwable
      */
     public function render($request, Throwable $exception)
-    {
+    {   
+        /**
+         * 1xx: Informational	    Communicates transfer protocol-level information.
+         * 2xx: Success	            Indicates that the client’s request was accepted successfully.
+         * 3xx: Redirection	        Indicates that the client must take some additional action in order to complete their request.
+         * 4xx: Client Error	    This category of error status codes points the finger at clients.
+         * 5xx: Server Error	    The server takes responsibility for these error status codes.
+         * 
+         * https://restfulapi.net/http-status-codes/
+         * 
+         * 200 (OK)
+         * 201 (Created)
+         * 202 (Accepted)
+         * 204 (No Content)
+         * 
+         * 301 (Moved Permanently)
+         * 302 (Found)
+         * 303 (See Other)
+         * 304 (Not Modified)
+         * 307 (Temporary Redirect)
+         * 
+         * 400 (Bad Request)
+         * 401 (Unauthorized)
+         * 403 (Forbidden)
+         * 404 (Not Found)
+         * 405 (Method Not Allowed)
+         * 406 (Not Acceptable)
+         * 412 (Precondition Failed)
+         * 415 (Unsupported Media Type)
+         * 
+         * 500 (Internal Server Error)
+         * 501 (Not Implemented)
+         */
+        if ($request->wantsJson())
+        {
+            if ($exception instanceof ModelNotFoundException) {
+                return response()->json(['error' => 'Resource item not found.'], 404);
+            } else if ($exception instanceof NotFoundHttpException) {
+                return response()->json(['error' => 'Resource not found.'], 404);
+            } else if ($exception instanceof MethodNotAllowedHttpException) {
+                return response()->json(['error' => 'Method not allowed.'], 405);
+            } else {
+                return response()->json([
+                    'code' => 500,
+                    'status' => 'fail',
+                    'message' => $exception->getMessage(),
+                    'data' => [],
+                ], 500);
+            }
+        }
+
         return parent::render($request, $exception);
     }
 }

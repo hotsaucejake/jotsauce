@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\LoginAuthRequest;
-use App\Http\Requests\RegisterAuthRequest;
+use App\Http\Requests\Auth\LoginAuthRequest;
+use App\Http\Requests\Auth\RegisterAuthRequest;
 use App\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -15,7 +15,7 @@ class AuthController extends Controller
     public function register(RegisterAuthRequest $request)
     {
         $validated = $request->validated();
-
+        
         $user = User::create([
             'username' => $validated['username'],
             'email' => $validated['email'],
