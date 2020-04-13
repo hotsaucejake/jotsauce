@@ -22,18 +22,31 @@ class AuthController extends Controller
             'password' => bcrypt($validated['password']),
         ]);
 
-        return response()->json(['message' => 'Successfully created user!'], 201);
+        return response()->json([
+                'status' => 'success',
+                'message' => 'Successfully created user!',
+                'data' => [
+                        'username' => $validated['username'],
+                        'email' => $validated['email'],
+                    ],
+            ], 201);
     }
+
+
 
     public function login(LoginAuthRequest $request)
     {
         $validated = $request->validated();
 
-        $credentials = request(['email', 'password']);
-        if (! Auth::attempt($credentials)) {
+        $attempt = Auth::attempt(['email' => $validated['email'], 'password' => $validated['password']]);
+        
+        if (! $attempt) 
+        {
             return response()->json([
-                'message' => 'Unauthorized',
-            ], 401);
+                    'status' => 'error',
+                    'message' => 'Wrong credentials.',
+                    'data' => [],
+                ], 401);
         }
 
         $user = $request->user();
@@ -47,25 +60,39 @@ class AuthController extends Controller
         $token->save();
 
         return response()->json([
-            'access_token' => $tokenResult->accessToken,
-            'token_type' => 'Bearer',
-            'expires_at' => Carbon::parse(
-                $tokenResult->token->expires_at
-            )->toDateTimeString(),
-        ]);
+                'status' => 'success',
+                'message' => 'Successfully logged in!',
+                'data' => [
+                        'access_token' => $tokenResult->accessToken,
+                        'token_type' => 'Bearer',
+                        'expires_at' => Carbon::parse(
+                            $tokenResult->token->expires_at
+                        )->toDateTimeString(),
+                    ],
+            ], 200);
     }
+
+
 
     public function logout(Request $request)
     {
         $request->user()->token()->revoke();
 
         return response()->json([
-            'message' => 'Successfully logged out',
-        ]);
+                'status' => 'success',
+                'message' => 'Successfully logged out!',
+                'data' => [],
+            ], 200);
     }
+
+
 
     public function user(Request $request)
     {
-        return response()->json($request->user());
+        return response()->json([
+                'status' => 'success',
+                'message' => 'Current user',
+                'data' => $request->user(),
+            ], 200);
     }
 }

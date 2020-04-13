@@ -29,14 +29,4 @@ class LoginAuthRequest extends FormRequest
                 'remember_me' => ['boolean'],
                ];
     }
-
-    /**
-     * Get the error messages for the defined validation rules.
-     *
-     * @return array
-     */
-    public function messages()
-    {
-        return [];
-    }
 }

@@ -78,27 +78,28 @@ class Handler extends ExceptionHandler
          * 406 (Not Acceptable)
          * 412 (Precondition Failed)
          * 415 (Unsupported Media Type)
+         * 422 (Unprocessable Entity)
          * 
          * 500 (Internal Server Error)
          * 501 (Not Implemented)
          */
-        if ($request->wantsJson())
-        {
-            if ($exception instanceof ModelNotFoundException) {
-                return response()->json(['error' => 'Resource item not found.'], 404);
-            } else if ($exception instanceof NotFoundHttpException) {
-                return response()->json(['error' => 'Resource not found.'], 404);
-            } else if ($exception instanceof MethodNotAllowedHttpException) {
-                return response()->json(['error' => 'Method not allowed.'], 405);
-            } else {
-                return response()->json([
-                    'code' => 500,
-                    'status' => 'fail',
-                    'message' => $exception->getMessage(),
-                    'data' => [],
-                ], 500);
-            }
-        }
+        // if ($request->wantsJson())
+        // {
+        //     if ($exception instanceof ModelNotFoundException) {
+        //         return response()->json(['error' => 'Resource item not found.'], 404);
+        //     } else if ($exception instanceof NotFoundHttpException) {
+        //         return response()->json(['error' => 'Resource not found.'], 404);
+        //     } else if ($exception instanceof MethodNotAllowedHttpException) {
+        //         return response()->json(['error' => 'Method not allowed.'], 405);
+        //     } else {
+        //         return response()->json([
+        //             'code' => 500,
+        //             'status' => 'fail',
+        //             'message' => $exception->getMessage(),
+        //             'data' => [],
+        //         ], 500);
+        //     }
+        // }
 
         return parent::render($request, $exception);
     }
