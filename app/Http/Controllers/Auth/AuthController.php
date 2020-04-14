@@ -15,7 +15,7 @@ class AuthController extends Controller
     public function register(RegisterAuthRequest $request)
     {
         $validated = $request->validated();
-        
+
         $user = User::create([
             'username' => $validated['username'],
             'email' => $validated['email'],
@@ -32,16 +32,13 @@ class AuthController extends Controller
             ], 201);
     }
 
-
-
     public function login(LoginAuthRequest $request)
     {
         $validated = $request->validated();
 
         $attempt = Auth::attempt(['email' => $validated['email'], 'password' => $validated['password']]);
-        
-        if (! $attempt) 
-        {
+
+        if (! $attempt) {
             return response()->json([
                     'status' => 'error',
                     'message' => 'Wrong credentials.',
@@ -72,8 +69,6 @@ class AuthController extends Controller
             ], 200);
     }
 
-
-
     public function logout(Request $request)
     {
         $request->user()->token()->revoke();
@@ -84,8 +79,6 @@ class AuthController extends Controller
                 'data' => [],
             ], 200);
     }
-
-
 
     public function user(Request $request)
     {
