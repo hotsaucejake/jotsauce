@@ -1,5 +1,5 @@
 import {shallowMount, Wrapper} from '@vue/test-utils';
-import ExampleComponent from '../../../resources/js/components/ExampleComponent.vue';
+import ExampleComponent from '../../../resources/js/components/example/example-component.vue';
 
 describe('ExampleComponent - Unit', () => {
     let wrapper: Wrapper<ExampleComponent>;
