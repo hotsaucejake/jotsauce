@@ -13,4 +13,4 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::view('/', 'index');
+Route::any('/{any}', 'FrontendController@app')->where('any', '^(?!api).*$');
