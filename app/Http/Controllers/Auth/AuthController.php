@@ -23,7 +23,7 @@ class AuthController extends Controller
         ]);
 
         return response()->json([
-                'status' => 'success',
+                'success' => true,
                 'message' => 'Successfully created user!',
                 'data' => [
                         'username' => $validated['username'],
@@ -40,8 +40,9 @@ class AuthController extends Controller
 
         if (! $attempt) {
             return response()->json([
-                    'status' => 'error',
+                    'success' => false,
                     'message' => 'Wrong credentials.',
+                    'error_code' => 1308,
                     'data' => [],
                 ], 401);
         }
@@ -57,7 +58,7 @@ class AuthController extends Controller
         $token->save();
 
         return response()->json([
-                'status' => 'success',
+                'success' => true,
                 'message' => 'Successfully logged in!',
                 'data' => [
                         'access_token' => $tokenResult->accessToken,
@@ -74,7 +75,7 @@ class AuthController extends Controller
         $request->user()->token()->revoke();
 
         return response()->json([
-                'status' => 'success',
+                'success' => true,
                 'message' => 'Successfully logged out!',
                 'data' => [],
             ], 200);
@@ -82,8 +83,8 @@ class AuthController extends Controller
 
     public function user(Request $request)
     {
-        return response()->json([
-                'status' => 'success',
+        return response()->json([2
+                'success' => true,
                 'message' => 'Current user',
                 'data' => $request->user(),
             ], 200);
