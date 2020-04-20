@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\LoginAuthRequest;
 use App\Http\Requests\Auth\RegisterAuthRequest;
+use App\Http\Resources\User as UserResource;
 use App\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -83,10 +84,10 @@ class AuthController extends Controller
 
     public function user(Request $request)
     {
-        return response()->json([2
+        return response()->json([
                 'success' => true,
                 'message' => 'Current user',
-                'data' => $request->user(),
+                'data' => new UserResource($request->user()),
             ], 200);
     }
 }
