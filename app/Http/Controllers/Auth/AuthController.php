@@ -62,7 +62,7 @@ class AuthController extends Controller
                 'success' => true,
                 'message' => 'Successfully logged in!',
                 'data' => [
-                        'access_token' => $tokenResult->accessToken,
+                        'token' => $tokenResult->accessToken,
                         'token_type' => 'Bearer',
                         'expires_at' => Carbon::parse(
                             $tokenResult->token->expires_at
