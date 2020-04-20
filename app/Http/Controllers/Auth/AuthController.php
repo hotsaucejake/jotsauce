@@ -37,7 +37,7 @@ class AuthController extends Controller
     {
         $validated = $request->validated();
 
-        $attempt = Auth::attempt(['email' => $validated['email'], 'password' => $validated['password']]);
+        $attempt = Auth::guard('web')->attempt(['email' => $validated['email'], 'password' => $validated['password']]);
 
         if (! $attempt) {
             return response()->json([
@@ -48,7 +48,8 @@ class AuthController extends Controller
                 ], 401);
         }
 
-        $user = $request->user();
+        $user = $request->user('web');
+
         $tokenResult = $user->createToken('Personal Access Token');
         $token = $tokenResult->token;
 
