@@ -3,6 +3,7 @@
 namespace App\Exceptions;
 
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Auth\AuthenticationException;
 use Throwable;
 
 class Handler extends ExceptionHandler
@@ -83,6 +84,15 @@ class Handler extends ExceptionHandler
          * 500 (Internal Server Error)
          * 501 (Not Implemented)
          */
+
+        if ($exception instanceof AuthenticationException) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Unauthenticated.',
+                'data' => [],
+            ], 403);
+        }
+        
         // if ($request->wantsJson())
         // {
         //     if ($exception instanceof ModelNotFoundException) {
