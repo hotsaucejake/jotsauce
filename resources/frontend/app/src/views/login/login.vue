@@ -50,7 +50,7 @@
       <!-- FORM BOX -->
       <div class="form-box login-register-form-element">
         <!-- FORM BOX DECORATION -->
-        <img class="form-box-decoration overflowing" src="assets/img/landing/rocket.png" alt="rocket">
+        <img class="form-box-decoration overflowing" src="../../assets/img/landing/rocket.png" alt="rocket">
         <!-- /FORM BOX DECORATION -->
 
         <!-- FORM BOX TITLE -->
@@ -188,7 +188,7 @@
       <!-- FORM BOX -->
       <div class="form-box login-register-form-element">
         <!-- FORM BOX DECORATION -->
-        <img class="form-box-decoration" src="assets/img/landing/rocket.png" alt="rocket">
+        <img class="form-box-decoration" src="../../assets/img/landing/rocket.png" alt="rocket">
         <!-- /FORM BOX DECORATION -->
 
         <!-- FORM BOX TITLE -->
