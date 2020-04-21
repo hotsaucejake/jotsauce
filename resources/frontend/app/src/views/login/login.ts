@@ -1,3 +1,10 @@
-import { Component, Vue } from 'vue-property-decorator';
+import { Component, Vue, Model } from 'vue-property-decorator';
 
-export default class Login extends Vue {}
+@Component
+export default class Login extends Vue {
+    public login: boolean = true;
+
+    public changeForm(change: boolean): void {
+        this.login = change;
+    }
+}
