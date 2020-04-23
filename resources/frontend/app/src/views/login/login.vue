@@ -37,12 +37,12 @@
 
         <h2 class="form-box-title">Account Login</h2>
     
-        <form class="form">
+        <form class="form" @submit.prevent="submit">
           <div class="form-row">
             <div class="form-item">
               <div class="form-input">
-                <label for="login-username">Username or Email</label>
-                <input type="text" id="login-username" name="login_username">
+                <label for="login-email">Email</label>
+                <input type="text" id="login-email" name="email" v-model="email">
               </div>
             </div>
           </div>
@@ -51,7 +51,7 @@
             <div class="form-item">
               <div class="form-input">
                 <label for="login-password">Password</label>
-                <input type="password" id="login-password" name="login_password">
+                <input type="password" id="login-password" name="password" v-model="password">
               </div>
             </div>
           </div>
@@ -59,7 +59,7 @@
           <div class="form-row space-between">
             <div class="form-item">
               <div class="checkbox-wrap">
-                <input type="checkbox" id="login-remember" name="login_remember" checked>
+                <input type="checkbox" id="login-rememberMe" name="rememberMe" v-model="rememberMe">
                 <div class="checkbox-box">
                   <svg class="icon-cross">
                     <use xlink:href="#svg-cross">

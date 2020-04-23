@@ -9,10 +9,12 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
+    "@d0whc3r/vue-auth-plugin": "^1.8.2",
     "axios": "^0.19.2",
     "core-js": "^2.6.5",
     "register-service-worker": "^1.6.2",
     "vue": "^2.6.10",
+    "vue-axios": "^2.1.5",
     "vue-class-component": "^7.0.2",
     "vue-property-decorator": "^8.1.0",
     "vue-router": "^3.0.3",
