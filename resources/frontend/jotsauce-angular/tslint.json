@@ -3,6 +3,10 @@
   "rules": {
     "no-any": true,
     "curly": true,
+    "class-name": true,
+    "comment-format": [true, "check-space"],
+    "forin": true,
+    
     "align": [
       true,
       "statements",
@@ -29,11 +33,9 @@
       "app",
       "kebab-case"
     ],
-    "import-blacklist": [
-      true,
-      "rxjs/Rx"
-    ],
-    "interface-name": false,
+    "import-blacklist": [true, "rxjs/Rx", ["rxjs/(?!operators|testing)"]],
+    "interface-over-type-literal": true,
+    "interface-name": true,
     "max-classes-per-file": false,
     "max-line-length": [
       true,
