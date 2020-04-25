@@ -9,6 +9,7 @@
     "release-master": "standard-version && git push --follow-tags origin master",
     "test": "ng test",
     "lint": "ng lint",
+    "lint-fix": "ng lint --fix",
     "e2e": "ng e2e"
   },
   "private": true,
