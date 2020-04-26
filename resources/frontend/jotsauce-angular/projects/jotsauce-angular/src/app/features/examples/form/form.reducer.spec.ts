@@ -2,6 +2,7 @@ import { Form } from './form.model';
 import { formReducer, initialState } from './form.reducer';
 import { actionFormReset, actionFormUpdate } from './form.actions';
 
+/* tslint:disable:no-any */
 describe('FormReducer', () => {
   const form: Form = {
     autosave: false,
@@ -34,3 +35,4 @@ describe('FormReducer', () => {
     expect(state).toEqual(initialState);
   });
 });
+/* tslint:enable:no-any */

@@ -11,7 +11,7 @@ import { AnimationsService } from './animations.service';
 
 export const ROUTE_ANIMATIONS_ELEMENTS = 'route-animations-elements';
 
-const STEPS_ALL: any[] = [
+const STEPS_ALL = [
   query(':enter > *', style({ opacity: 0, position: 'fixed' }), {
     optional: true
   }),

@@ -24,6 +24,7 @@ import {
 } from '@angular/material/menu/testing';
 import { MatInputHarness } from '@angular/material/input/testing';
 
+/* tslint:disable:no-any */
 describe('TodosComponent', () => {
   let store: MockStore;
   let component: TodosContainerComponent;
@@ -231,3 +232,4 @@ describe('TodosComponent', () => {
     expect(getTodoInput().nativeElement.value).toBe('');
   });
 });
+/* tslint:enable:no-any */

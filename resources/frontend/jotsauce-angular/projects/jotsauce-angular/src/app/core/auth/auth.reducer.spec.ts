@@ -7,6 +7,7 @@ describe('AuthReducer', () => {
     isAuthenticated: false
   };
 
+  /* tslint:disable:no-any */
   it('should return default state', () => {
     const action = {} as any;
     const state = authReducer(undefined, action);
@@ -27,4 +28,5 @@ describe('AuthReducer', () => {
 
     expect(state.isAuthenticated).toBe(false);
   });
+  /* tslint:enable:no-any */
 });

@@ -16,6 +16,7 @@ import { StockMarketService } from './stock-market.service';
 
 const symbol = 'TSLA';
 
+/* tslint:disable:no-any */
 describe('StockMarketEffects', () => {
   let localStorage: jasmine.SpyObj<LocalStorageService>;
   let stockMarket: jasmine.SpyObj<StockMarketService>;
@@ -120,3 +121,4 @@ describe('StockMarketEffects', () => {
     });
   });
 });
+/* tslint:enable:no-any */

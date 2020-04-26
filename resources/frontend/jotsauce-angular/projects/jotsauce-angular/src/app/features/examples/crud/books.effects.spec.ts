@@ -14,18 +14,19 @@ const scheduler = new TestScheduler((actual, expected) =>
   assert.deepStrictEqual(actual, expected)
 );
 
+/* tslint:disable:no-any */
 describe('BooksEffects', () => {
   describe('persistBooks', () => {
     const booksState: BookState = {
       entities: {
-        '1': {
+        1: {
           author: 'Author',
           description: 'Description',
           id: '1',
           title: 'Title'
         }
       },
-      ids: ['1']
+      ids: [1]
     };
     let localStorage: LocalStorageService;
     let store: Store<any>;
@@ -82,3 +83,4 @@ describe('BooksEffects', () => {
     });
   });
 });
+/* tslint:enable:no-any */

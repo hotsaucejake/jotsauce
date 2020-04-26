@@ -39,7 +39,7 @@
             </button>
           </span>
 
-          <button mat-button mat-stroked-button color="accent" *ngIf="!(isAuthenticated$ | async)" (click)="onLoginClick()">
+          <button mat-button mat-stroked-button color="accent" *ngIf="(isAuthenticated$ | async) !== true" (click)="onLoginClick()">
             {{ 'jot.menu.login' | translate }}
           </button>
 

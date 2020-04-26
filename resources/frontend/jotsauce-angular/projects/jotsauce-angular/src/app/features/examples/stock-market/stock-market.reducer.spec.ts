@@ -22,6 +22,7 @@ const originalState: StockMarketState = {
   }
 };
 
+/* tslint:disable:no-any */
 describe('StockMarketReducer', () => {
   describe('undefined action', () => {
     describe('with undefined original state', () => {
@@ -90,3 +91,4 @@ describe('StockMarketReducer', () => {
     });
   });
 });
+/* tslint:enable:no-any */
