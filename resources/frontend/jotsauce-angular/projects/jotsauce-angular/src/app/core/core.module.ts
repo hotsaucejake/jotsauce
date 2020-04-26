@@ -122,10 +122,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     // ngrx
     StoreModule.forRoot(reducers, { metaReducers }),
     StoreRouterConnectingModule.forRoot(),
-    EffectsModule.forRoot([
-      AuthEffects,
-      SettingsEffects
-    ]),
+    EffectsModule.forRoot([AuthEffects, SettingsEffects]),
     environment.production
       ? []
       : StoreDevtoolsModule.instrument({
