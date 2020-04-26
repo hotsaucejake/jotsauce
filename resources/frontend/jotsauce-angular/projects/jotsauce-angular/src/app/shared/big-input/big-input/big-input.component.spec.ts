@@ -4,6 +4,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { SharedModule } from '../../shared.module';
 
+/* tslint:disable:no-any */
 @Component({
   selector: 'jot-host-for-test',
   template: `
@@ -95,3 +96,4 @@ describe('BigInputComponent', () => {
     );
   });
 });
+/* tslint:enable:no-any */

@@ -14,6 +14,7 @@ import { tap } from 'rxjs/operators';
 export class HttpErrorInterceptor implements HttpInterceptor {
   constructor(private injector: Injector) {}
 
+  /* tslint:disable:no-any */
   intercept(
     request: HttpRequest<any>,
     next: HttpHandler
@@ -29,4 +30,5 @@ export class HttpErrorInterceptor implements HttpInterceptor {
       })
     );
   }
+  /* tslint:enable:no-any */
 }

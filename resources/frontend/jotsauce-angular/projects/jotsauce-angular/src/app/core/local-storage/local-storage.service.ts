@@ -8,6 +8,7 @@ const APP_PREFIX = 'JOT-';
 export class LocalStorageService {
   constructor() {}
 
+  /* tslint:disable:no-any */
   static loadInitialState() {
     return Object.keys(localStorage).reduce((state: any, storageKey) => {
       if (storageKey.includes(APP_PREFIX)) {
@@ -66,4 +67,5 @@ export class LocalStorageService {
       throw new Error(errorMessage);
     }
   }
+  /* tslint:enable:no-any */
 }

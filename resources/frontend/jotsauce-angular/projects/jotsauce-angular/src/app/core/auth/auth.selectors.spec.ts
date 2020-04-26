@@ -12,6 +12,7 @@ describe('Auth Selectors', () => {
   });
 });
 
+/* tslint:disable:no-any */
 function createAuthState() {
   return {
     auth: {
@@ -21,3 +22,4 @@ function createAuthState() {
     router: {} as any
   };
 }
+/* tslint:disable:no-any */

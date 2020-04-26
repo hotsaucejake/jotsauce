@@ -22,6 +22,7 @@ const scheduler = new TestScheduler((actual, expected) =>
   assert.deepStrictEqual(actual, expected)
 );
 
+/* tslint:disable:no-any */
 describe('SettingsEffects', () => {
   let router: any;
   let localStorageService: jasmine.SpyObj<LocalStorageService>;
@@ -97,3 +98,4 @@ describe('SettingsEffects', () => {
     });
   });
 });
+/* tslint:enable:no-any */

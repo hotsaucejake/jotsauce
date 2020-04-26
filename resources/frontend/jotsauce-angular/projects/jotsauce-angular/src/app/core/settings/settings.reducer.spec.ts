@@ -11,6 +11,7 @@ import {
   actionSettingsChangeTheme
 } from './settings.actions';
 
+/* tslint:disable:no-any */
 describe('SettingsReducer', () => {
   it('should return default state', () => {
     const action = {} as any;
@@ -79,3 +80,4 @@ describe('SettingsReducer', () => {
     expect(state.hour).toEqual(7);
   });
 });
+/* tslint:enable:no-any */

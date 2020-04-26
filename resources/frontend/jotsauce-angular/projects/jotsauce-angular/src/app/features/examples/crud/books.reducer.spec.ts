@@ -2,11 +2,12 @@ import { BookState } from './books.model';
 import { bookReducer, initialState } from './books.reducer';
 import { actionBooksDeleteOne, actionBooksUpsertOne } from './books.actions';
 
+/* tslint:disable:no-any */
 describe('BookReducer', () => {
   const TEST_INITIAL_STATE: BookState = {
-    ids: ['123'],
+    ids: [123],
     entities: {
-      '123': {
+      123: {
         id: '123',
         title: 'Reactive Programming with Angular and ngrx',
         author: 'Oren Farhi',
@@ -66,3 +67,4 @@ describe('BookReducer', () => {
     expect(state.entities[id]).toBe(undefined);
   });
 });
+/* tslint:enable:no-any */

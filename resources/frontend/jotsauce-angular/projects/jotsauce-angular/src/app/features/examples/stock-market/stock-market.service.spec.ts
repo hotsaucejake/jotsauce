@@ -2,6 +2,7 @@ import { TestBed, inject } from '@angular/core/testing';
 
 import { StockMarketService } from './stock-market.service';
 
+/* tslint:disable:no-any */
 describe('StockMarketService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -36,3 +37,4 @@ describe('StockMarketService', () => {
     }
   ));
 });
+/* tslint:enable:no-any */

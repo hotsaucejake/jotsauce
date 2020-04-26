@@ -2,6 +2,7 @@ import { todosReducer, initialState } from './todos.reducer';
 import { TodosState } from './todos.model';
 import * as todoActions from './todos.actions';
 
+/* tslint:disable:no-any */
 describe('TodoReducer', () => {
   it('should return the default state', () => {
     const action = {} as any;
@@ -65,3 +66,4 @@ describe('TodoReducer', () => {
     expect(state.filter).toEqual('DONE');
   });
 });
+/* tslint:enable:no-any */

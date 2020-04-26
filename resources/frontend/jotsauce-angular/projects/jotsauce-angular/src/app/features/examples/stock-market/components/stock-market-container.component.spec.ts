@@ -15,6 +15,7 @@ import { StockMarketContainerComponent } from './stock-market-container.componen
 import { selectStockMarket } from '../stock-market.selectors';
 import { StockMarketState } from '../stock-market.model';
 
+/* tslint:disable:no-any */
 describe('StockMarketContainerComponent', () => {
   let retrieveStockSpy: jasmine.Spy;
 
@@ -184,3 +185,4 @@ describe('StockMarketContainerComponent', () => {
     });
   });
 });
+/* tslint:enable:no-any */
