@@ -7,29 +7,30 @@
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
+          "changeDetection": "OnPush",
           "style": "scss"
         }
       },
-      "root": "",
-      "sourceRoot": "src",
-      "prefix": "app",
+      "root": "projects/jotsauce-angular",
+      "sourceRoot": "projects/jotsauce-angular/src",
+      "prefix": "jot",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "../../../public/assets/jotsauce-angular",
-            "deployUrl": "/assets/jotsauce-angular/",
-            "index": "src/index.html",
-            "main": "src/main.ts",
-            "polyfills": "src/polyfills.ts",
-            "tsConfig": "tsconfig.app.json",
-            "aot": false,
+            "outputPath": "dist/jotsauce-angular",
+            "index": "projects/jotsauce-angular/src/index.html",
+            "main": "projects/jotsauce-angular/src/main.ts",
+            "polyfills": "projects/jotsauce-angular/src/polyfills.ts",
+            "tsConfig": "projects/jotsauce-angular/tsconfig.app.json",
+            "aot": true,
             "assets": [
-              "src/favicon.ico",
-              "src/assets"
+              "projects/jotsauce-angular/src/favicon.ico",
+              "projects/jotsauce-angular/src/assets"
             ],
             "styles": [
-              "src/styles.scss"
+              "projects/jotsauce-angular/src/styles-app-loading.scss",
+              "projects/jotsauce-angular/src/styles.scss"
             ],
             "scripts": []
           },
@@ -37,42 +38,51 @@
             "production": {
               "fileReplacements": [
                 {
-                  "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.prod.ts"
+                  "replace": "projects/jotsauce-angular/src/environments/environment.ts",
+                  "with": "projects/jotsauce-angular/src/environments/environment.prod.ts"
                 }
               ],
+              "outputPath": "../../../public/assets/jotsauce-angular",
+              "deployUrl": "/assets/jotsauce-angular/",
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
               "extractCss": true,
               "namedChunks": false,
-              "aot": true,
               "extractLicenses": true,
-              "vendorChunk": true,
+              "vendorChunk": false,
               "buildOptimizer": true,
               "budgets": [
                 {
-                  "type": "initial",
-                  "maximumWarning": "2mb",
-                  "maximumError": "5mb"
+                  "type": "bundle",
+                  "name": "polyfills",
+                  "baseline": "150kb",
+                  "maximumWarning": "50kb",
+                  "maximumError": "100kb"
+                },
+                {
+                  "type": "bundle",
+                  "name": "styles",
+                  "baseline": "280kb",
+                  "maximumWarning": "50kb",
+                  "maximumError": "100kb"
+                },
+                {
+                  "type": "bundle",
+                  "name": "main",
+                  "baseline": "1024kb",
+                  "maximumWarning": "100kb",
+                  "maximumError": "200kb"
                 },
                 {
                   "type": "anyComponentStyle",
-                  "maximumWarning": "6kb",
-                  "maximumError": "10kb"
+                  "maximumWarning": "6kb"
                 }
               ]
             },
             "dev": {
-              "fileReplacements": [
-                {
-                  "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.dev.ts"
-                }
-              ],
-              "outputHashing": "all",
-              "aot": false,
-              "buildOptimizer": false
+              "outputPath": "dist/assets/jotsauce-angular",
+              "baseHref": "/assets/jotsauce-angular/"
             }
           }
         },
@@ -99,37 +109,46 @@
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "src/test.ts",
-            "polyfills": "src/polyfills.ts",
-            "tsConfig": "tsconfig.spec.json",
-            "karmaConfig": "karma.conf.js",
+            "main": "projects/jotsauce-angular/src/test.ts",
+            "polyfills": "projects/jotsauce-angular/src/polyfills.ts",
+            "tsConfig": "projects/jotsauce-angular/tsconfig.spec.json",
+            "karmaConfig": "projects/jotsauce-angular/karma.conf.js",
             "assets": [
-              "src/favicon.ico",
-              "src/assets"
+              "projects/jotsauce-angular/src/favicon.ico",
+              "projects/jotsauce-angular/src/assets"
             ],
             "styles": [
-              "src/styles.scss"
+              "projects/jotsauce-angular/src/styles-app-loading.scss",
+              "projects/jotsauce-angular/src/styles.scss"
             ],
             "scripts": []
+          },
+          "configurations": {
+            "test": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/jotsauce-angular/src/environments/environment.ts",
+                  "with": "projects/jotsauce-angular/src/environments/environment.test.ts"
+                }
+              ]
+            }
           }
         },
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
-              "tsconfig.app.json",
-              "tsconfig.spec.json",
-              "e2e/tsconfig.json"
+              "projects/jotsauce-angular/tsconfig.app.json",
+              "projects/jotsauce-angular/tsconfig.spec.json",
+              "projects/jotsauce-angular/e2e/tsconfig.json"
             ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
+            "exclude": ["**/node_modules/**"]
           }
         },
         "e2e": {
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
-            "protractorConfig": "e2e/protractor.conf.js",
+            "protractorConfig": "projects/jotsauce-angular/e2e/protractor.conf.js",
             "devServerTarget": "jotsauce-angular:serve"
           },
           "configurations": {
@@ -139,6 +158,7 @@
           }
         }
       }
-    }},
+    }
+  },
   "defaultProject": "jotsauce-angular"
 }

@@ -1,0 +1,9 @@
+$jot-nature-primary: mat-palette($mat-brown, 700, 300, 900);
+$jot-nature-accent: mat-palette($mat-deep-purple, 300);
+$jot-nature-warn: mat-palette($mat-red, 600);
+
+$jot-nature-theme: mat-light-theme(
+  $jot-nature-primary,
+  $jot-nature-accent,
+  $jot-nature-warn
+);
