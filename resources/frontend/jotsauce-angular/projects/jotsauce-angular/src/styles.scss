@@ -12,6 +12,7 @@
 @import './themes/light-theme';
 @import './themes/black-theme';
 @import './themes/nature-theme';
+@import './themes/beauregard-theme';
 
 @import 'styles-reset.scss-theme';
 @import './app/app/app.component.scss-theme';
@@ -55,4 +56,9 @@
 .nature-theme {
   @include angular-material-theme($jot-nature-theme);
   @include custom-components-theme($jot-nature-theme);
+}
+
+.beauregard-theme {
+  @include angular-material-theme($jot-beauregard-theme);
+  @include custom-components-theme($jot-beauregard-theme);
 }
