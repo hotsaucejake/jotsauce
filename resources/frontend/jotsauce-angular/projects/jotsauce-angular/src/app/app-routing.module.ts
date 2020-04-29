@@ -8,14 +8,14 @@ const routes: Routes = [
     pathMatch: 'full'
   },
   {
-    path: 'about',
-    loadChildren: () =>
-      import('./features/about/about.module').then(m => m.AboutModule)
-  },
-  {
     path: 'auth',
     loadChildren: () =>
       import('./features/auth/auth.module').then(m => m.AuthModule)
+  },
+  {
+    path: 'about',
+    loadChildren: () =>
+      import('./features/about/about.module').then(m => m.AboutModule)
   },
   {
     path: 'feature-list',

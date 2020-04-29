@@ -4,15 +4,9 @@
 
     <mat-sidenav #sidenav mode="push">
       <div class="branding"><img [src]="logo" />
-        <span>{{ 'jot.title.short' | translate}}</span></div>
+        <span>{{ 'jot.title' | translate}}</span></div>
       <mat-nav-list>
-        <a mat-list-item *ngFor="let item of navigationSideMenu" (click)="sidenav.close()" [routerLink]="[item.link]"
-          routerLinkActive="active">
-          {{item.label | translate}}
-        </a>
-        <a mat-list-item href="https://github.com/hotsaucejake/jotsauce" target="_blank">
-          Github
-        </a>
+        
       </mat-nav-list>
     </mat-sidenav>
 
@@ -28,18 +22,10 @@
           <span routerLink="" class="branding spacer center d-inline d-sm-none">
             <img [src]="logo" /></span>
           <span routerLink="" class="branding spacer center d-none d-sm-inline d-md-none"><img [src]="logo" /> {{
-            'jot.title.short' | translate }}</span>
-          <span routerLink="" class="branding spacer d-none d-md-inline"><img [src]="logo" /> {{ 'jot.title.long' | translate
-            }}</span>
+            'jot.title' | translate }}</span>
+          <span routerLink="" class="branding spacer d-none d-md-inline"><img [src]="logo" /> {{ 'jot.title' | translate }}</span>
 
-          <span class="d-none d-md-inline">
-            <button mat-button class="nav-button" *ngFor="let item of navigation" [routerLink]="[item.link]"
-              routerLinkActive="active">
-              {{item.label | translate}}
-            </button>
-          </span>
-
-          <button mat-button mat-stroked-button color="accent" *ngIf="(isAuthenticated$ | async) !== true" (click)="onLoginClick()">
+          <button mat-button mat-flat-button color="accent" *ngIf="(isAuthenticated$ | async) !== true" routerLink="login">
             {{ 'jot.menu.login' | translate }}
           </button>
 
@@ -48,6 +34,7 @@
                   [matMenuTriggerFor]="toolbarUserMenu">
             <fa-icon icon="user-circle"></fa-icon>
           </button>
+
           <mat-menu #toolbarUserMenu="matMenu">
             <button mat-menu-item (click)="onLogoutClick()">
               <mat-icon><fa-icon icon="power-off"></fa-icon></mat-icon>
@@ -58,23 +45,6 @@
           <button mat-icon-button routerLink="settings" class="d-none d-sm-inline">
             <fa-icon icon="cog"></fa-icon>
           </button>
-
-          <a [matTooltip]="'jot.header.github' | translate"
-             matTooltipPosition="before"
-             mat-icon-button
-             class="link d-none d-sm-inline"
-             href="https://github.com/tomastrajan/jotsauce-angular"
-             target="_blank">
-            <fa-icon [icon]="['fab','github']"></fa-icon>
-          </a>
-
-          <span *ngIf="language$ | async as language">
-            <mat-select [ngModel]="language" (selectionChange)="onLanguageSelect($event)">
-              <mat-option *ngFor="let l of languages" [value]="l">
-                {{ l.toUpperCase() }}
-              </mat-option>
-            </mat-select>
-          </span>
         </mat-toolbar>
       </div>
 
@@ -85,17 +55,9 @@
       <div class="footer">
         <div class="row">
           <div class="col-sm-12 links">
-            <a href="https://www.github.com/hotsaucejake" target="_blank">
-              <fa-icon [icon]="['fab','github']"></fa-icon>
-              <span>Github</span>
-            </a>
-            <a href="https://www.twitter.com/hotsaucejake" target="_blank">
-              <fa-icon [icon]="['fab','twitter']"></fa-icon>
-              <span>Twitter</span>
-            </a>
-            <a href="https://www.instagram.com/hotsaucejake" target="_blank">
-              <fa-icon [icon]="['fab','instagram']"></fa-icon>
-              <span>Instagram</span>
+            <a mat-list-item *ngFor="let item of navigationSideMenu" (click)="sidenav.close()" [routerLink]="[item.link]"
+              routerLinkActive="active">
+              {{item.label | translate}}
             </a>
           </div>
         </div>

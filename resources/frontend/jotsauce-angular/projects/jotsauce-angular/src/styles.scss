@@ -6,6 +6,8 @@
 
 @import '~@angular/material/theming';
 
+@import url('https://fonts.googleapis.com/css?family=Lato&display=swap');
+
 @include mat-core();
 
 @import './themes/default-theme';
