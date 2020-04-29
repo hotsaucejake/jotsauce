@@ -1,9 +1,0 @@
-$jot-beauregard-primary: mat-palette($mat-purple, 300, 100, 900);
-$jot-beauregard-accent: mat-palette($mat-green, 300, 100 900);
-$jot-beauregard-warn: mat-palette($mat-orange, 300, 100, 900);
-
-$jot-beauregard-theme: mat-dark-theme(
-  $jot-beauregard-primary,
-  $jot-beauregard-accent,
-  $jot-beauregard-warn
-);
