@@ -1,9 +1,0 @@
-$jot-light-primary: mat-palette($mat-grey, 200, 500, 300);
-$jot-light-accent: mat-palette($mat-brown, 200);
-$jot-light-warn: mat-palette($mat-deep-orange, 200);
-
-$jot-light-theme: mat-light-theme(
-  $jot-light-primary,
-  $jot-light-accent,
-  $jot-light-warn
-);

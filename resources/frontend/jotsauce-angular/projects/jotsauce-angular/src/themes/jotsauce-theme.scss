@@ -1,9 +1,0 @@
-$jot-jotsauce-primary: mat-palette($mat-deep-purple, 600, 300, 600);
-$jot-jotsauce-accent: mat-palette($mat-teal, 300, 100, 300);
-$jot-jotsauce-warn: mat-palette($mat-pink,  300, 100, 600);
-
-$jot-jotsauce-theme: mat-dark-theme(
-  $jot-jotsauce-primary,
-  $jot-jotsauce-accent,
-  $jot-jotsauce-warn
-);
