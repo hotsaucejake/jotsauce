@@ -1,8 +1,10 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
 
 import { LoginComponent } from './login/login.component';
 import { AuthComponent } from './auth.component';
+
+import { AuthGuardService } from '../../core/core.module';
 
 const routes: Routes = [
   {
@@ -18,6 +20,11 @@ const routes: Routes = [
         path: 'login',
         component: LoginComponent,
         data: { title: 'Login' } // TODO: 'jot.menu.login'
+      },
+      {
+        path: 'register',
+        component: LoginComponent,
+        data: { title: 'Register' }
       }
     ]
   }

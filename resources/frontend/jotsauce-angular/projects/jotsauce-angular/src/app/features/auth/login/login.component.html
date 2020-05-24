@@ -1,2 +1,124 @@
-<p>login works!</p>
-dd
+<div class="container">
+    <div class="row display-flex">
+        <div class="col col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+            <div class="landing-content">
+                <h1>Rapid Logging for Productivity and Journaling</h1>
+            </div>
+        </div>
+
+        <div class="col col-xl-5 col-lg-6 col-md-12 col-sm-12 col-12">
+            
+            <!-- Login-Registration Form  -->
+            
+            <div class="registration-login-form">
+                <!-- Nav tabs -->
+                <ul class="nav nav-tabs" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active" data-toggle="tab" routerLink="'jot-login'" role="tab">
+                            <svg class="olymp-login-icon" viewBox="0 0 29 32">
+                                <path d="M0 17.443c0 6.515 4.287 12.026 10.195 13.875v-3.081c-4.263-1.728-7.273-5.901-7.273-10.783 0-4.883 3.009-9.056 7.273-10.784v-3.1c-5.908 1.849-10.195 7.36-10.195 13.872zM18.922 3.578v3.092c4.263 1.728 7.273 5.901 7.273 10.783s-3.009 9.056-7.273 10.783v3.071c5.894-1.855 10.169-7.357 10.169-13.863 0-6.503-4.273-12.007-10.169-13.865zM13.104 14.545h2.909v-14.545h-2.909v14.545zM13.104 32h2.909v-2.909h-2.909v2.909z"></path>
+                            </svg>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="tab" routerLink="'/auth/register'" role="tab">
+                            <svg class="olymp-register-icon" viewBox="0 0 37 32">
+                                <path d="M16 3.213c3.24 0 6.192 1.214 8.446 3.2h4.346c-2.917-3.888-7.549-6.413-12.781-6.413-7.165 0-13.227 4.714-15.259 11.213h3.387c1.899-4.69 6.491-8 11.861-8zM16 28.813c-5.37 0-9.962-3.31-11.861-8h-3.378c2.040 6.485 8.094 11.187 15.25 11.187 5.222 0 9.842-2.515 12.762-6.387h-4.325c-2.256 1.986-5.208 3.2-8.448 3.2zM32 14.413v-4.8h-3.2v4.8h-4.8v3.2h4.8v4.8h3.2v-4.8h4.8v-3.2h-4.8zM3.2 14.413h-3.2v3.2h3.2v-3.2z"></path>
+                            </svg>
+                        </a>
+                    </li>
+                </ul>
+            
+                <!-- Tab panes -->
+                <div class="tab-content">
+                    <div class="tab-pane active" id="home" role="tabpanel" data-mh="log-tab">
+                        <div class="title h6">Register</div>
+                        <form class="content">
+                            <div class="row">
+                                <div class="col col-12 col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                                    <div class="form-group label-floating">
+                                        <label class="control-label">First Name</label>
+                                        <input class="form-control" placeholder="" type="text">
+                                    </div>
+                                </div>
+                                <div class="col col-12 col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                                    <div class="form-group label-floating">
+                                        <label class="control-label">Last Name</label>
+                                        <input class="form-control" placeholder="" type="text">
+                                    </div>
+                                </div>
+                                <div class="col col-12 col-xl-12 col-lg-12 col-md-12 col-sm-12">
+                                    <div class="form-group label-floating">
+                                        <label class="control-label">Your Email</label>
+                                        <input class="form-control" placeholder="" type="email">
+                                    </div>
+                                    <div class="form-group label-floating">
+                                        <label class="control-label">Your Password</label>
+                                        <input class="form-control" placeholder="" type="password">
+                                    </div>
+            
+                                    <div class="form-group date-time-picker label-floating">
+                                        <label class="control-label">Your Birthday</label>
+                                        <input name="datetimepicker" value="10/24/1984" />
+                                        <span class="input-group-addon">
+                                            <svg class="olymp-calendar-icon" viewBox="0 0 26 32">
+                                                <path d="M23.273 32h2.909v-2.909h-2.909v2.909zM23.273 2.911h-2.909v-1.456c0-0.801-0.652-1.455-1.455-1.455-0.804 0-1.455 0.653-1.455 1.455v1.456h-8.727v-1.456c0-0.801-0.652-1.455-1.455-1.455-0.804 0-1.455 0.653-1.455 1.455v1.456h-2.909c-1.606 0-2.909 1.302-2.909 2.909v23.271c0 1.607 1.303 2.909 2.909 2.909h17.455v-2.909h-17.455v-23.271h2.909v1.453c0 0.803 0.65 1.455 1.455 1.455 0.803 0 1.455-0.652 1.455-1.455v-1.453h8.727v1.453c0 0.803 0.65 1.455 1.455 1.455 0.803 0 1.455-0.652 1.455-1.455v-1.453h2.909v20.362h2.909v-20.362c0-1.607-1.303-2.909-2.909-2.909zM7.273 26.182h2.909v-2.909h-2.909v2.909zM14.545 26.182v-2.909h-2.909v2.909h2.909zM16 26.182h2.909v-2.909h-2.909v2.909zM14.545 18.909h-7.273v2.909h7.273v-2.909zM18.909 18.909h-2.909v2.909h2.909v-2.909zM14.545 14.547h-7.273v2.908h7.273v-2.908zM18.909 14.547h-2.909v2.908h2.909v-2.908z"></path>
+                                            </svg>
+                                        </span>
+                                    </div>
+            
+                                    
+            
+                                    
+            
+                                    <a href="#" class="btn btn-purple btn-lg full-width">Register!</a>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+            
+                    <div class="tab-pane" id="profile" role="tabpanel" data-mh="log-tab">
+                        <div class="title h6">Login to your Account</div>
+                        <form class="content">
+                            <div class="row">
+                                <div class="col col-12 col-xl-12 col-lg-12 col-md-12 col-sm-12">
+                                    <div class="form-group label-floating">
+                                        <label class="control-label">Your Email</label>
+                                        <input class="form-control" placeholder="" type="email">
+                                    </div>
+                                    <div class="form-group label-floating">
+                                        <label class="control-label">Your Password</label>
+                                        <input class="form-control" placeholder="" type="password">
+                                    </div>
+            
+                                    <div class="remember">
+            
+                                        <div class="checkbox">
+                                            <label>
+                                                <input name="optionsCheckboxes" type="checkbox">
+                                                Remember Me
+                                            </label>
+                                        </div>
+                                        <a href="#" class="forgot" data-toggle="modal" data-target="#restore-password">Forgot my Password</a>
+                                    </div>
+            
+                                    <a href="#" class="btn btn-lg btn-primary full-width">Login</a>
+            
+                                    <div class="or"></div>
+            
+                                    <a href="#" class="btn btn-lg bg-facebook full-width btn-icon-left"><i class="fab fa-facebook-f" aria-hidden="true"></i>Login with Facebook</a>
+            
+                                    <a href="#" class="btn btn-lg bg-twitter full-width btn-icon-left"><i class="fab fa-twitter" aria-hidden="true"></i>Login with Twitter</a>
+            
+            
+                                    <p>Don’t you have an account? <a href="#">Register Now!</a> it’s really simple and you can start enjoing all the benefits!</p>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- ... end Login-Registration Form  -->		</div>
+    </div>
+</div>

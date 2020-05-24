@@ -1,4 +1,5 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'jot-auth',
@@ -7,6 +8,9 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AuthComponent implements OnInit {
+
+  public env = environment;
+  public year = new Date().getFullYear();
 
   constructor() { }
 
