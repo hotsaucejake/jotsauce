@@ -9,15 +9,15 @@ import { AppComponent } from './app/app.component';
 
 @NgModule({
   imports: [
+    // app
+    AppRoutingModule,
+    
     // angular
     BrowserAnimationsModule,
     BrowserModule,
 
     // core
-    CoreModule,
-
-    // app
-    AppRoutingModule
+    CoreModule
   ],
   declarations: [AppComponent],
   bootstrap: [AppComponent]

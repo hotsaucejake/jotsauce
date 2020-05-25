@@ -1,0 +1,75 @@
+<div class="landing-page">
+    <div class="content-bg-wrap"></div>
+
+    <div class="header--standard header--standard-landing" id="header--standard">
+        <div class="container">
+            <div class="header--standard-wrap">
+    
+                <a href="#" class="logo">
+                    <div class="img-wrap">
+                        <img src="/assets/jotsauce-angular/assets/img/theme/logo.png" alt="Jotsauce">
+                        <img src="/assets/jotsauce-angular/assets/img/theme/logo-colored-small.png" alt="Jotsauce" class="logo-colored">
+                    </div>
+                    <div class="title-block">
+                        <h6 class="logo-title">jotsauce</h6>
+                        <div class="sub-title">RAPID LOGGING</div>
+                    </div>
+                </a>
+    
+                <a href="#" class="open-responsive-menu js-open-responsive-menu"> 
+                    <svg class="olymp-menu-icon"  viewBox="0 0 41 32">
+                        <path d="M4.571 0h-4.571v4.571h4.571v-4.571zM9.143 0v4.571h32v-4.571h-32zM13.714 13.714h-13.714v4.571h13.714v-4.571zM18.286 13.714v4.571h4.571v-4.571h-4.571zM27.429 18.286h13.714v-4.571h-13.714v4.571zM0 32h32v-4.569h-32v4.569zM36.571 32h4.571v-4.569h-4.571v4.569z"></path>                    
+                    </svg>
+                </a>
+    
+                <div class="nav nav-pills nav1 header-menu expanded-menu">
+                    <div class="mCustomScrollbar">
+                        <ul>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link">Home</a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a href="#" class="nav-link">About</a>
+                            </li>
+                            <li class="close-responsive-menu js-close-responsive-menu">
+                                <svg class="olymp-close-icon" viewBox="0 0 32 32">
+                                    <path d="M14.222 17.778h3.556v-3.556h-3.556v3.556zM31.084 3.429l-2.514-2.514-10.057 10.057 2.514 2.514 10.057-10.057zM0.916 28.571l2.514 2.514 10.057-10.055-2.516-2.514-10.055 10.055zM18.514 21.029l10.057 10.055 2.514-2.514-10.057-10.055-2.514 2.514zM0.916 3.431l10.057 10.055 2.516-2.514-10.059-10.057-2.514 2.516z"></path>
+                                </svg>
+                            </li>
+                            <li class="nav-item js-expanded-menu">
+                                <a href="#" class="nav-link">
+                                    <svg class="olymp-menu-icon"  viewBox="0 0 41 32">
+                                        <path d="M4.571 0h-4.571v4.571h4.571v-4.571zM9.143 0v4.571h32v-4.571h-32zM13.714 13.714h-13.714v4.571h13.714v-4.571zM18.286 13.714v4.571h4.571v-4.571h-4.571zM27.429 18.286h13.714v-4.571h-13.714v4.571zM0 32h32v-4.569h-32v4.569zM36.571 32h4.571v-4.569h-4.571v4.569z"></path>                    
+                                    </svg>
+                                    <svg class="olymp-close-icon" viewBox="0 0 32 32">
+                                        <path d="M14.222 17.778h3.556v-3.556h-3.556v3.556zM31.084 3.429l-2.514-2.514-10.057 10.057 2.514 2.514 10.057-10.057zM0.916 28.571l2.514 2.514 10.057-10.055-2.516-2.514-10.055 10.055zM18.514 21.029l10.057 10.055 2.514-2.514-10.057-10.055-2.514 2.514zM0.916 3.431l10.057 10.055 2.516-2.514-10.059-10.057-2.514 2.516z"></path>
+                                    </svg>
+                                </a>
+                            </li>
+
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- ... end Header Standard Landing  -->
+    <div class="header-spacer--standard"></div>
+
+    <router-outlet #o="outlet"></router-outlet>
+
+    <div class="row">
+        <div class="col-12 text-white">
+            {{ 'jot.title' | translate}}
+            {{ 'jot.menu.login' | translate }}
+            {{ 'jot.menu.logout' | translate }}
+            &#169; <span class="year">{{ year }}</span> - hotsaucejake
+            {{ env.versions.app }} <span *ngIf="!env.production">[{{ env.envName }}]</span>
+        </div>
+    </div>
+    
+    
+</div>

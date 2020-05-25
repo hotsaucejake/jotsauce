@@ -26,21 +26,22 @@ export class SettingsContainerComponent implements OnInit {
   settings$: Observable<SettingsState>;
 
   themes = [
+    { value: 'BLACK-THEME', label: 'dark' },
     { value: 'DEFAULT-THEME', label: 'blue' },
+    { value: 'JOTSAUCE-THEME', label: 'jotsauce' },
     { value: 'LIGHT-THEME', label: 'light' },
-    { value: 'NATURE-THEME', label: 'nature' },
-    { value: 'BLACK-THEME', label: 'dark' }
+    { value: 'NATURE-THEME', label: 'nature' }    
   ];
 
   languages = [
     { value: 'en', label: 'en' },
-    { value: 'de', label: 'de' },
-    { value: 'sk', label: 'sk' },
-    { value: 'fr', label: 'fr' },
-    { value: 'es', label: 'es' },
-    { value: 'pt-br', label: 'pt-br' },
-    { value: 'zh-cn', label: 'zh-cn' },
-    { value: 'he', label: 'he' }
+    // { value: 'de', label: 'de' },
+    // { value: 'sk', label: 'sk' },
+    // { value: 'fr', label: 'fr' },
+    // { value: 'es', label: 'es' },
+    // { value: 'pt-br', label: 'pt-br' },
+    // { value: 'zh-cn', label: 'zh-cn' },
+    // { value: 'he', label: 'he' }
   ];
 
   constructor(private store: Store<State>) {}

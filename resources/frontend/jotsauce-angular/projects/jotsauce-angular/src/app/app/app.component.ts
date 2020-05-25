@@ -32,7 +32,10 @@ export class AppComponent implements OnInit {
   version = env.versions.app;
   logo = '/assets/jotsauce-angular/assets/img/logo.png';
   year = new Date().getFullYear();
-  languages = ['en', 'de', 'sk', 'fr', 'es', 'pt-br', 'zh-cn', 'he'];
+  languages = [
+    'en', 
+    // 'de', 'sk', 'fr', 'es', 'pt-br', 'zh-cn', 'he'
+  ];
   navigation = [
     { link: 'about', label: 'jot.menu.about' },
     { link: 'feature-list', label: 'jot.menu.features' },
@@ -51,7 +54,7 @@ export class AppComponent implements OnInit {
   constructor(
     private store: Store,
     private storageService: LocalStorageService
-  ) {}
+    ) {}
 
   private static isIEorEdgeOrSafari() {
     return ['ie', 'edge', 'safari'].includes(browser().name);

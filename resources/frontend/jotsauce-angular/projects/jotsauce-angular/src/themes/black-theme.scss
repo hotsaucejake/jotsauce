@@ -1,9 +1,0 @@
-$jot-black-primary: mat-palette($mat-grey, 700, 300, 900);
-$jot-black-accent: mat-palette($mat-blue-grey, 400);
-$jot-black-warn: mat-palette($mat-red, 500);
-
-$jot-black-theme: mat-dark-theme(
-  $jot-black-primary,
-  $jot-black-accent,
-  $jot-black-warn
-);
