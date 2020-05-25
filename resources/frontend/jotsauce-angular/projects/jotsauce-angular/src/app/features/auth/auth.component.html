@@ -61,15 +61,14 @@
 
     <router-outlet #o="outlet"></router-outlet>
 
-    <div class="row">
-        <div class="col-12 text-white">
-            {{ 'jot.title' | translate}}
-            {{ 'jot.menu.login' | translate }}
-            {{ 'jot.menu.logout' | translate }}
-            &#169; <span class="year">{{ year }}</span> - hotsaucejake
-            {{ env.versions.app }} <span *ngIf="!env.production">[{{ env.envName }}]</span>
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-12 text-white text-center">
+                {{ 'jot.title' | translate}}
+                &#169; <span class="year">{{ year }}</span> - <a href="https://github.com/hotsaucejake" target="_blank">hotsaucejake</a>
+                {{ env.versions.app }} <span *ngIf="!env.production">[{{ env.envName }}]</span>
+            </div>
         </div>
     </div>
-    
     
 </div>
