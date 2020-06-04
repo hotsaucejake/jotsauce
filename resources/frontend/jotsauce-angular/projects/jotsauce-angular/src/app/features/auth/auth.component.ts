@@ -11,6 +11,7 @@ export class AuthComponent implements OnInit {
 
   public env = environment;
   public year = new Date().getFullYear();
+  public expandedMenu = false;
 
   constructor() { }
 
