@@ -67,7 +67,7 @@
       }
     }
   </style>
-<link rel="stylesheet" href="/assets/jotsauce-angular/styles.31c1c2b8cfeb1af32172.css"></head>
+<link rel="stylesheet" href="/assets/jotsauce-angular/styles.b5907c24e3155ed361f2.css"></head>
 <body>
 <jot-root>
   <div class="app-loading">
@@ -78,5 +78,5 @@
     </div>
   </div>
 </jot-root>
-<script src="/assets/jotsauce-angular/runtime-es2015.316165a6148026d159af.js" type="module"></script><script src="/assets/jotsauce-angular/runtime-es5.316165a6148026d159af.js" nomodule defer></script><script src="/assets/jotsauce-angular/polyfills-es5.0c875935332c0324767b.js" nomodule defer></script><script src="/assets/jotsauce-angular/polyfills-es2015.49bc2ead84c3e3eae683.js" type="module"></script><script src="/assets/jotsauce-angular/main-es2015.cbef41d2150f4b0afcb3.js" type="module"></script><script src="/assets/jotsauce-angular/main-es5.cbef41d2150f4b0afcb3.js" nomodule defer></script></body>
+<script src="/assets/jotsauce-angular/runtime-es2015.f541237335d2e296f439.js" type="module"></script><script src="/assets/jotsauce-angular/runtime-es5.f541237335d2e296f439.js" nomodule defer></script><script src="/assets/jotsauce-angular/polyfills-es5.0c875935332c0324767b.js" nomodule defer></script><script src="/assets/jotsauce-angular/polyfills-es2015.49bc2ead84c3e3eae683.js" type="module"></script><script src="/assets/jotsauce-angular/main-es2015.647bf22e849b5512e062.js" type="module"></script><script src="/assets/jotsauce-angular/main-es5.647bf22e849b5512e062.js" nomodule defer></script></body>
 </html>

@@ -19,30 +19,23 @@
                         <div class="title h1">Login</div>
                         <form class="content">
                             <div class="row">
-                                <div class="col col-12 col-xl-12 col-lg-12 col-md-12 col-sm-12">
-                                    <div class="form-group">
-                                        <label for="email">Email address</label>
-                                        <input type="email" class="form-control" id="email">
-                                      </div>
-                                      <div class="form-group">
-                                        <label for="password">Password</label>
-                                        <input type="password" class="form-control" id="password">
-                                      </div>
-                                      <div class="form-group form-check">
-                                        <input type="checkbox" class="form-check-input" id="remember">
-                                        <label class="form-check-label" for="remember">Remember Me</label>
-                                      </div>
-                                      <mat-checkbox>Remember Me</mat-checkbox>
-                                      <mat-checkbox>Check me!</mat-checkbox>
-                                      <mat-checkbox class="col" formControlName="requestGift" [ngClass]="routeAnimationsElements">
-                                        something
-                                      </mat-checkbox>
+                                <div class="col col-12 col-xl-12 col-lg-12 col-md-12 col-sm-12" [formGroup]="authGroup">
+                                    <mat-form-field class="w-100">
+                                        <mat-label>Username / Email</mat-label>
+                                        <input matInput type="email" placeholder="email@address.com">
+                                        <mat-icon matSuffix color="primary">email</mat-icon>
+                                    </mat-form-field>
+                                    <mat-form-field class="w-100">
+                                        <mat-label>Password</mat-label>
+                                        <input matInput type="password">
+                                        <mat-icon matSuffix color="primary">vpn_key</mat-icon>
+                                    </mat-form-field>
+                                    
+                                    <mat-checkbox formControlName="remember" [ngClass]="routeAnimationsElements">Remember Me</mat-checkbox>  
 
-            
-                                    <a href="#" class="btn btn-lg btn-primary full-width">Login</a>
+                                    <button mat-flat-button color="primary" class="full-width mt-3">Login</button>
             
                                     <div class="or"></div>
-        
             
                                     <p class="text-center">Don’t you have an account? <br> <a href="#">Register Now!</a></p>
                                 </div>
