@@ -1,10 +1,12 @@
 <mat-toolbar color="primary">
     <mat-toolbar-row>
-        <span>Jot Sauce</span>
-        <span class="example-spacer"></span>
-        <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
-      <mat-icon>menu</mat-icon>
-    </button>
+      <span>Jot Sauce</span>
+      <button mat-icon-button aria-label="Menu">
+        <mat-icon>menu</mat-icon>
+      </button>
+      <span class="example-spacer"></span>
+
+      <span *ngIf="!isAuthenticated">Login</span>
     </mat-toolbar-row>
 </mat-toolbar>
 
