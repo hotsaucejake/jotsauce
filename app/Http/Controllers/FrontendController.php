@@ -8,6 +8,7 @@ class FrontendController extends Controller
 {
     public function index()
     {
-        return view('jotsauce-angular');
+        // return view('jotsauce-angular');
+        return view('angular');
     }
 }
