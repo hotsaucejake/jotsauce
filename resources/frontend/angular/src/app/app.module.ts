@@ -7,11 +7,15 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { CoreModule } from './core/core.module';
 import { WelcomeComponent } from './welcome/welcome.component';
+import { LoginComponent } from './auth/login/login.component';
+import { IndexComponent } from './index/index.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    WelcomeComponent
+    WelcomeComponent,
+    LoginComponent,
+    IndexComponent
   ],
   imports: [
     AppRoutingModule,

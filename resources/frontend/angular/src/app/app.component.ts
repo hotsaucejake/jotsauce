@@ -11,11 +11,17 @@ export class AppComponent implements OnInit {
 
   public title = 'Jot Sauce';
   public isAuthenticated: boolean;
+  public sidebarOpen: boolean;
 
   constructor(private readonly router: Router) { }
 
   public ngOnInit(): void {
     this.isAuthenticated = AuthenticationService.isAuthenticated();
+    this.sidebarOpen = true;
+  }
+
+  public toggleSidenav(): void {
+    this.sidebarOpen = !this.sidebarOpen;
   }
 
 }
