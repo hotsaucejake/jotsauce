@@ -12,6 +12,7 @@ export class AppComponent implements OnInit {
   public title = 'Jot Sauce';
   public isAuthenticated: boolean;
   public sidebarOpen: boolean;
+  public isLoading: boolean;
 
   constructor(private readonly router: Router) { }
 

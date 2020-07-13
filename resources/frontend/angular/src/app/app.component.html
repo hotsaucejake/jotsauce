@@ -1,4 +1,11 @@
-<mat-toolbar color="primary" class="py-1">
+<mat-progress-bar mode="indeterminate" [hidden]="!isLoading"></mat-progress-bar>
+
+<ng-template ngIf="!isAuthenticated">
+  <router-outlet></router-outlet>
+</ng-template>
+
+<ng-template *ngIf="!!isAuthenticated">
+  <mat-toolbar color="primary" class="py-1">
     <mat-toolbar-row>
 
       <span>Jot Sauce</span>
@@ -8,21 +15,22 @@
           <mat-icon>menu</mat-icon>
       </button>
       <span class="example-spacer"></span>
-
       <span *ngIf="!isAuthenticated">
-        <app-auth-login>
-
-        </app-auth-login>
+        <a [routerLink]="login">
+          Login
+        </a>
       </span>
-      
     </mat-toolbar-row>
-</mat-toolbar>
+  </mat-toolbar>
 
-<mat-sidenav-container>
-  <mat-sidenav mode="side" [opened]="sidebarOpen" class="p-3">
-    Sidenav content
-  </mat-sidenav>
-  <mat-sidenav-content>
-    <router-outlet></router-outlet>
-  </mat-sidenav-content>
-</mat-sidenav-container>
+  <mat-sidenav-container>
+    <mat-sidenav mode="side" [opened]="sidebarOpen" class="p-3">
+      Sidenav content
+    </mat-sidenav>
+    <mat-sidenav-content>
+      <router-outlet></router-outlet>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</ng-template>
+
+

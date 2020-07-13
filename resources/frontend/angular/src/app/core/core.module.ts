@@ -1,3 +1,4 @@
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTabsModule } from '@angular/material/tabs';
@@ -41,6 +42,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     MatListModule,
     MatMenuModule,
     MatNativeDateModule,
+    MatProgressBarModule,
     MatProgressSpinnerModule,
     MatSelectModule,
     MatSidenavModule,
@@ -64,6 +66,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     MatListModule,
     MatMenuModule,
     MatNativeDateModule,
+    MatProgressBarModule,
     MatProgressSpinnerModule,
     MatSelectModule,
     MatSidenavModule,
