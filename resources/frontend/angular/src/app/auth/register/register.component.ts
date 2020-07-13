@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthenticationService } from 'src/app/core/authentication/authentication.service';
 import { Router } from '@angular/router';
+import { AuthenticationService } from 'src/app/core/authentication/authentication.service';
 
 @Component({
-  selector: 'app-auth-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  selector: 'app-register',
+  templateUrl: './register.component.html',
+  styleUrls: ['./register.component.scss']
 })
-export class LoginComponent implements OnInit {
+export class RegisterComponent implements OnInit {
 
   constructor(
     private readonly router: Router
@@ -18,10 +18,6 @@ export class LoginComponent implements OnInit {
       this.router.navigate(['/index'], { replaceUrl: true });
     }
 
-  }
-
-  public login(): void {
-    throw new Error("not implemented");
   }
 
 }

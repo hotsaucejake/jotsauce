@@ -1,3 +1,4 @@
+import { MatCardModule } from '@angular/material/card';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -32,6 +33,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 
     // material
     MatButtonModule,
+    MatCardModule,
     MatCheckboxModule,
     MatChipsModule,
     MatDatepickerModule,
@@ -56,6 +58,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
   exports: [
     // material
     MatButtonModule,
+    MatCardModule,
     MatCheckboxModule,
     MatChipsModule,
     MatDatepickerModule,
