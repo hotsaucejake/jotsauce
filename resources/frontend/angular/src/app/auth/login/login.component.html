@@ -1,0 +1,49 @@
+<div class="container">
+    <div class="row mx-auto my-5">
+        <div class="col">
+            <mat-card>
+                <mat-card-header>
+                  <mat-card-title>Login</mat-card-title>
+                </mat-card-header>
+                <mat-card-content>
+
+                    <div class="row">
+                        <div class="col">
+                            <mat-form-field appearance="standard" class="mr-3">
+                                <mat-label>Email</mat-label>
+                                <input matInput type="email" placeholder="email@example.com">
+                            </mat-form-field>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col">
+                            <mat-form-field appearance="standard" class="mr-3">
+                                <mat-label>Password</mat-label>
+                                <input matInput type="password" placeholder="password">
+                            </mat-form-field>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col">
+                            <mat-checkbox class="mr-3">Remember?</mat-checkbox>
+                        </div>
+                    </div>
+
+                </mat-card-content>
+                <mat-card-actions>
+                    <button 
+                        mat-raised-button 
+                        color="accent"
+                        (click)="login()"
+                        class="mr-3">
+                            LOGIN
+                    </button>
+                  Or, <a [routerLink]="['/register']">Register</a>.
+                </mat-card-actions>
+              </mat-card>
+              
+        </div>
+    </div>
+</div>

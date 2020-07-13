@@ -1215,14 +1215,14 @@ if the page has a “right panel”, add a class for BODY -- ".page-has-right-pa
   min-height: 100vh;
 
   .content-bg-wrap {
-	background-image: url("./assets/img/theme/landing-users.png");
+	background-image: url("./assets/img/theme/bg-graffiti.jpg");
 	background-position: 0 0;
 	background-repeat: repeat;
 	animation: sidedownscroll 30s linear infinite;
 	background-size: auto;
 
 	&:before {
-	  background-color: rgba(255,94,58,.95);
+	  background-color: rgba(5,56,107,.95);
 	}
 
 	@keyframes sidedownscroll {
@@ -1271,7 +1271,7 @@ if the page has a “right panel”, add a class for BODY -- ".page-has-right-pa
 
   &.bg-landing {
 	&:before {
-	  background-color: rgba(255,94,58,.95);
+	  background-color: rgba(5,56,107,.95);
 	}
   }
 

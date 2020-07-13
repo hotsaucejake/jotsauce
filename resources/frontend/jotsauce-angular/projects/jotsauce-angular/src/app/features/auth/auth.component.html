@@ -22,7 +22,7 @@
                     </svg>
                 </a>
     
-                <div class="nav nav-pills nav1 header-menu expanded-menu">
+                <div class="nav nav-pills nav1 header-menu expanded-menu" [ngClass]="{'expanded-menu': expandedMenu }">
                     <div class="mCustomScrollbar">
                         <ul>
                             <li class="nav-item">
@@ -38,7 +38,7 @@
                                 </svg>
                             </li>
                             <li class="nav-item js-expanded-menu">
-                                <a href="#" class="nav-link">
+                                <a (click)="expandedMenu = !expandedMenu" class="nav-link">
                                     <svg class="olymp-menu-icon"  viewBox="0 0 41 32">
                                         <path d="M4.571 0h-4.571v4.571h4.571v-4.571zM9.143 0v4.571h32v-4.571h-32zM13.714 13.714h-13.714v4.571h13.714v-4.571zM18.286 13.714v4.571h4.571v-4.571h-4.571zM27.429 18.286h13.714v-4.571h-13.714v4.571zM0 32h32v-4.569h-32v4.569zM36.571 32h4.571v-4.569h-4.571v4.569z"></path>                    
                                     </svg>
@@ -61,15 +61,14 @@
 
     <router-outlet #o="outlet"></router-outlet>
 
-    <div class="row">
-        <div class="col-12 text-white">
-            {{ 'jot.title' | translate}}
-            {{ 'jot.menu.login' | translate }}
-            {{ 'jot.menu.logout' | translate }}
-            &#169; <span class="year">{{ year }}</span> - hotsaucejake
-            {{ env.versions.app }} <span *ngIf="!env.production">[{{ env.envName }}]</span>
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-12 text-white text-center">
+                {{ 'jot.title' | translate}}
+                &#169; <span class="year">{{ year }}</span> - <a href="https://github.com/hotsaucejake" target="_blank">hotsaucejake</a>
+                {{ env.versions.app }} <span *ngIf="!env.production">[{{ env.envName }}]</span>
+            </div>
         </div>
     </div>
-    
     
 </div>

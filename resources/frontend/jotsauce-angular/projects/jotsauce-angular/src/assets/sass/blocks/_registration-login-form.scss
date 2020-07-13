@@ -3,13 +3,11 @@
 
 .registration-login-form {
   border: 1px solid $border-color;
-  border-radius: 0 5px 5px 0;
+  border-radius: 6px;
   background-color: $white-color;
   overflow: hidden;
   position: relative;
-  padding-left: 71px;
   margin-bottom: 20px;
-  min-height: 700px;
 
   .nav-tabs {
 	float: left;
