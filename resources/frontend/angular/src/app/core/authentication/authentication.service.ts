@@ -21,10 +21,9 @@ export class AuthenticationService {
     public static isAuthenticated(): boolean {
         const auth = AuthenticationService.getAuthentication();
 
-        let expired = false;
-        if ((!!auth?.expires_at) && auth?.expires_at < new Date(Date.now())) {
-            expired = true;
-        }
+        const expired = ((!!auth?.expires_at) && auth?.expires_at < new Date(Date.now()))
+                            ? true
+                            : false;
 
         return !!auth && !!auth.token && !expired;
     }

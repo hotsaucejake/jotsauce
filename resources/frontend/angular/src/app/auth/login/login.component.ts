@@ -21,7 +21,7 @@ export class LoginComponent implements OnInit {
   }
 
   public login(): void {
-    throw new Error("not implemented");
+    throw new Error('not implemented');
   }
 
 }
