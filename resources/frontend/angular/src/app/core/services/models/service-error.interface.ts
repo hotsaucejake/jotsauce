@@ -1,6 +1,8 @@
+import { ErrorResponse } from './error-response.interface';
 export interface ServiceError {
     type: 'error';
-    statusCode: number;
-    errorMessage: string;
-    // build this out
+    status: number;
+    statusText: string;
+    message: string;
+    errors?: ErrorResponse[];
 }

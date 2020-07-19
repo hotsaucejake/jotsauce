@@ -19,7 +19,7 @@ export class LoginComponent implements OnInit {
     password: ''
   };
 
-  public remember = true;
+  public remember: boolean;
 
   constructor(
     private readonly authService: AuthService,
@@ -31,6 +31,8 @@ export class LoginComponent implements OnInit {
     if (AuthenticationService.isAuthenticated()) {
       this.router.navigate(['/index'], { replaceUrl: true });
     }
+
+    this.remember = !!localStorage.getItem('email');
 
   }
 

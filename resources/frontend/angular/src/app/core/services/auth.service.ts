@@ -1,8 +1,8 @@
-import { BaseService } from "./_base.service";
-import { UserCredentials } from "../models/authentication/user-credentials.interface";
-import { ServiceResponse } from "./models/service-response.interface";
-import { AuthenticationResponse } from "../models/authentication/authentication-response.interface";
-import { AuthenticationService } from "../authentication/authentication.service";
+import { BaseService } from './_base.service';
+import { UserCredentials } from '../models/authentication/user-credentials.interface';
+import { ServiceResponse } from './models/service-response.interface';
+import { AuthenticationResponse } from '../models/authentication/authentication-response.interface';
+import { AuthenticationService } from '../authentication/authentication.service';
 
 export class AuthService extends BaseService {
 

@@ -22,6 +22,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { NgModule, Optional, SkipSelf } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { FormsModule } from '@angular/forms';
 
 
 
@@ -30,6 +31,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
   imports: [
     // angular
     CommonModule,
+    FormsModule,
 
     // material
     MatButtonModule,
@@ -56,6 +58,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     MatTooltipModule
   ],
   exports: [
+    FormsModule,
     // material
     MatButtonModule,
     MatCardModule,

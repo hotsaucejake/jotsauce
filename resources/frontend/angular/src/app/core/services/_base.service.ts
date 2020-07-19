@@ -5,6 +5,7 @@ import axios, { AxiosError, AxiosRequestConfig } from 'axios';
 import { ServiceError } from './models/service-error.interface';
 import { ServiceData } from './models/service-data.interface';
 import { ServiceResponse } from './models/service-response.interface';
+import { ErrorResponse } from './models/error-response.interface';
 
 @Injectable()
 export abstract class BaseService {
@@ -20,12 +21,25 @@ export abstract class BaseService {
         } as ServiceError;
 
         if (!!error.response) {
-            retError.statusCode = error.response.status;
-            retError.errorMessage = error.response.statusText;
+            retError.status = error.response.status;
+            retError.statusText = error.response.statusText;
+            retError.message = error.response.data.message;
 
-            if (retError.statusCode === 401) {
+            if (error.response?.data.errors) {
+                retError.errors = [];
+                Object.keys(error.response.data.errors).forEach(key => {
+                    error.response.data.errors[key].forEach((errorMessage: string)  => {
+                        retError.errors.push({
+                            name: key,
+                            error: errorMessage
+                        } as ErrorResponse);
+                    });
+                });
+            }
+
+            if (retError.status === 401) {
                 AuthenticationService.clearAuthentication();
-            } else if (retError.statusCode === 403) {
+            } else if (retError.status === 403) {
                 // do something
             }
         }
@@ -131,13 +145,13 @@ export abstract class BaseService {
 
         return config;
     }
-    
+
 
     private deserialize<T>(data: string): T {
         return JSON.parse(data, this.reviveDateTime) as T;
     }
 
-
+    /* tslint:disable:no-any */
     private reviveDateTime(key: any, value: any): any {
         if (typeof value === 'string') {
             const a = /^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2}):(\d{2}(?:\.\d*)?)(?:([\+-])(\d{2})\:(\d{2}))?Z?$/.exec(value);
@@ -148,5 +162,6 @@ export abstract class BaseService {
         }
         return value;
     }
+    /* tslint:enable:no-any */
 
 }
