@@ -5,6 +5,7 @@ export class AuthenticationService {
     private static authentication?: AuthenticationResponse = null;
     private static readonly authenticationToken = 'authentication';
 
+
     public static getAuthentication(): AuthenticationResponse {
         let credentials = AuthenticationService.authentication;
 
@@ -18,6 +19,7 @@ export class AuthenticationService {
         return credentials;
     }
 
+
     public static isAuthenticated(): boolean {
         const auth = AuthenticationService.getAuthentication();
 
@@ -26,5 +28,23 @@ export class AuthenticationService {
                             : false;
 
         return !!auth && !!auth.token && !expired;
+    }
+
+
+    public static setAuthentication(authentication: AuthenticationResponse, remember?: boolean): void {
+        if (!!authentication) {
+            this.clearAuthentication();
+
+            AuthenticationService.authentication = authentication;
+            sessionStorage.setItem(AuthenticationService.authenticationToken, JSON.stringify(authentication));
+            // localStorage.setItem(AuthenticationService.authenticationToken, JSON.stringify(authentication));
+        }
+    }
+
+
+    public static clearAuthentication(): void {
+        AuthenticationService.authentication = null;
+        sessionStorage.removeItem(AuthenticationService.authenticationToken);
+        // localStorage.removeItem(AuthenticationService.authenticationToken);
     }
 }
