@@ -11,7 +11,10 @@
                         <div class="col">
                             <mat-form-field appearance="standard" class="mr-3">
                                 <mat-label>Email</mat-label>
-                                <input matInput type="email" placeholder="email@example.com">
+                                <input matInput 
+                                    type="email" 
+                                    placeholder="email@example.com"
+                                    [(ngModel)]="userCredentials.email">
                             </mat-form-field>
                         </div>
                     </div>
@@ -20,14 +23,20 @@
                         <div class="col">
                             <mat-form-field appearance="standard" class="mr-3">
                                 <mat-label>Password</mat-label>
-                                <input matInput type="password" placeholder="password">
+                                <input matInput 
+                                    type="password" 
+                                    placeholder="password"
+                                    [(ngModel)]="userCredentials.password">
                             </mat-form-field>
                         </div>
                     </div>
 
                     <div class="row">
                         <div class="col">
-                            <mat-checkbox class="mr-3">Remember?</mat-checkbox>
+                            <mat-checkbox class="mr-3"
+                                [(ngModel)]="remember">
+                                Remember?
+                            </mat-checkbox>
                         </div>
                     </div>
 
