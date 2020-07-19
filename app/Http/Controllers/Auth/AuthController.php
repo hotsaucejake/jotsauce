@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\LoginAuthRequest;
 use App\Http\Requests\Auth\RegisterAuthRequest;
+use App\Http\Resources\NewAccessToken;
 use App\Http\Resources\User as UserResource;
 use App\User;
 use Carbon\Carbon;
@@ -33,66 +34,42 @@ class AuthController extends Controller
             ], 201);
     }
 
+
     public function login(LoginAuthRequest $request)
     {
-        $validated = $request->validated();
+        // $validated = $request->validated();
 
-        $attempt = Auth::guard('web')->attempt(['email' => $validated['email'], 'password' => $validated['password']]);
+        // $attempt = Auth::guard('web')->attempt(['email' => $validated['email'], 'password' => $validated['password']]);
 
-        if (! $attempt) {
-            return response()->json([
-                    'success' => false,
-                    'message' => 'Wrong credentials.',
-                    'error_code' => 1308,
-                    'data' => [],
-                ], 401);
-        }
+        // if (! $attempt) {
+        //     return response()->json([], 401);
+        // }
 
-        $user = $request->user('web');
+        // $user = $request->user('web');
 
-        $tokenResult = $user->createToken('Personal Access Token');
-        $token = $tokenResult->token;
+        // $tokenResult = new NewAccessToken($user->createToken('Personal Access Token'));
+        // // // $tokenResult = $user->createToken('Personal Access Token');
+        // $token = $tokenResult->token;
+        // // // $token->expires_at = Carbon::now()->addHours(1); 
 
-        if ($request->remember_me) {
-            $token->expires_at = Carbon::now()->addWeeks(1);
-        } else {
-            $token->expires_at = Carbon::now()->addHours(1);
-        }
+        // $token->save();
 
-        $token->save();
-
-        return response()->json([
-                'success' => true,
-                'message' => 'Successfully logged in!',
-                'data' => [
-                        'token' => $tokenResult->accessToken,
-                        'token_type' => 'Bearer',
-                        'expires_at' => Carbon::parse(
-                            $tokenResult->token->expires_at
-                        )->toDateTimeString(),
-                    ],
-            ], 200);
+        // return response()->json($tokenResult, 200);
     }
+
 
     public function logout(Request $request)
     {
         $request->user()->token()->revoke();
 
-        return response()->json([
-                'success' => true,
-                'message' => 'Successfully logged out!',
-                'data' => [],
-            ], 200);
+        return response()->json([], 200);
     }
+
 
     public function user(Request $request)
     {
-        return response()->json([
-                'success' => true,
-                'message' => 'Current user',
-                'data' => [
-                    'user' => new UserResource($request->user()),
-                ],
-            ], 200);
+        $user = new UserResource($request->user());
+
+        return response()->json($user, 200);
     }
 }

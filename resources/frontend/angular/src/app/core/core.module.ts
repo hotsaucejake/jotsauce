@@ -91,9 +91,8 @@ export class CoreModule {
     @SkipSelf()
     parentModule: CoreModule
   ) {
-    if (parentModule) {
-      throw new Error('CoreModule is already loaded. Import only in AppModule');
-    }
-    console.log('core module');
+      if (parentModule) {
+        throw new Error('CoreModule is already loaded. Import only in AppModule');
+      }
   }
 }

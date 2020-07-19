@@ -45,7 +45,7 @@ export class LoginComponent implements OnInit {
 
     const response = await this.authService.login(this.userCredentials, this.remember);
     if (response.type === 'data') {
-      console.log(response);
+      // console.log(response);
     } else {
       console.log(response);
     }
