@@ -1,5 +1,6 @@
+import { AccessToken } from './access-token.interface';
+
 export interface AuthenticationResponse {
-    token: string;
-    token_type: string;
-    expires_at: Date;
+    accessToken: AccessToken,
+    plainTextToken: string;
 }

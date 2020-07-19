@@ -37,24 +37,19 @@ class AuthController extends Controller
 
     public function login(LoginAuthRequest $request)
     {
-        // $validated = $request->validated();
+        $validated = $request->validated();
 
-        // $attempt = Auth::guard('web')->attempt(['email' => $validated['email'], 'password' => $validated['password']]);
+        $attempt = Auth::guard('web')->attempt(['email' => $validated['email'], 'password' => $validated['password']]);
 
-        // if (! $attempt) {
-        //     return response()->json([], 401);
-        // }
+        if (! $attempt) {
+            return response()->json([], 401);
+        }
 
-        // $user = $request->user('web');
+        $user = $request->user('web');
 
-        // $tokenResult = new NewAccessToken($user->createToken('Personal Access Token'));
-        // // // $tokenResult = $user->createToken('Personal Access Token');
-        // $token = $tokenResult->token;
-        // // // $token->expires_at = Carbon::now()->addHours(1); 
+        $token = new NewAccessToken($user->createToken('Personal Access Token'));
 
-        // $token->save();
-
-        // return response()->json($tokenResult, 200);
+        return response()->json($token, 200);
     }
 
 

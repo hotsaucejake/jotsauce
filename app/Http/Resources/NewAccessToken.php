@@ -16,13 +16,11 @@ class NewAccessToken extends JsonResource
     public function toArray($request)
     {
         return [
-            'accessToken' => $this->accessToken,
-            'token' => [
-                'expires_at' => Carbon::now()->addHours(1),
-                'name' => $this->token->name,
-                'scopes' => $this->token->scopes,
-                'user_id' => $this->token->user_id
-            ]
+            'accessToken' => [
+                'abilities' => $this->accessToken->abilities,
+                'name' => $this->accessToken->name,
+            ],
+            'plainTextToken' => $this->plainTextToken,
         ];
     }
 }
