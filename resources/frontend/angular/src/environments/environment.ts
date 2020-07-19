@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apiBaseUrl: 'https://jotsauce.test/api'
+  apiBaseUrl: 'https://jotsauce.test'
 };
 
 /*
