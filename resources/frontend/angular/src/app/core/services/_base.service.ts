@@ -135,7 +135,7 @@ export abstract class BaseService {
 
         if (AuthenticationService.isAuthenticated()) {
             config.headers = {
-                Authorization: `Bearer ${AuthenticationService.getAuthentication().token}`
+                Authorization: `Bearer ${AuthenticationService.getAuthentication().plainTextToken}`
             };
 
             if (environment.production) {

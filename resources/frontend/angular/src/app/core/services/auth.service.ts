@@ -8,7 +8,6 @@ export class AuthService extends BaseService {
 
     public async login(authModel: UserCredentials, remember: boolean): Promise<ServiceResponse<AuthenticationResponse>> {
         const response = await this.postAsync<AuthenticationResponse>('auth/login', authModel);
-        
 
         if (response.type === 'data') {
             console.log('inside auth service login');

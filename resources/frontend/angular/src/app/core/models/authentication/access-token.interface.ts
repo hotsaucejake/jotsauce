@@ -1,4 +1,4 @@
 export interface AccessToken {
-    abilities: string[],
+    abilities: string[];
     name: string;
 }

@@ -1,6 +1,6 @@
 import { AccessToken } from './access-token.interface';
 
 export interface AuthenticationResponse {
-    accessToken: AccessToken,
+    accessToken: AccessToken;
     plainTextToken: string;
 }
