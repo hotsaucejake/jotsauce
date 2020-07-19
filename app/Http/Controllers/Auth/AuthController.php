@@ -11,6 +11,8 @@ use App\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\ValidationException;
 
 class AuthController extends Controller
 {
@@ -39,13 +41,13 @@ class AuthController extends Controller
     {
         $validated = $request->validated();
 
-        $attempt = Auth::guard('web')->attempt(['email' => $validated['email'], 'password' => $validated['password']]);
+        $user = User::where('email', $validated['email'])->first();
 
-        if (! $attempt) {
-            return response()->json([], 401);
+        if (!$user || !Hash::check($validated['password'], $user->password)) {
+            throw ValidationException::withMessages([
+                'credentials' => ['The provided credentials are incorrect.'],
+            ]);
         }
-
-        $user = $request->user('web');
 
         $token = new NewAccessToken($user->createToken('Personal Access Token'));
 

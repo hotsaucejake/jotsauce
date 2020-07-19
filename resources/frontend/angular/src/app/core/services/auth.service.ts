@@ -18,12 +18,12 @@ export class AuthService extends BaseService {
 
         if (response.type === 'data') {
             AuthenticationService.setAuthentication(response.data, remember);
+        }
 
-            if (remember) {
-                localStorage.setItem('email', authModel.email);
-            } else {
-                localStorage.removeItem('email');
-            }
+        if (remember) {
+            localStorage.setItem('email', authModel.email);
+        } else {
+            localStorage.removeItem('email');
         }
 
         return response;
