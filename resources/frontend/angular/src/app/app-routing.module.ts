@@ -1,3 +1,4 @@
+import { AuthenticationGuard } from './core/authentication/authentication.guard';
 import { WelcomeComponent } from './welcome/welcome.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
@@ -8,9 +9,19 @@ import { RegisterComponent } from './auth/register/register.component';
 
 const routes: Routes = [
   { path: '', component: WelcomeComponent },
-  { path: 'index', component: IndexComponent },
+
+  { path: 'index',
+    canActivate: [AuthenticationGuard],
+    children: [
+      { path: '', component: IndexComponent },
+      { path: '**', redirectTo: '', pathMatch: 'full' }
+    ]
+   },
+
   { path: 'login', component: LoginComponent },
+
   { path: 'register', component: RegisterComponent },
+
   { path: '**', redirectTo: '', pathMatch: 'full' }
 ];
 

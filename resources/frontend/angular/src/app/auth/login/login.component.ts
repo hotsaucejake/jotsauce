@@ -28,6 +28,7 @@ export class LoginComponent implements OnInit {
   ) { }
 
   public ngOnInit(): void {
+
     if (AuthenticationService.isAuthenticated()) {
       this.router.navigate(['/index'], { replaceUrl: true });
     }
@@ -39,15 +40,11 @@ export class LoginComponent implements OnInit {
   public async login(): Promise<void> {
     this.componentIsLoading = true;
 
-    if (!this.remember) {
-      localStorage.removeItem('email');
-    }
-
     const response = await this.authService.login(this.userCredentials, this.remember);
     if (response.type === 'data') {
-      console.log(response);
+      this.router.navigate(['/index'], { replaceUrl: true });
     } else {
-      console.log(response);
+      // TODO: toast notification with error messages
     }
 
     this.componentIsLoading = false;

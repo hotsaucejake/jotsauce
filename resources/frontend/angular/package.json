@@ -1,12 +1,12 @@
 {
     "name": "angular",
-    "version": "0.0.1",
+    "version": "0.1.0",
     "scripts": {
         "ng": "ng",
         "start": "ng serve -o",
         "start:dev": "ng serve --configuration=dev -o",
         "build": "ng build",
-        "build:prod": "ng build --prod && cp ../../../public/assets/angular/index.html ../../views/angular.blade.php",
+        "build:prod": "ng lint && ng build --prod && cp ../../../public/assets/angular/index.html ../../views/angular.blade.php",
         "test": "ng test",
         "lint": "ng lint",
         "e2e": "ng e2e"

@@ -15,10 +15,10 @@ export abstract class BaseService {
     }
 
 
-    private createError<T>(error: AxiosError): ServiceError {
+    private createError<T>(error: AxiosError): ServiceError<T> {
         const retError = {
             type: 'error'
-        } as ServiceError;
+        } as ServiceError<T>;
 
         if (!!error.response) {
             retError.status = error.response.status;
@@ -135,7 +135,7 @@ export abstract class BaseService {
 
         if (AuthenticationService.isAuthenticated()) {
             config.headers = {
-                Authorization: `Bearer ${AuthenticationService.getAuthentication().token}`
+                Authorization: `Bearer ${AuthenticationService.getAuthentication().plainTextToken}`
             };
 
             if (environment.production) {

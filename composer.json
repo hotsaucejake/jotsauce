@@ -13,11 +13,11 @@
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^6.3",
         "laravel/framework": "^7.20",
-        "laravel/passport": "^9.2",
+        "laravel/sanctum": "^2.4",
         "laravel/telescope": "^3.2",
         "laravel/tinker": "^2.0",
-        "spatie/laravel-permission": "^3.11",
-        "laravel/ui": "^2.0"
+        "laravel/ui": "^2.0",
+        "spatie/laravel-permission": "^3.11"
     },
     "require-dev": {
         "facade/ignition": "^2.0",

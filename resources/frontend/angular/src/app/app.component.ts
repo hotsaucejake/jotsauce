@@ -19,6 +19,7 @@ export class AppComponent implements OnInit {
   public ngOnInit(): void {
     this.isAuthenticated = AuthenticationService.isAuthenticated();
     this.sidebarOpen = true;
+    console.log('AppComponent');
   }
 
   public toggleSidenav(): void {
