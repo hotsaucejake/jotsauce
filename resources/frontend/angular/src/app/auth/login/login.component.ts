@@ -42,7 +42,6 @@ export class LoginComponent implements OnInit {
 
     const response = await this.authService.login(this.userCredentials, this.remember);
     if (response.type === 'data') {
-      console.log(response.data);
       this.router.navigate(['/index'], { replaceUrl: true });
     } else {
       // TODO: toast notification with error messages
