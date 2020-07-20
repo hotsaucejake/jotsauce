@@ -7,7 +7,7 @@ export class AuthenticationGuard implements CanActivate {
     constructor(protected router: Router) {}
 
     canActivate(
-        route: ActivatedRouteSnapshot, 
+        route: ActivatedRouteSnapshot,
         state: RouterStateSnapshot
     ): boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {
 
@@ -15,7 +15,7 @@ export class AuthenticationGuard implements CanActivate {
             // TODO: navigate to login
             return false;
         }
-        
+
         return true;
     }
 

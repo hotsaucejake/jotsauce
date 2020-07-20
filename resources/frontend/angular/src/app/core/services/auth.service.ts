@@ -30,9 +30,14 @@ export class AuthService extends BaseService {
     }
 
 
-    public logout(): void {
-        AuthenticationService.clearAuthentication();
-        // TODO: redirect user to login here
-        // $user->tokens()->delete();
+    public async logout(): Promise<ServiceResponse<void>> {
+
+        const response = await this.getAsync<void>('api/auth/logout');
+        if (response.type === 'data') {
+            AuthenticationService.clearAuthentication();
+        }
+
+        return response;
     }
+
 }

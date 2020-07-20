@@ -15,10 +15,10 @@ export abstract class BaseService {
     }
 
 
-    private createError<T>(error: AxiosError): ServiceError {
+    private createError<T>(error: AxiosError): ServiceError<T> {
         const retError = {
             type: 'error'
-        } as ServiceError;
+        } as ServiceError<T>;
 
         if (!!error.response) {
             retError.status = error.response.status;
