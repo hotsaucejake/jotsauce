@@ -3,6 +3,9 @@ import { UserService } from './../core/services/user.service';
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '@app/core/services/auth.service';
 import { Router } from '@angular/router';
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
+import { Observable } from 'rxjs';
+import { shareReplay, map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-index',
@@ -12,10 +15,17 @@ import { Router } from '@angular/router';
 })
 export class IndexComponent implements OnInit {
 
+  isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
+    .pipe(
+      map(result => result.matches),
+      shareReplay()
+    );
+
   public user: User;
 
   constructor(
     private readonly authService: AuthService,
+    private breakpointObserver: BreakpointObserver,
     private readonly router: Router,
     private readonly userService: UserService
   ) { }
