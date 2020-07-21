@@ -3,6 +3,7 @@ import { UserCredentials } from './../../core/models/authentication/user-credent
 import { Component, OnInit } from '@angular/core';
 import { AuthenticationService } from 'src/app/core/authentication/authentication.service';
 import { Router, ActivatedRoute } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-auth-login',
@@ -24,7 +25,8 @@ export class LoginComponent implements OnInit {
   constructor(
     private readonly authService: AuthService,
     private readonly router: Router,
-    private readonly route: ActivatedRoute
+    private readonly route: ActivatedRoute,
+    private readonly toastr: ToastrService
   ) { }
 
   public ngOnInit(): void {
@@ -44,7 +46,9 @@ export class LoginComponent implements OnInit {
     if (response.type === 'data') {
       this.router.navigate(['/index'], { replaceUrl: true });
     } else {
-      // TODO: toast notification with error messages
+      response.errors?.forEach(error => {
+        this.toastr.error(error.error, error.name.toUpperCase());
+      });
     }
 
     this.componentIsLoading = false;
