@@ -9,10 +9,10 @@
     <link rel="icon" type="image/x-icon" href="/assets/angular/favicon.ico">
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-<link rel="stylesheet" href="/assets/angular/styles.c243b6145554cab1b98a.css"></head>
+<link rel="stylesheet" href="/assets/angular/styles.54924cfe1f89de9bed64.css"></head>
 
 <body class="mat-typography">
     <app-root></app-root>
-<script src="/assets/angular/runtime.83929e1c8ab6c729b31c.js" defer></script><script src="/assets/angular/polyfills.a4021de53358bb0fec14.js" defer></script><script src="/assets/angular/main.4ba276a1f154697b9ee0.js" defer></script></body>
+<script src="/assets/angular/runtime.83929e1c8ab6c729b31c.js" defer></script><script src="/assets/angular/polyfills.a4021de53358bb0fec14.js" defer></script><script src="/assets/angular/main.43b549ec851ca1ecf421.js" defer></script></body>
 
 </html>

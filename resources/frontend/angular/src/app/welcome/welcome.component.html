@@ -1,7 +1,18 @@
-<p *ngIf="!isAuthenticated">
-    <a [routerLink]="['/login']">
-        Login
-    </a>
-</p>
+<mat-toolbar color="primary" class="mat-elevation-z24">
+    <mat-toolbar-row>
+        <span>Jot Sauce</span>
+        <button  aria-label="Login" 
+            *ngIf="!isAuthenticated"
+            [routerLink]="['/login']"
+            mat-icon-button>
+                <mat-icon>login</mat-icon> Login
+        </button>
+        <button  aria-label="Logout" 
+            *ngIf="!!isAuthenticated"
+            (click)="logout()"
+            mat-icon-button>
+                <mat-icon>assignment_return</mat-icon> Logout
+        </button>
+    </mat-toolbar-row>
+</mat-toolbar>
 
-<p>welcome works!</p>

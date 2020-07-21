@@ -23,6 +23,7 @@ import { NgModule, Optional, SkipSelf } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { FormsModule } from '@angular/forms';
+import { ToastrModule } from 'ngx-toastr';
 
 
 
@@ -55,7 +56,14 @@ import { FormsModule } from '@angular/forms';
     MatSnackBarModule,
     MatTabsModule,
     MatToolbarModule,
-    MatTooltipModule
+    MatTooltipModule,
+    ToastrModule.forRoot({
+      closeButton: true,
+      timeOut: 6000,
+      extendedTimeOut: 3000,
+      progressBar: true,
+      progressAnimation: 'decreasing'
+    })
   ],
   exports: [
     FormsModule,
@@ -81,7 +89,8 @@ import { FormsModule } from '@angular/forms';
     MatSnackBarModule,
     MatTabsModule,
     MatToolbarModule,
-    MatTooltipModule
+    MatTooltipModule,
+    ToastrModule
   ]
 })
 export class CoreModule {
