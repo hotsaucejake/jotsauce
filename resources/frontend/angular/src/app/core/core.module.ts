@@ -57,7 +57,13 @@ import { ToastrModule } from 'ngx-toastr';
     MatTabsModule,
     MatToolbarModule,
     MatTooltipModule,
-    ToastrModule.forRoot()
+    ToastrModule.forRoot({
+      closeButton: true,
+      timeOut: 6000,
+      extendedTimeOut: 3000,
+      progressBar: true,
+      progressAnimation: 'decreasing'
+    })
   ],
   exports: [
     FormsModule,
