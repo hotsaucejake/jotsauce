@@ -39,6 +39,7 @@
                                     <input matInput 
                                         type="email" 
                                         placeholder="email@example.com"
+                                        (keyup.enter)="login()"
                                         [(ngModel)]="userCredentials.email">
                                 </mat-form-field>
                             </div>
@@ -51,6 +52,7 @@
                                     <input matInput 
                                         type="password" 
                                         placeholder="password"
+                                        (keyup.enter)="login()"
                                         [(ngModel)]="userCredentials.password">
                                 </mat-form-field>
                             </div>
