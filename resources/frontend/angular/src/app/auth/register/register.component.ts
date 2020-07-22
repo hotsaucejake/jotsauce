@@ -13,10 +13,16 @@ export class RegisterComponent implements OnInit {
     private readonly router: Router
   ) { }
 
-  public ngOnInit(): void {
+
+  public async ngOnInit(): Promise<void> {
     if (AuthenticationService.isAuthenticated()) {
       this.router.navigate(['/index'], { replaceUrl: true });
     }
+
+  }
+
+
+  public async register(): Promise<void> {
 
   }
 

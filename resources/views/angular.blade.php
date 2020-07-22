@@ -13,6 +13,6 @@
 
 <body class="mat-typography">
     <app-root></app-root>
-<script src="/assets/angular/runtime.83929e1c8ab6c729b31c.js" defer></script><script src="/assets/angular/polyfills.a4021de53358bb0fec14.js" defer></script><script src="/assets/angular/main.43b549ec851ca1ecf421.js" defer></script></body>
+<script src="/assets/angular/runtime.83929e1c8ab6c729b31c.js" defer></script><script src="/assets/angular/polyfills.a4021de53358bb0fec14.js" defer></script><script src="/assets/angular/main.8c1ab4a67e22df1ada97.js" defer></script></body>
 
 </html>

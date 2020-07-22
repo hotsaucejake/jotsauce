@@ -1,59 +1,89 @@
-<div class="container">
-    <div class="row mx-auto my-5">
-        <div class="col">
-            <mat-card>
-                <mat-card-header>
-                  <mat-card-title>Login</mat-card-title>
-                </mat-card-header>
-                <mat-card-content>
-
-                    <div class="row">
-                        <div class="col">
-                            <mat-form-field appearance="standard" class="mr-3">
-                                <mat-label>Email</mat-label>
-                                <input matInput 
-                                    type="email" 
-                                    placeholder="email@example.com"
-                                    [(ngModel)]="userCredentials.email">
-                            </mat-form-field>
-                        </div>
+<div class="bgimg">
+    <mat-toolbar color="primary" class="mat-elevation-z24">
+        <mat-toolbar-row>
+            <div class="container-fluid">
+                <div class="d-flex justify-content-between">
+                    <div>
+                        <h1>
+                            Jot Sauce
+                        </h1>
                     </div>
-
-                    <div class="row">
-                        <div class="col">
-                            <mat-form-field appearance="standard" class="mr-3">
-                                <mat-label>Password</mat-label>
-                                <input matInput 
-                                    type="password" 
-                                    placeholder="password"
-                                    [(ngModel)]="userCredentials.password">
-                            </mat-form-field>
-                        </div>
+                    <div>
+                        <button  aria-label="Back" 
+                            [routerLink]="['/']"
+                            class="mr-5"
+                            mat-icon-button>
+                                <mat-icon>arrow_back</mat-icon> Home
+                        </button>
                     </div>
-
-                    <div class="row">
-                        <div class="col">
-                            <mat-checkbox class="mr-3"
-                                name="rememberUser"
-                                [(ngModel)]="remember">
-                                Remember?
-                            </mat-checkbox>
+                </div>  
+                
+            </div>
+                  
+        </mat-toolbar-row>
+    </mat-toolbar>
+    
+    <div class="container" style="max-width: 420px;">
+        <div class="row mx-auto my-5">
+            <div class="col">
+                <mat-card>
+                    <mat-card-header>
+                      <mat-card-title>Login</mat-card-title>
+                    </mat-card-header>
+                    <mat-card-content>
+    
+                        <div class="row">
+                            <div class="col">
+                                <mat-form-field appearance="standard" class="mr-3 w-100">
+                                    <mat-label>Email</mat-label>
+                                    <input matInput 
+                                        type="email" 
+                                        placeholder="email@example.com"
+                                        [(ngModel)]="userCredentials.email">
+                                </mat-form-field>
+                            </div>
                         </div>
-                    </div>
-
-                </mat-card-content>
-                <mat-card-actions>
-                    <button 
-                        mat-raised-button 
-                        color="accent"
-                        (click)="login()"
-                        class="mr-3">
-                            LOGIN
-                    </button>
-                  Or, <a [routerLink]="['/register']">Register</a>.
-                </mat-card-actions>
-              </mat-card>
-              
+    
+                        <div class="row">
+                            <div class="col">
+                                <mat-form-field appearance="standard" class="mr-3 w-100">
+                                    <mat-label>Password</mat-label>
+                                    <input matInput 
+                                        type="password" 
+                                        placeholder="password"
+                                        [(ngModel)]="userCredentials.password">
+                                </mat-form-field>
+                            </div>
+                        </div>
+    
+                        <div class="row">
+                            <div class="col">
+                                <mat-checkbox class="mr-3"
+                                    name="rememberUser"
+                                    [(ngModel)]="remember">
+                                    Remember?
+                                </mat-checkbox>
+                            </div>
+                        </div>
+    
+                    </mat-card-content>
+                    <mat-card-actions class="text-center">
+                        <button 
+                            mat-raised-button 
+                            color="accent"
+                            (click)="login()"
+                            class="mr-3 my-3 w-100">
+                                LOGIN
+                        </button>
+                        <span class="text-center">
+                            Or, <a [routerLink]="['/register']">Register</a>.
+                        </span>
+                      
+                    </mat-card-actions>
+                  </mat-card>
+                  
+            </div>
         </div>
     </div>
+
 </div>

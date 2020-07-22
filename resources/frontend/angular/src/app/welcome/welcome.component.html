@@ -1,18 +1,32 @@
 <mat-toolbar color="primary" class="mat-elevation-z24">
     <mat-toolbar-row>
-        <span>Jot Sauce</span>
-        <button  aria-label="Login" 
-            *ngIf="!isAuthenticated"
-            [routerLink]="['/login']"
-            mat-icon-button>
-                <mat-icon>login</mat-icon> Login
-        </button>
-        <button  aria-label="Logout" 
-            *ngIf="!!isAuthenticated"
-            (click)="logout()"
-            mat-icon-button>
-                <mat-icon>assignment_return</mat-icon> Logout
-        </button>
+        <div class="container-fluid">
+            <div class="d-flex justify-content-between">
+                <div>
+                    <h1>
+                        Jot Sauce
+                    </h1>
+                </div>
+                <div>
+                    <button  aria-label="Login" 
+                        *ngIf="!isAuthenticated"
+                        [routerLink]="['/login']"
+                        class="mr-5"
+                        mat-icon-button>
+                            <mat-icon>login</mat-icon> Login
+                    </button>
+                    <button  aria-label="Logout" 
+                        *ngIf="!!isAuthenticated"
+                        (click)="logout()"
+                        class="mr-5"
+                        mat-icon-button>
+                            <mat-icon>assignment_return</mat-icon> Logout
+                    </button>
+                </div>
+            </div>  
+            
+        </div>
+              
     </mat-toolbar-row>
 </mat-toolbar>
 
