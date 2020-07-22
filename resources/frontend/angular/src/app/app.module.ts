@@ -21,6 +21,11 @@ import { DashboardComponent } from './index/dashboard/dashboard.component';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatCardModule } from '@angular/material/card';
 import { MatMenuModule } from '@angular/material/menu';
+import { AddressFormComponent } from './index/address-form/address-form.component';
+import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
+import { MatRadioModule } from '@angular/material/radio';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -30,7 +35,8 @@ import { MatMenuModule } from '@angular/material/menu';
     IndexComponent,
     RegisterComponent,
     NavigationComponent,
-    DashboardComponent
+    DashboardComponent,
+    AddressFormComponent
   ],
   imports: [
     AppRoutingModule,
@@ -45,7 +51,11 @@ import { MatMenuModule } from '@angular/material/menu';
     MatListModule,
     MatGridListModule,
     MatCardModule,
-    MatMenuModule
+    MatMenuModule,
+    MatInputModule,
+    MatSelectModule,
+    MatRadioModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
