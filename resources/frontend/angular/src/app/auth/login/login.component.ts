@@ -4,6 +4,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthenticationService } from 'src/app/core/authentication/authentication.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-auth-login',
@@ -39,19 +40,23 @@ export class LoginComponent implements OnInit {
 
   }
 
-  public async login(): Promise<void> {
-    this.componentIsLoading = true;
+  public async login(f: FormGroup): Promise<void> {
 
-    const response = await this.authService.login(this.userCredentials, this.remember);
-    if (response.type === 'data') {
-      this.router.navigate(['/index'], { replaceUrl: true });
-    } else {
-      response.errors?.forEach(error => {
-        this.toastr.error(error.error, error.name.toUpperCase());
-      });
+    if (f.valid) {
+      this.componentIsLoading = true;
+
+      const response = await this.authService.login(this.userCredentials, this.remember);
+      if (response.type === 'data') {
+        this.router.navigate(['/index'], { replaceUrl: true });
+      } else {
+        response.errors?.forEach(error => {
+          this.toastr.error(error.error, error.name.toUpperCase());
+        });
+      }
+
+      this.componentIsLoading = false;
     }
 
-    this.componentIsLoading = false;
   }
 
 }
