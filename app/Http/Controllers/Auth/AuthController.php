@@ -26,14 +26,7 @@ class AuthController extends Controller
             'password' => bcrypt($validated['password']),
         ]);
 
-        return response()->json([
-                'success' => true,
-                'message' => 'Successfully created user!',
-                'data' => [
-                        'username' => $validated['username'],
-                        'email' => $validated['email'],
-                    ],
-            ], 201);
+        return response()->json(new UserResource($user), 201);
     }
 
 
