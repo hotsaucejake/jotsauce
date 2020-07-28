@@ -8,9 +8,7 @@ use App\Http\Requests\Auth\RegisterAuthRequest;
 use App\Http\Resources\NewAccessToken;
 use App\Http\Resources\User as UserResource;
 use App\User;
-use Carbon\Carbon;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\ValidationException;
 
