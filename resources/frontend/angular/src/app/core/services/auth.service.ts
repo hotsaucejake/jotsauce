@@ -1,9 +1,11 @@
+import { Register } from './../models/authentication/register.interface';
 import { BaseService } from './_base.service';
 import { UserCredentials } from '../models/authentication/user-credentials.interface';
 import { ServiceResponse } from './models/service-response.interface';
 import { AuthenticationResponse } from '../models/authentication/authentication-response.interface';
 import { AuthenticationService } from '../authentication/authentication.service';
 import { Injectable } from '@angular/core';
+import { User } from '../models/user.interface';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService extends BaseService {
@@ -36,6 +38,13 @@ export class AuthService extends BaseService {
         if (response.type === 'data') {
             AuthenticationService.clearAuthentication();
         }
+
+        return response;
+    }
+
+
+    public async register(registerModel: Register): Promise<ServiceResponse<User>> {
+        const response = this.postAsync<User>(`api/auth/register`, registerModel);
 
         return response;
     }
