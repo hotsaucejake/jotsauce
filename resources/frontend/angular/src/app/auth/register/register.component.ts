@@ -1,3 +1,4 @@
+import { AccountAvailability } from './../../core/models/authentication/account-availability.interface';
 import { Register } from './../../core/models/authentication/register.interface';
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -17,6 +18,12 @@ export class RegisterComponent implements OnInit {
   public componentIsLoading = false;
 
   public registerModel = {} as Register;
+  public accountAvailability = {} as AccountAvailability;
+
+  public usernameAvailable = false;
+  public emailAvailable = false;
+  public passwordValid = false;
+  public confirmPasswordValid = false;
 
   constructor(
     private readonly authService: AuthService,
@@ -57,6 +64,45 @@ export class RegisterComponent implements OnInit {
         f.controls[`passwordConfirmation`].setErrors({ mustMatch: true });
       }
 
+    }
+  }
+
+
+  public async checkUsernameAvailability(f: FormGroup): Promise<void> {
+    if (f.controls[`username`].valid) {
+      this.accountAvailability.username = this.registerModel.username;
+      const checkUsernameResponse = await this.authService.checkUsernameAvailability(this.accountAvailability);
+      if (checkUsernameResponse.type === 'data') {
+        this.usernameAvailable = checkUsernameResponse.data;
+      } else {
+        f.controls[`username`].setErrors({ usernameTaken: true });
+      }
+    }
+  }
+
+
+  public async checkEmailAvailability(f: FormGroup): Promise<void> {
+    if (f.controls[`email`].valid) {
+      this.accountAvailability.email = this.registerModel.email;
+      const checkEmailResponse = await this.authService.checkEmailAvailability(this.accountAvailability);
+      if (checkEmailResponse.type === 'data') {
+        this.emailAvailable = checkEmailResponse.data;
+      } else {
+        f.controls[`email`].setErrors({ emailTaken: true });
+      }
+    }
+  }
+
+  public checkPasswordValid(f: FormGroup): void {
+    if (f.controls[`password`].valid) {
+      this.passwordValid = true;
+    }
+  }
+
+
+  public checkConfirmPasswordValid(f: FormGroup): void {
+    if (f.controls[`passwordConfirmation`].valid && this.stringsMatch(f.value.password, f.value.passwordConfirmation)) {
+      this.confirmPasswordValid = true;
     }
   }
 

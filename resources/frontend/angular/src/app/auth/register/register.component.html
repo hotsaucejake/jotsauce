@@ -42,16 +42,20 @@
                                             placeholder="username"
                                             name="username"
                                             (keyup.enter)="register(registerForm.form)"
+                                            (blur)="checkUsernameAvailability(registerForm.form)"
                                             [(ngModel)]="registerModel.username"
                                             #username="ngModel"
                                             minlength="3"
                                             maxlength="255"
                                             pattern="^[A-Za-z0-9_-]*$"
                                             required>
+                                        <mat-icon matSuffix *ngIf="usernameAvailable">done</mat-icon>
+
                                         <mat-error *ngIf="username.errors?.required">Required</mat-error>
                                         <mat-error *ngIf="username.errors?.minlength">Must be at least 3 characters</mat-error>
                                         <mat-error *ngIf="username.errors?.maxlength">Cannot exceed 255 characters</mat-error>
                                         <mat-error *ngIf="username.errors?.pattern">Username can only contain letters, numbers, dashes, and underscores</mat-error>
+                                        <mat-error *ngIf="username.errors?.usernameTaken">Username is already taken</mat-error>
                                     </mat-form-field>
                                 </div>
                             </div>
@@ -65,12 +69,16 @@
                                             placeholder="email@example.com"
                                             name="email"
                                             (keyup.enter)="register(registerForm.form)"
+                                            (blur)="checkEmailAvailability(registerForm.form)"
                                             [(ngModel)]="registerModel.email"
                                             #email="ngModel"
                                             minlength="6"
                                             required>
+                                        <mat-icon matSuffix *ngIf="emailAvailable">done</mat-icon>
+
                                         <mat-error *ngIf="email.errors?.required">Required</mat-error>
                                         <mat-error *ngIf="email.errors?.minlength">Must be at valid email address</mat-error>
+                                        <mat-error *ngIf="email.errors?.emailTaken">Email is already taken</mat-error>
                                     </mat-form-field>
                                 </div>
                             </div>
@@ -84,10 +92,13 @@
                                             placeholder="password"
                                             name="password"
                                             (keyup.enter)="register(registerForm.form)"
+                                            (blur)="checkPasswordValid(registerForm.form)"
                                             [(ngModel)]="registerModel.password"
                                             #password="ngModel"
                                             minlength="8"
                                             required>
+                                        <mat-icon matSuffix *ngIf="passwordValid">done</mat-icon>
+
                                         <mat-error *ngIf="password.errors?.required">Required</mat-error>
                                         <mat-error *ngIf="password.errors?.minlength">Must be at least 8 characters</mat-error>
                                     </mat-form-field>
@@ -103,9 +114,12 @@
                                             placeholder="password"
                                             name="passwordConfirmation"
                                             (keyup.enter)="register(registerForm.form)"
+                                            (blur)="checkConfirmPasswordValid(registerForm.form)"
                                             [(ngModel)]="registerModel.password_confirmation"
                                             #passwordConfirmation="ngModel"
                                             required>
+                                        <mat-icon matSuffix *ngIf="confirmPasswordValid">done</mat-icon>
+
                                         <mat-error *ngIf="passwordConfirmation.errors?.required">Required</mat-error>
                                         <mat-error *ngIf="passwordConfirmation.errors?.mustMatch">Passwords must match</mat-error>
                                     </mat-form-field>

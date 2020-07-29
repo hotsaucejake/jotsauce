@@ -1,3 +1,4 @@
+import { AccountAvailability } from './../models/authentication/account-availability.interface';
 import { Register } from './../models/authentication/register.interface';
 import { BaseService } from './_base.service';
 import { UserCredentials } from '../models/authentication/user-credentials.interface';
@@ -45,6 +46,20 @@ export class AuthService extends BaseService {
 
     public async register(registerModel: Register): Promise<ServiceResponse<User>> {
         const response = this.postAsync<User>(`api/auth/register`, registerModel);
+
+        return response;
+    }
+
+
+    public async checkUsernameAvailability(accountAvailability: AccountAvailability): Promise<ServiceResponse<boolean>> {
+        const response = this.postAsync<boolean>(`api/auth/username-availability`, accountAvailability);
+
+        return response;
+    }
+
+
+    public async checkEmailAvailability(accountAvailability: AccountAvailability): Promise<ServiceResponse<boolean>> {
+        const response = this.postAsync<boolean>(`api/auth/email-availability`, accountAvailability);
 
         return response;
     }
