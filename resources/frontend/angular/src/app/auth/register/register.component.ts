@@ -76,6 +76,9 @@ export class RegisterComponent implements OnInit {
         this.usernameAvailable = checkUsernameResponse.data;
       } else {
         f.controls[`username`].setErrors({ usernameTaken: true });
+        checkUsernameResponse.errors?.forEach(error => {
+          this.toastr.error(error.error, error.name.toUpperCase());
+        });
       }
     }
   }
@@ -89,6 +92,9 @@ export class RegisterComponent implements OnInit {
         this.emailAvailable = checkEmailResponse.data;
       } else {
         f.controls[`email`].setErrors({ emailTaken: true });
+        checkEmailResponse.errors?.forEach(error => {
+          this.toastr.error(error.error, error.name.toUpperCase());
+        });
       }
     }
   }
