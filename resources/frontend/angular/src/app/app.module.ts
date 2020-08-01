@@ -21,7 +21,6 @@ import { DashboardComponent } from './index/dashboard/dashboard.component';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatCardModule } from '@angular/material/card';
 import { MatMenuModule } from '@angular/material/menu';
-import { AddressFormComponent } from './index/address-form/address-form.component';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatRadioModule } from '@angular/material/radio';
@@ -35,8 +34,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     IndexComponent,
     RegisterComponent,
     NavigationComponent,
-    DashboardComponent,
-    AddressFormComponent
+    DashboardComponent
   ],
   imports: [
     AppRoutingModule,
