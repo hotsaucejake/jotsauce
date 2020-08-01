@@ -23,7 +23,13 @@ Route::name('api.')->group(function () {
 
         Route::middleware('auth:sanctum')->group(function () {
             Route::get('logout', 'AuthController@logout')->name('logout');
-            Route::get('user', 'AuthController@user')->name('user');
+        });
+    });
+
+    Route::middleware('auth:sanctum')->namespace('Api')->group(function () {
+        Route::namespace('UserManager')->group(function () {
+            Route::get('user/current', 'GetCurrentController')->name('user.current');
+            Route::resource('user', 'UserController');
         });
     });
 });
