@@ -14,22 +14,27 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::name('api.')->group(function () {
-    Route::prefix('auth')->name('auth.')->namespace('Auth')->group(function () {
-        Route::post('login', 'AuthController@login')->name('login');
-        Route::post('register', 'AuthController@register')->name('register');
-        Route::post('username-availability', 'AccountAvailabilityController@usernameAvailability')->name('username-availability');
-        Route::post('email-availability', 'AccountAvailabilityController@emailAvailability')->name('email-availability');
+Route::name('api.')->namespace('Api')->group(function () {
+
+    // api/auth/
+    Route::prefix('auth')->name('auth.')->namespace('AuthManager')->group(function () {
+        Route::post('login', 'LoginController')->name('login');
+        Route::post('register', 'RegisterController')->name('register');
+        Route::post('username-availability', 'UsernameAvailabilityController')->name('username-availability');
+        Route::post('email-availability', 'EmailAvailabilityController')->name('email-availability');
+        
 
         Route::middleware('auth:sanctum')->group(function () {
-            Route::get('logout', 'AuthController@logout')->name('logout');
+            Route::get('logout', 'LogoutController')->name('logout');
         });
     });
 
-    Route::middleware('auth:sanctum')->namespace('Api')->group(function () {
+    // api/
+    Route::middleware('auth:sanctum')->group(function () {
         Route::namespace('UserManager')->group(function () {
             Route::get('user/current', 'GetCurrentController')->name('user.current');
             Route::resource('user', 'UserController');
         });
     });
+
 });
