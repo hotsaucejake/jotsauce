@@ -12,20 +12,37 @@
     </mat-sidenav>
     <mat-sidenav-content>
         <mat-toolbar color="primary">
-        <button
-            type="button"
-            aria-label="Toggle sidenav"
-            mat-icon-button
-            (click)="drawer.toggle()">
-            <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
-        </button>
-        <span class="pl-3">Jot Sauce</span>
+            <div class="row w-100 mr-5">
+                <div class="col">
+                    <button
+                        type="button"
+                        aria-label="Toggle sidenav"
+                        mat-icon-button
+                        (click)="drawer.toggle()">
+                        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+                    </button>
+                    <span class="pl-3 text-right">Jot Sauce</span>
+                </div>
+
+                <div class="col text-right mr-5">
+                    <button mat-icon-button [matMenuTriggerFor]="userMenu" aria-label="User Menu">
+                        <mat-icon>account_circle</mat-icon> {{ user?.username }}
+                        <mat-icon>arrow_drop_down</mat-icon>
+                    </button>
+                    <mat-menu #userMenu="matMenu">
+                        <button mat-menu-item
+                            (click)="logout()">
+                            <mat-icon>assignment_return</mat-icon>
+                            <span>Logout</span>
+                        </button>
+                    </mat-menu>
+                </div>
+            </div>
+            
+            
+              
         </mat-toolbar>
-        <app-address-form></app-address-form>
         <app-dashboard></app-dashboard>
-        <p>index works!</p>
-        <pre>{{ user | json }}</pre>
-        <button (click)="logout()">Logout</button>
 
     </mat-sidenav-content>
 </mat-sidenav-container>

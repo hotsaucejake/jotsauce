@@ -31,7 +31,7 @@ export class IndexComponent implements OnInit {
   ) { }
 
   public async ngOnInit(): Promise<void> {
-    const resp = await this.userService.getUser();
+    const resp = await this.userService.getCurrentUser();
     if (resp.type === 'data') {
       this.user = resp.data;
     }

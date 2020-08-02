@@ -6,8 +6,8 @@ import { Injectable } from '@angular/core';
 @Injectable({ providedIn: 'root' })
 export class UserService extends BaseService {
 
-    public async getUser(): Promise<ServiceResponse<User>> {
-        const response = this.getAsync<User>(`api/auth/user`);
+    public async getCurrentUser(): Promise<ServiceResponse<User>> {
+        const response = this.getAsync<User>(`api/user/current`);
 
         return response;
     }
