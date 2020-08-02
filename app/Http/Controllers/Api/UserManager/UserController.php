@@ -15,7 +15,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        throw new NotImplementedException('some message');
+        throw new NotImplementedException();
     }
 
     /**
@@ -26,7 +26,7 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        throw new NotImplementedException('some message');
+        throw new NotImplementedException();
     }
 
     /**
@@ -37,7 +37,7 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        throw new NotImplementedException('some message');
+        throw new NotImplementedException();
     }
 
     /**
@@ -49,7 +49,7 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        throw new NotImplementedException('some message');
+        throw new NotImplementedException();
     }
 
     /**
@@ -60,6 +60,6 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        throw new NotImplementedException('some message');
+        throw new NotImplementedException();
     }
 }

@@ -14,7 +14,7 @@ class NotImplementedException extends Exception
      */
     public function report()
     {
-        Log::debug('This method is not yet implemented.');
+        Log::debug('This method is not yet implemented.  Do you need to use it?');
     }
 
 
@@ -26,11 +26,7 @@ class NotImplementedException extends Exception
      */
     public function render($request)
     {
-        return response()->json([
-            'success' => false,
-            'message' => 'Not Implemented.',
-            'data' => [],
-        ], 501);
+        return response()->json([], 501);
     }
 
 }
