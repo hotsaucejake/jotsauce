@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Angular</title>
+    <title>Jot Sauce</title>
     <base href="/">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" type="image/x-icon" href="/assets/angular/favicon.ico">
@@ -13,6 +13,6 @@
 
 <body class="mat-typography">
     <app-root></app-root>
-<script src="/assets/angular/runtime.83929e1c8ab6c729b31c.js" defer></script><script src="/assets/angular/polyfills.a4021de53358bb0fec14.js" defer></script><script src="/assets/angular/main.4f8362a042594ea16db8.js" defer></script></body>
+<script src="/assets/angular/runtime.83929e1c8ab6c729b31c.js" defer></script><script src="/assets/angular/polyfills.a4021de53358bb0fec14.js" defer></script><script src="/assets/angular/main.232e511515334c31daf3.js" defer></script></body>
 
 </html>

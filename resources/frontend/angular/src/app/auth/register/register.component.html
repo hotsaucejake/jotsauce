@@ -77,7 +77,7 @@
                                         <mat-icon matSuffix *ngIf="emailAvailable">done</mat-icon>
 
                                         <mat-error *ngIf="email.errors?.required">Required</mat-error>
-                                        <mat-error *ngIf="email.errors?.minlength">Must be at valid email address</mat-error>
+                                        <mat-error *ngIf="email.errors?.minlength">Must be a valid email address</mat-error>
                                         <mat-error *ngIf="email.errors?.emailTaken">Email is already taken or invalid</mat-error>
                                     </mat-form-field>
                                 </div>
