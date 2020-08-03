@@ -41,7 +41,6 @@
                                             type="email"
                                             name="email"
                                             placeholder="email@example.com"
-                                            (keyup.enter)="login(loginForm.form)"
                                             [(ngModel)]="userCredentials.email"
                                             #email="ngModel"
                                             required>
@@ -58,7 +57,6 @@
                                             type="password"
                                             name="password"
                                             placeholder="password"
-                                            (keyup.enter)="login(loginForm.form)"
                                             [(ngModel)]="userCredentials.password"
                                             #password="ngModel"
                                             required>
@@ -83,6 +81,7 @@
                                 mat-raised-button 
                                 color="accent"
                                 (click)="login(loginForm.form)"
+                                (keyup.enter)="login(loginForm.form)"
                                 class="mr-3 my-3 w-100">
                                     LOGIN
                             </button>
