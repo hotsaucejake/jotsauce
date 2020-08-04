@@ -3,15 +3,34 @@
 }
 
 .sidenav {
-    width: 256px;
-}
-
-.sidenav .mat-toolbar {
-    background: inherit;
+    min-width: 256px;
 }
 
 .mat-toolbar.mat-primary {
     position: sticky;
     top: 0;
     z-index: 1;
+}
+
+.bgimg {
+    display: block;
+    height: 100vh;
+    background: url('/assets/angular/assets/bg/mountains-1.jpg');
+    background-position: center; 
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.overlay {
+    display: block;
+    background: rgba(255, 255, 255, 0.3);
+    background-position: center; 
+    background-repeat: repeat;
+    min-width: 100%;
+    min-height: 100%;
+    z-index: 0;
+}
+
+::ng-deep .mat-drawer-side {
+    border: none !important;
 }

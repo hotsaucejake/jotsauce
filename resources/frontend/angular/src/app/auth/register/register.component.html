@@ -41,7 +41,6 @@
                                             type="text" 
                                             placeholder="username"
                                             name="username"
-                                            (keyup.enter)="register(registerForm.form)"
                                             (blur)="checkUsernameAvailability(registerForm.form)"
                                             [(ngModel)]="registerModel.username"
                                             #username="ngModel"
@@ -68,7 +67,6 @@
                                             type="email" 
                                             placeholder="email@example.com"
                                             name="email"
-                                            (keyup.enter)="register(registerForm.form)"
                                             (blur)="checkEmailAvailability(registerForm.form)"
                                             [(ngModel)]="registerModel.email"
                                             #email="ngModel"
@@ -91,7 +89,6 @@
                                             type="password" 
                                             placeholder="password"
                                             name="password"
-                                            (keyup.enter)="register(registerForm.form)"
                                             (blur)="checkPasswordValid(registerForm.form)"
                                             [(ngModel)]="registerModel.password"
                                             #password="ngModel"
@@ -113,7 +110,6 @@
                                             type="password" 
                                             placeholder="password"
                                             name="passwordConfirmation"
-                                            (keyup.enter)="register(registerForm.form)"
                                             (blur)="checkConfirmPasswordValid(registerForm.form)"
                                             [(ngModel)]="registerModel.password_confirmation"
                                             #passwordConfirmation="ngModel"
@@ -131,6 +127,7 @@
                             <button 
                                 mat-raised-button 
                                 color="accent"
+                                (keyup.enter)="register(registerForm.form)"
                                 (click)="register(registerForm.form)"
                                 class="mr-3 my-3 w-100">
                                     REGISTER

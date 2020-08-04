@@ -31,9 +31,14 @@ Route::name('api.')->namespace('Api')->group(function () {
 
     // api/
     Route::middleware('auth:sanctum')->group(function () {
+
         Route::namespace('UserManager')->group(function () {
             Route::get('user/current', 'GetCurrentController')->name('user.current');
             Route::resource('user', 'UserController');
+        });
+
+        Route::namespace('JotManager')->group(function () {
+            Route::resource('jot', 'JotController');
         });
     });
 
