@@ -30,3 +30,7 @@
     min-height: 100%;
     z-index: 0;
 }
+
+::ng-deep .mat-drawer-side {
+    border: none !important;
+}
