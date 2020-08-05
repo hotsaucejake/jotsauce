@@ -18,34 +18,15 @@ class CreateJotsTable extends Migration
             $table->bigInteger('user_id')->unsigned();
             $table->string('title');
             $table->text('description')->nullable();
-            $table->string('slug');
+            $table->string('slug'); // use slugs in the future
             $table->integer('order_column')->nullable();
+            $table->dateTime('archived')->nullable(); // instead of deleting all the data
             $table->timestamps();
 
-            $table->unique(['user_id', 'slug']);
+            $table->unique(['user_id', 'slug']); // only 1 slug per user
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
-
-        // Schema::create('jottables', function (Blueprint $table) {
-        //     $table->bigInteger('jot_id')->unsigned();
-        //     $table->morphs('jottables');
-        //     $table->string('title');
-        //     $table->text('description')->nullable();
-        //     $table->integer('order_column')->nullable();
-        //     $table->timestamps();
-
-        //     $table->foreign('jot_id')->references('id')->on('jots')->onDelete('cascade');
-        // });
-
-        // Schema::create('form_elements', function (Blueprint $table) {
-        //     $table->id();
-        //     $table->string('element'); // input?, select?, textarea?, datalist?, output?, option?, optgroup?
-        //     $table->string('type');  // checkbox, 
-        //     // $table->text('description')->nullable();
-        //     $table->
-        //     $table->timestamps();
-        // });
     }
 
     /**

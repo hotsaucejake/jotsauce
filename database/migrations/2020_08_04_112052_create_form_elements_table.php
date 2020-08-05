@@ -106,5 +106,6 @@ class CreateFormElementsTable extends Migration
     public function down()
     {
         Schema::dropIfExists('form_elements');
+        Schema::dropIfExists('form_element_types');
     }
 }
