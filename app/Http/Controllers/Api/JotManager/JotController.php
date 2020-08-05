@@ -14,8 +14,11 @@ class JotController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+        // $user = $request->user();
+
+        // $jots = $user->jots;
         throw new NotImplementedException();
     }
 
