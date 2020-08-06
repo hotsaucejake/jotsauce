@@ -21,25 +21,11 @@
                 </a>
                 <mat-divider></mat-divider>
 
-                <h2 class="h2 text-center mb-0 mt-3">Jots</h2>
+                <h2 class="h2 text-center mb-0 mt-3" *ngIf="jots.length > 0">Jots</h2>
 
-                <a mat-list-item 
+                <a mat-list-item *ngFor="let jot of jots"
                     [routerLink]="['/index']">
-                        <span matLine>Weight Tracker</span>
-                        <button mat-icon-button>
-                            <mat-icon>add</mat-icon>
-                        </button>
-                </a>
-                <a mat-list-item 
-                    [routerLink]="['/index']">
-                        <span matLine>Weight Tracker</span>
-                        <button mat-icon-button>
-                            <mat-icon>add</mat-icon>
-                        </button>
-                </a>
-                <a mat-list-item 
-                    [routerLink]="['/index']">
-                        <span matLine>Weight Tracker</span>
+                        <span matLine>{{ jot.title }}</span>
                         <button mat-icon-button>
                             <mat-icon>add</mat-icon>
                         </button>

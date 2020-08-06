@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api\JotManager;
 
 use App\Exceptions\NotImplementedException;
 use App\Http\Controllers\Controller;
+use App\Http\Resources\Jot as JotResource;
 use App\Models\Jot;
 use Illuminate\Http\Request;
 
@@ -16,10 +17,10 @@ class JotController extends Controller
      */
     public function index(Request $request)
     {
-        // $user = $request->user();
-
-        // $jots = $user->jots;
-        throw new NotImplementedException();
+        $user = $request->user();
+        $jots = JotResource::collection($user->jots);
+        
+        return $jots;
     }
 
     /**

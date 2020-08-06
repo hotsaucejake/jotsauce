@@ -1,3 +1,4 @@
+import { JotService } from './../core/services/jot.service';
 import { User } from './../core/models/user.interface';
 import { UserService } from './../core/services/user.service';
 import { Component, OnInit } from '@angular/core';
@@ -6,12 +7,13 @@ import { Router } from '@angular/router';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { shareReplay, map } from 'rxjs/operators';
+import { Jot } from '@app/core/models/jot.interface';
 
 @Component({
   selector: 'app-index',
   templateUrl: './index.component.html',
   styleUrls: ['./index.component.scss'],
-  providers: [UserService]
+  providers: [JotService, UserService]
 })
 export class IndexComponent implements OnInit {
 
@@ -22,10 +24,12 @@ export class IndexComponent implements OnInit {
     );
 
   public user: User;
+  public jots = [] as Jot[];
 
   constructor(
     private readonly authService: AuthService,
     private breakpointObserver: BreakpointObserver,
+    private readonly jotService: JotService,
     private readonly router: Router,
     private readonly userService: UserService
   ) { }
@@ -35,12 +39,24 @@ export class IndexComponent implements OnInit {
     if (resp.type === 'data') {
       this.user = resp.data;
     }
+
+    this.loadJots();
   }
 
   public async logout(): Promise<void> {
     const resp = await this.authService.logout();
     if (resp.type === 'data') {
       this.router.navigate(['/login'], { replaceUrl: true });
+    }
+  }
+
+  private async loadJots(): Promise<void> {
+    const resp = await this.jotService.getJots();
+
+    if (resp.type === 'data') {
+      console.log(resp);
+      this.jots = resp.data;
+      console.log(this.jots);
     }
   }
 
