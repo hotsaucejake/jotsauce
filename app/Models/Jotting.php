@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Jot extends Model
+class Jotting extends Model
 {
     /**
      * ************************************
@@ -14,14 +14,10 @@ class Jot extends Model
      * ************************************
      */
 
-    public function jottings()
+    public function jot()
     {
-        return $this->hasMany('App\Models\Jotting');
+        $this->belongsTo('App\Models\Jot');
     }
 
-
-    public function user()
-    {
-        $this->belongsTo('App\User');
-    }
+    // user hasonethrough
 }

@@ -1,11 +1,18 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\Jottingable;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Jot extends Model
+class JottingableMediumText extends Model
 {
+    protected $fillable = [
+        'value',
+    ];
+
+    public $timestamps = false;
+
+
     /**
      * ************************************
      * ************************************
@@ -16,12 +23,6 @@ class Jot extends Model
 
     public function jottings()
     {
-        return $this->hasMany('App\Models\Jotting');
-    }
-
-
-    public function user()
-    {
-        $this->belongsTo('App\User');
+        return $this->morphMany('App\Models\Jotting', 'jottingables');
     }
 }

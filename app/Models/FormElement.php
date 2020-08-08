@@ -4,8 +4,15 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Jot extends Model
+class FormElement extends Model
 {
+    protected $fillable = [
+        'element',
+    ];
+
+    public $timestamps = false;
+
+
     /**
      * ************************************
      * ************************************
@@ -14,14 +21,8 @@ class Jot extends Model
      * ************************************
      */
 
-    public function jottings()
+    public function types()
     {
-        return $this->hasMany('App\Models\Jotting');
-    }
-
-
-    public function user()
-    {
-        $this->belongsTo('App\User');
+        return $this->hasMany('App\Models\FormElementType');
     }
 }

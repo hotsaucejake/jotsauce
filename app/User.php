@@ -42,8 +42,16 @@ class User extends Authenticatable
     ];
 
 
+    /**
+     * ************************************
+     * ************************************
+     * RELATIONSHIPS
+     * ************************************
+     * ************************************
+     */
+
     public function jots()
     {
-        return $this->hasMany('App\Model\Jot');
+        return $this->hasMany('App\Models\Jot');
     }
 }

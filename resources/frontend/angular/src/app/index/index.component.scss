@@ -23,7 +23,7 @@
 
 .overlay {
     display: block;
-    background: rgba(255, 255, 255, 0.3);
+    background: rgba(63, 81, 181, 0.3);
     background-position: center; 
     background-repeat: repeat;
     min-width: 100%;
@@ -31,6 +31,15 @@
     z-index: 0;
 }
 
-::ng-deep .mat-drawer-side {
+.border-fix {
     border: none !important;
+}
+
+.background-translucent {
+    background: rgba(255, 255, 255, 0.6) !important;
+}
+
+.list-item-active {
+    font-weight: bold;
+    background: rgba(63, 81, 181, 0.3) !important;
 }
