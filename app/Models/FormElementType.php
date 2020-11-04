@@ -21,6 +21,6 @@ class FormElementType extends Model
      */
     public function element()
     {
-        return $this->belongsTo('App\Models\FormElement');
+        return $this->belongsTo(\App\Models\FormElement::class);
     }
 }

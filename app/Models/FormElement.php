@@ -21,6 +21,6 @@ class FormElement extends Model
      */
     public function types()
     {
-        return $this->hasMany('App\Models\FormElementType');
+        return $this->hasMany(\App\Models\FormElementType::class);
     }
 }

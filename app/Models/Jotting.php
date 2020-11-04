@@ -15,7 +15,7 @@ class Jotting extends Model
      */
     public function jot()
     {
-        $this->belongsTo('App\Models\Jot');
+        $this->belongsTo(\App\Models\Jot::class);
     }
 
     // user hasonethrough

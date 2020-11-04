@@ -21,6 +21,6 @@ class JottingableBoolean extends Model
      */
     public function jottings()
     {
-        return $this->morphMany('App\Models\Jotting', 'jottingables');
+        return $this->morphMany(\App\Models\Jotting::class, 'jottingables');
     }
 }

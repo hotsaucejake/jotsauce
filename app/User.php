@@ -50,6 +50,6 @@ class User extends Authenticatable
      */
     public function jots()
     {
-        return $this->hasMany('App\Models\Jot');
+        return $this->hasMany(\App\Models\Jot::class);
     }
 }
