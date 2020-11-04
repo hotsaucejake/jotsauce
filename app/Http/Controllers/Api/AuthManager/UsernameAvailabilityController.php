@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Api\AuthManager;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\UsernameAvailabilityRequest;
 
-
 class UsernameAvailabilityController extends Controller
 {
     /**
@@ -18,6 +17,6 @@ class UsernameAvailabilityController extends Controller
     {
         $validated = $request->validated();
 
-        return response()->json(!!$validated, 200);
+        return response()->json((bool) $validated, 200);
     }
 }

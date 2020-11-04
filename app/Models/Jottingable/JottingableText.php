@@ -12,17 +12,15 @@ class JottingableText extends Model
 
     public $timestamps = false;
 
-
     /**
      * ************************************
      * ************************************
-     * RELATIONSHIPS
+     * RELATIONSHIPS.
      * ************************************
      * ************************************
      */
-
     public function jottings()
     {
-        return $this->morphMany('App\Models\Jotting', 'jottingables');
+        return $this->morphMany(\App\Models\Jotting::class, 'jottingables');
     }
 }

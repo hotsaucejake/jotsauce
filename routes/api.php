@@ -22,7 +22,6 @@ Route::name('api.')->namespace('Api')->group(function () {
         Route::post('register', 'RegisterController')->name('register');
         Route::post('username-availability', 'UsernameAvailabilityController')->name('username-availability');
         Route::post('email-availability', 'EmailAvailabilityController')->name('email-availability');
-        
 
         Route::middleware('auth:sanctum')->group(function () {
             Route::get('logout', 'LogoutController')->name('logout');
@@ -31,7 +30,6 @@ Route::name('api.')->namespace('Api')->group(function () {
 
     // api/
     Route::middleware('auth:sanctum')->group(function () {
-
         Route::namespace('UserManager')->group(function () {
             Route::get('user/current', 'GetCurrentController')->name('user.current');
             Route::resource('user', 'UserController');
@@ -41,5 +39,4 @@ Route::name('api.')->namespace('Api')->group(function () {
             Route::resource('jot', 'JotController');
         });
     });
-
 });

@@ -9,14 +9,13 @@ class Jotting extends Model
     /**
      * ************************************
      * ************************************
-     * RELATIONSHIPS
+     * RELATIONSHIPS.
      * ************************************
      * ************************************
      */
-
     public function jot()
     {
-        $this->belongsTo('App\Models\Jot');
+        $this->belongsTo(\App\Models\Jot::class);
     }
 
     // user hasonethrough
