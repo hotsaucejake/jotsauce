@@ -12,17 +12,15 @@ class FormElement extends Model
 
     public $timestamps = false;
 
-
     /**
      * ************************************
      * ************************************
-     * RELATIONSHIPS
+     * RELATIONSHIPS.
      * ************************************
      * ************************************
      */
-
     public function types()
     {
-        return $this->hasMany('App\Models\FormElementType');
+        return $this->hasMany(\App\Models\FormElementType::class);
     }
 }

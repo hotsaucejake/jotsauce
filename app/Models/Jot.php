@@ -9,19 +9,17 @@ class Jot extends Model
     /**
      * ************************************
      * ************************************
-     * RELATIONSHIPS
+     * RELATIONSHIPS.
      * ************************************
      * ************************************
      */
-
     public function jottings()
     {
-        return $this->hasMany('App\Models\Jotting');
+        return $this->hasMany(\App\Models\Jotting::class);
     }
-
 
     public function user()
     {
-        $this->belongsTo('App\User');
+        $this->belongsTo(\App\User::class);
     }
 }

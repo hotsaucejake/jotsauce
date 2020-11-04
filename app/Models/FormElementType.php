@@ -12,17 +12,15 @@ class FormElementType extends Model
 
     public $timestamps = false;
 
-
     /**
      * ************************************
      * ************************************
-     * RELATIONSHIPS
+     * RELATIONSHIPS.
      * ************************************
      * ************************************
      */
-
     public function element()
     {
-        return $this->belongsTo('App\Models\FormElement');
+        return $this->belongsTo(\App\Models\FormElement::class);
     }
 }
