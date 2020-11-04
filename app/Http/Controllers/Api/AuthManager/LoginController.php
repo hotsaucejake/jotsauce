@@ -9,7 +9,6 @@ use App\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\ValidationException;
 
-
 class LoginController extends Controller
 {
     /**
@@ -24,7 +23,7 @@ class LoginController extends Controller
 
         $user = User::where('email', $validated['email'])->first();
 
-        if (!$user || !Hash::check($validated['password'], $user->password)) {
+        if (! $user || ! Hash::check($validated['password'], $user->password)) {
             throw ValidationException::withMessages([
                 'credentials' => ['The provided credentials are incorrect.'],
             ]);

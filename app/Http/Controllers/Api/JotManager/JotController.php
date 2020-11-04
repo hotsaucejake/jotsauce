@@ -19,7 +19,7 @@ class JotController extends Controller
     {
         $user = $request->user();
         $jots = JotResource::collection($user->jots);
-        
+
         return $jots;
     }
 

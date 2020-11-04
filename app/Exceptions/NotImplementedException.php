@@ -17,7 +17,6 @@ class NotImplementedException extends Exception
         Log::debug('This method is not yet implemented.  Do you need to use it?');
     }
 
-
     /**
      * Render the exception into an HTTP response.
      *
@@ -28,5 +27,4 @@ class NotImplementedException extends Exception
     {
         return response()->json([], 501);
     }
-
 }

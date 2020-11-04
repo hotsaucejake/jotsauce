@@ -9,16 +9,14 @@ class Jot extends Model
     /**
      * ************************************
      * ************************************
-     * RELATIONSHIPS
+     * RELATIONSHIPS.
      * ************************************
      * ************************************
      */
-
     public function jottings()
     {
         return $this->hasMany('App\Models\Jotting');
     }
-
 
     public function user()
     {
