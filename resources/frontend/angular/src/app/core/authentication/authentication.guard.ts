@@ -8,7 +8,7 @@ import { Injectable } from '@angular/core';
 })
 export class AuthenticationGuard implements CanActivate {
 
-    constructor(protected router: Router) {}
+    constructor(protected router: Router) { }
 
     canActivate(
         route: ActivatedRouteSnapshot,

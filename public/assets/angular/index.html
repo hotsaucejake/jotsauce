@@ -1,18 +1,18 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="utf-8">
-    <title>Jot Sauce</title>
-    <base href="/">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="icon" type="image/x-icon" href="/assets/angular/favicon.ico">
-    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-<link rel="stylesheet" href="/assets/angular/styles.54924cfe1f89de9bed64.css"></head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Angular</title>
 
-<body class="mat-typography">
+    <base href="/">
+
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+<link rel="stylesheet" href="/assets/angular/styles.6ae846361e4c96e1c0f2.css"></head>
+
+<body>
     <app-root></app-root>
-<script src="/assets/angular/runtime.83929e1c8ab6c729b31c.js" defer></script><script src="/assets/angular/polyfills.a4021de53358bb0fec14.js" defer></script><script src="/assets/angular/main.f0cbf4469612f28355fa.js" defer></script></body>
+<script src="/assets/angular/runtime.96254822893afa4fd974.js" defer></script><script src="/assets/angular/polyfills.8c151b8375e767ff858f.js" defer></script><script src="/assets/angular/main.d20050bf41beac3de8f2.js" defer></script></body>
 
 </html>

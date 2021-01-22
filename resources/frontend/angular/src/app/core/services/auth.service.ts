@@ -12,7 +12,7 @@ import { User } from '../models/user.interface';
 export class AuthService extends BaseService {
 
     private async csrfCookie(): Promise<void> {
-        const response = await this.getAsync('sanctum/csrf-cookie');
+        const response = await this.getAsync('api/sanctum/csrf-cookie');
     }
 
     public async login(authModel: UserCredentials, remember: boolean): Promise<ServiceResponse<AuthenticationResponse>> {

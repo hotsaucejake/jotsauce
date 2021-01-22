@@ -28,8 +28,8 @@ export abstract class BaseService {
             if (error.response?.data.errors) {
                 retError.errors = [];
                 Object.keys(error.response.data.errors).forEach(key => {
-                    error.response.data.errors[key].forEach((errorMessage: string)  => {
-                        retError.errors.push({
+                    error.response?.data.errors[key].forEach((errorMessage: string) => {
+                        retError.errors?.push({
                             name: key,
                             error: errorMessage
                         } as ErrorResponse);

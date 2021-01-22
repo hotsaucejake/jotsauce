@@ -2,7 +2,7 @@ import { AuthenticationResponse } from './../models/authentication/authenticatio
 
 export class AuthenticationService {
 
-    private static authentication?: AuthenticationResponse = null;
+    private static authentication: AuthenticationResponse;
     private static readonly authenticationToken = 'authentication';
 
 
@@ -39,7 +39,7 @@ export class AuthenticationService {
 
 
     public static clearAuthentication(): void {
-        AuthenticationService.authentication = null;
+        AuthenticationService.authentication = {} as AuthenticationResponse;
         sessionStorage.removeItem(AuthenticationService.authenticationToken);
         // localStorage.removeItem(AuthenticationService.authenticationToken);
     }
