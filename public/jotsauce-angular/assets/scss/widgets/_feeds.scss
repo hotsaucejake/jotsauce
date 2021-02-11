@@ -1,0 +1,73 @@
+.feed-widget {
+
+    .feed-body {
+        .feed-item {
+            padding: 12px 0;
+            display: flex;
+            align-items: center;
+            &:hover {
+                background: $gray-100;
+            }
+            >.feed-icon {
+                width: 40px;
+                height: 40px;
+                margin-right: 10px;
+                display: inline-block;
+                text-align: center;
+                vertical-align: middle;
+                border-radius: 100%;
+                color: $white;
+                i {
+                    line-height: 40px;
+                }
+            }
+        }
+    }
+}
+
+
+// 
+// Mail
+// 
+@include media-breakpoint-down(md) {
+    .left-mailsidebar {
+        position: fixed;
+        left: -375px;
+        z-index: 1;
+        background: $white;
+        width: 300px;
+        padding: 0 15px;
+        transition: 0.1s ease-in;
+        &.show-panel {
+            left: 90px;
+        }
+    }
+}
+
+@include media-breakpoint-down(sm) {
+    .left-mailsidebar {
+        &.show-panel {
+            left: 0;
+        }
+    }
+}
+
+@include media-breakpoint-down(sm) {
+    .mailbox-content {
+        position: relative;
+        .show-details {
+            display: none;
+        }
+        .mail-details.show-details {
+            position: absolute;
+            top: 0;
+            background-color: $white;
+        }
+        &.mail-lists {
+            .show-details {
+                display: block;
+            }
+        }
+    }
+    
+}
