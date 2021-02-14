@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use App\Http\Resources\FormElementType;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class Jot extends JsonResource
@@ -15,14 +16,15 @@ class Jot extends JsonResource
     public function toArray($request)
     {
         return [
-            'id' => $this->id,
-            'user_id' => $this->user_id,
-            'title' => $this->title,
-            'description' => $this->description,
-            'slug' => $this->slug,
-            'order_column' => $this->order_column,
-            'created_at' => $this->created_at,
-            'updated_at' => $this->updated_at,
+            'id'                 => $this->id,
+            'user_id'            => $this->user_id,
+            'title'              => $this->title,
+            'description'        => $this->description,
+            'slug'               => $this->slug,
+            'order_column'       => $this->order_column,
+            'form_element_types' => FormElementType::collection($this->formElementTypes),
+            'created_at'         => $this->created_at,
+            'updated_at'         => $this->updated_at,
         ];
     }
 }

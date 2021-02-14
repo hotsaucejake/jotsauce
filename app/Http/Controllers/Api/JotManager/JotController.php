@@ -24,16 +24,6 @@ class JotController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        throw new NotImplementedException();
-    }
-
-    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -52,18 +42,7 @@ class JotController extends Controller
      */
     public function show(Jot $jot)
     {
-        throw new NotImplementedException();
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Jot  $jot
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Jot $jot)
-    {
-        throw new NotImplementedException();
+        return new JotResource($jot);
     }
 
     /**
