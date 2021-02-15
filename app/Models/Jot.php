@@ -37,7 +37,7 @@ class Jot extends Model
     public function formElementTypes()
     {
         return $this->belongsToMany(\App\Models\FormElementType::class, 'form_element_type_jot')
-            ->withPivot('title', 'description', 'order_column', 'created_at', 'updated_at')
+            ->withPivot('id', 'title', 'description', 'order_column', 'created_at', 'updated_at')
             ->orderBy('form_element_type_jot.order_column');
     }
 }

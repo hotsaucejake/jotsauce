@@ -17,7 +17,7 @@ class Jot extends JsonResource
     {
         return [
             'id'                 => $this->id,
-            'user_id'            => $this->user_id,
+            // 'user_id'            => $this->user_id, // removing for now - too much info given to the user
             'title'              => $this->title,
             'description'        => $this->description,
             'slug'               => $this->slug,

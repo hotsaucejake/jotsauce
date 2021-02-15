@@ -15,13 +15,14 @@ class FormElementType extends JsonResource
     public function toArray($request)
     {
         return [
-            'id'           => $this->id,
+            'id'           => $this->pivot->id,
             'form_element' => $this->formElement,
             'type'         => $this->type,
             'title'        => $this->pivot->title,
             'description'  => $this->pivot->description,
             'order_column' => $this->pivot->order_column,
             'created_at'   => $this->pivot->created_at,
+            'updated_at'   => $this->pivot->updated_at,
         ];
     }
 }
