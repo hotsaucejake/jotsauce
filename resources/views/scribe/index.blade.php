@@ -44,7 +44,7 @@
                             <li><a href='http://github.com/knuckleswtf/scribe'>Documentation powered by Scribe ✍</a></li>
                     </ul>
             <ul class="toc-footer" id="last-updated">
-            <li>Last updated: February 19 2021</li>
+            <li>Last updated: February 20 2021</li>
         </ul>
 </div>
 <div class="page-wrapper">
@@ -63,7 +63,7 @@ You can switch the language used with the tabs at the top right (or from the nav
 <p>Base URL</p>
 </blockquote>
 <pre><code class="language-yaml">http://jotsauce.test</code></pre><h1>Authenticating requests</h1>
-<p>Authenticate requests to this API's endpoints by sending an <strong><code>Authorization</code></strong> header with the value <strong><code>"Bearer {YOUR_AUTH_KEY}"</code></strong>.</p>
+<p>To authenticate requests, include an <strong><code>Authorization</code></strong> header with the value <strong><code>"Bearer {YOUR_AUTH_KEY}"</code></strong>.</p>
 <p>All authenticated endpoints are marked with a <code>requires authentication</code> badge in the documentation below.</p>
 <p>You can retrieve your token by visiting your dashboard and clicking <b>Generate API token</b>.</p><h1>Endpoints</h1>
 <h2>Handle the incoming request.</h2>
@@ -74,7 +74,7 @@ You can switch the language used with the tabs at the top right (or from the nav
     "http://jotsauce.test/api/auth/login" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json" \
-    -d '{"email":"bschneider@example.com","password":"harum","remember_me":false}'
+    -d '{"email":"fabian.welch@example.org","password":"incidunt","remember_me":false}'
 </code></pre>
 <pre><code class="language-javascript">const url = new URL(
     "http://jotsauce.test/api/auth/login"
@@ -86,8 +86,8 @@ let headers = {
 };
 
 let body = {
-    "email": "bschneider@example.com",
-    "password": "harum",
+    "email": "fabian.welch@example.org",
+    "password": "incidunt",
     "remember_me": false
 }
 
@@ -153,7 +153,7 @@ The value must be a valid email address.</p>
     "http://jotsauce.test/api/auth/register" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json" \
-    -d '{"username":"saepe","email":"arielle.schaden@example.com","password":"esse"}'
+    -d '{"username":"eos","email":"leuschke.eldon@example.net","password":"quam"}'
 </code></pre>
 <pre><code class="language-javascript">const url = new URL(
     "http://jotsauce.test/api/auth/register"
@@ -165,9 +165,9 @@ let headers = {
 };
 
 let body = {
-    "username": "saepe",
-    "email": "arielle.schaden@example.com",
-    "password": "esse"
+    "username": "eos",
+    "email": "leuschke.eldon@example.net",
+    "password": "quam"
 }
 
 fetch(url, {
@@ -232,7 +232,7 @@ The value must be a valid email address.</p>
     "http://jotsauce.test/api/auth/username-availability" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json" \
-    -d '{"username":"enim"}'
+    -d '{"username":"ut"}'
 </code></pre>
 <pre><code class="language-javascript">const url = new URL(
     "http://jotsauce.test/api/auth/username-availability"
@@ -244,7 +244,7 @@ let headers = {
 };
 
 let body = {
-    "username": "enim"
+    "username": "ut"
 }
 
 fetch(url, {
@@ -253,9 +253,16 @@ fetch(url, {
     body: JSON.stringify(body),
 }).then(response =&gt; response.json());</code></pre>
 <blockquote>
-<p>Example response (200):</p>
+<p>Example response (422):</p>
 </blockquote>
-<pre><code class="language-json">true</code></pre>
+<pre><code class="language-json">{
+    "message": "The given data was invalid.",
+    "errors": {
+        "username": [
+            "The username must be at least 3 characters."
+        ]
+    }
+}</code></pre>
 <div id="execution-results-POSTapi-auth-username-availability" hidden>
     <blockquote>Received response<span id="execution-response-status-POSTapi-auth-username-availability"></span>:</blockquote>
     <pre class="json"><code id="execution-response-content-POSTapi-auth-username-availability"></code></pre>
@@ -291,7 +298,7 @@ fetch(url, {
     "http://jotsauce.test/api/auth/email-availability" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json" \
-    -d '{"email":"lavern.schuster@example.org"}'
+    -d '{"email":"nsatterfield@example.net"}'
 </code></pre>
 <pre><code class="language-javascript">const url = new URL(
     "http://jotsauce.test/api/auth/email-availability"
@@ -303,7 +310,7 @@ let headers = {
 };
 
 let body = {
-    "email": "lavern.schuster@example.org"
+    "email": "nsatterfield@example.net"
 }
 
 fetch(url, {
@@ -543,11 +550,11 @@ fetch(url, {
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-bash">curl -X GET \
-    -G "http://jotsauce.test/api/user/enim" \
+    -G "http://jotsauce.test/api/user/sit" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"</code></pre>
 <pre><code class="language-javascript">const url = new URL(
-    "http://jotsauce.test/api/user/enim"
+    "http://jotsauce.test/api/user/sit"
 );
 
 let headers = {
@@ -598,11 +605,11 @@ fetch(url, {
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-bash">curl -X PUT \
-    "http://jotsauce.test/api/user/ab" \
+    "http://jotsauce.test/api/user/dolor" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"</code></pre>
 <pre><code class="language-javascript">const url = new URL(
-    "http://jotsauce.test/api/user/ab"
+    "http://jotsauce.test/api/user/dolor"
 );
 
 let headers = {
@@ -657,11 +664,11 @@ fetch(url, {
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-bash">curl -X DELETE \
-    "http://jotsauce.test/api/user/placeat" \
+    "http://jotsauce.test/api/user/et" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"</code></pre>
 <pre><code class="language-javascript">const url = new URL(
-    "http://jotsauce.test/api/user/placeat"
+    "http://jotsauce.test/api/user/et"
 );
 
 let headers = {
@@ -810,11 +817,11 @@ fetch(url, {
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-bash">curl -X GET \
-    -G "http://jotsauce.test/api/jot/odit" \
+    -G "http://jotsauce.test/api/jot/optio" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"</code></pre>
 <pre><code class="language-javascript">const url = new URL(
-    "http://jotsauce.test/api/jot/odit"
+    "http://jotsauce.test/api/jot/optio"
 );
 
 let headers = {
@@ -865,11 +872,11 @@ fetch(url, {
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-bash">curl -X PUT \
-    "http://jotsauce.test/api/jot/enim" \
+    "http://jotsauce.test/api/jot/sed" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"</code></pre>
 <pre><code class="language-javascript">const url = new URL(
-    "http://jotsauce.test/api/jot/enim"
+    "http://jotsauce.test/api/jot/sed"
 );
 
 let headers = {
@@ -924,11 +931,11 @@ fetch(url, {
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-bash">curl -X DELETE \
-    "http://jotsauce.test/api/jot/voluptatum" \
+    "http://jotsauce.test/api/jot/maiores" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"</code></pre>
 <pre><code class="language-javascript">const url = new URL(
-    "http://jotsauce.test/api/jot/voluptatum"
+    "http://jotsauce.test/api/jot/maiores"
 );
 
 let headers = {

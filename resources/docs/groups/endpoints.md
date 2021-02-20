@@ -13,7 +13,7 @@ curl -X POST \
     "http://jotsauce.test/api/auth/login" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json" \
-    -d '{"email":"bschneider@example.com","password":"harum","remember_me":false}'
+    -d '{"email":"fabian.welch@example.org","password":"incidunt","remember_me":false}'
 
 ```
 
@@ -28,8 +28,8 @@ let headers = {
 };
 
 let body = {
-    "email": "bschneider@example.com",
-    "password": "harum",
+    "email": "fabian.welch@example.org",
+    "password": "incidunt",
     "remember_me": false
 }
 
@@ -105,7 +105,7 @@ curl -X POST \
     "http://jotsauce.test/api/auth/register" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json" \
-    -d '{"username":"saepe","email":"arielle.schaden@example.com","password":"esse"}'
+    -d '{"username":"eos","email":"leuschke.eldon@example.net","password":"quam"}'
 
 ```
 
@@ -120,9 +120,9 @@ let headers = {
 };
 
 let body = {
-    "username": "saepe",
-    "email": "arielle.schaden@example.com",
-    "password": "esse"
+    "username": "eos",
+    "email": "leuschke.eldon@example.net",
+    "password": "quam"
 }
 
 fetch(url, {
@@ -197,7 +197,7 @@ curl -X POST \
     "http://jotsauce.test/api/auth/username-availability" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json" \
-    -d '{"username":"enim"}'
+    -d '{"username":"ut"}'
 
 ```
 
@@ -212,7 +212,7 @@ let headers = {
 };
 
 let body = {
-    "username": "enim"
+    "username": "ut"
 }
 
 fetch(url, {
@@ -223,10 +223,17 @@ fetch(url, {
 ```
 
 
-> Example response (200):
+> Example response (422):
 
 ```json
-true
+{
+    "message": "The given data was invalid.",
+    "errors": {
+        "username": [
+            "The username must be at least 3 characters."
+        ]
+    }
+}
 ```
 <div id="execution-results-POSTapi-auth-username-availability" hidden>
     <blockquote>Received response<span id="execution-response-status-POSTapi-auth-username-availability"></span>:</blockquote>
@@ -269,7 +276,7 @@ curl -X POST \
     "http://jotsauce.test/api/auth/email-availability" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json" \
-    -d '{"email":"lavern.schuster@example.org"}'
+    -d '{"email":"nsatterfield@example.net"}'
 
 ```
 
@@ -284,7 +291,7 @@ let headers = {
 };
 
 let body = {
-    "email": "lavern.schuster@example.org"
+    "email": "nsatterfield@example.net"
 }
 
 fetch(url, {
@@ -590,14 +597,14 @@ fetch(url, {
 
 ```bash
 curl -X GET \
-    -G "http://jotsauce.test/api/user/enim" \
+    -G "http://jotsauce.test/api/user/sit" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"
 ```
 
 ```javascript
 const url = new URL(
-    "http://jotsauce.test/api/user/enim"
+    "http://jotsauce.test/api/user/sit"
 );
 
 let headers = {
@@ -659,14 +666,14 @@ fetch(url, {
 
 ```bash
 curl -X PUT \
-    "http://jotsauce.test/api/user/ab" \
+    "http://jotsauce.test/api/user/dolor" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"
 ```
 
 ```javascript
 const url = new URL(
-    "http://jotsauce.test/api/user/ab"
+    "http://jotsauce.test/api/user/dolor"
 );
 
 let headers = {
@@ -732,14 +739,14 @@ fetch(url, {
 
 ```bash
 curl -X DELETE \
-    "http://jotsauce.test/api/user/placeat" \
+    "http://jotsauce.test/api/user/et" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"
 ```
 
 ```javascript
 const url = new URL(
-    "http://jotsauce.test/api/user/placeat"
+    "http://jotsauce.test/api/user/et"
 );
 
 let headers = {
@@ -927,14 +934,14 @@ fetch(url, {
 
 ```bash
 curl -X GET \
-    -G "http://jotsauce.test/api/jot/odit" \
+    -G "http://jotsauce.test/api/jot/optio" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"
 ```
 
 ```javascript
 const url = new URL(
-    "http://jotsauce.test/api/jot/odit"
+    "http://jotsauce.test/api/jot/optio"
 );
 
 let headers = {
@@ -996,14 +1003,14 @@ fetch(url, {
 
 ```bash
 curl -X PUT \
-    "http://jotsauce.test/api/jot/enim" \
+    "http://jotsauce.test/api/jot/sed" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"
 ```
 
 ```javascript
 const url = new URL(
-    "http://jotsauce.test/api/jot/enim"
+    "http://jotsauce.test/api/jot/sed"
 );
 
 let headers = {
@@ -1069,14 +1076,14 @@ fetch(url, {
 
 ```bash
 curl -X DELETE \
-    "http://jotsauce.test/api/jot/voluptatum" \
+    "http://jotsauce.test/api/jot/maiores" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"
 ```
 
 ```javascript
 const url = new URL(
-    "http://jotsauce.test/api/jot/voluptatum"
+    "http://jotsauce.test/api/jot/maiores"
 );
 
 let headers = {
