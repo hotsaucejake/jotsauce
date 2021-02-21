@@ -24,9 +24,29 @@ class RegisterAuthRequest extends FormRequest
     public function rules()
     {
         return [
-                'username' => ['required', 'string', 'min:3', 'max:255', 'alpha_dash', 'unique:users,username'],
-                'email' => ['required', 'string', 'email', 'max:255', 'unique:users,email'],
-                'password' => ['required', 'string', 'min:8', 'confirmed'],
-               ];
+            'username' => ['required', 'string', 'min:3', 'max:255', 'alpha_dash', 'unique:users,username'],
+            'email'    => ['required', 'string', 'email', 'max:255', 'unique:users,email'],
+            'password' => ['required', 'string', 'min:8', 'confirmed'],
+        ];
+    }
+
+    /**
+     * Body Parameters for API docs
+     *
+     * @return array
+     */
+    public function bodyParameters()
+    {
+        return [
+            'username' => [
+                'description' => "A username that doesn't already exist.",
+            ],
+            'email'    => [
+                'description' => "An email that doesn't already exist.",
+            ],
+            'password' => [
+                'description' => "Minimum of 8 characters.",
+            ],
+        ];
     }
 }

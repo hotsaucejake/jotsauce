@@ -8,8 +8,9 @@ use Illuminate\Http\Request;
 class LogoutController extends Controller
 {
     /**
-     * Handle the incoming request.
+     * Logout
      *
+     * @group Authentication
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */

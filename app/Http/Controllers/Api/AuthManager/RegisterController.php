@@ -10,8 +10,13 @@ use App\User;
 class RegisterController extends Controller
 {
     /**
-     * Handle the incoming request.
+     * Register
      *
+     * Before submitting a Register request, you may use the
+     * Email Availability and Username Availability endpoints
+     * to determine if they're already in use
+     *
+     * @group Authentication
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
@@ -21,7 +26,7 @@ class RegisterController extends Controller
 
         $user = User::create([
             'username' => $validated['username'],
-            'email' => $validated['email'],
+            'email'    => $validated['email'],
             'password' => bcrypt($validated['password']),
         ]);
 

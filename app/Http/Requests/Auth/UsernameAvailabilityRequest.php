@@ -24,7 +24,21 @@ class UsernameAvailabilityRequest extends FormRequest
     public function rules()
     {
         return [
-            'username' => ['nullable', 'string', 'min:3', 'max:255', 'alpha_dash', 'unique:users,username'],
+            'username' => ['required', 'string', 'min:3', 'max:255', 'alpha_dash', 'unique:users,username'],
+        ];
+    }
+
+    /**
+     * Body Parameters for API docs
+     *
+     * @return array
+     */
+    public function bodyParameters()
+    {
+        return [
+            'username' => [
+                'description' => "A username that doesn't already exist.",
+            ],
         ];
     }
 }

@@ -12,10 +12,18 @@ use Illuminate\Validation\ValidationException;
 class LoginController extends Controller
 {
     /**
-     * Handle the incoming request.
+     * Login
      *
+     * @group Authentication
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
+     * @response {
+     *      'accessToken': [
+     *          'abilities': ['*'],
+     *          'name': 'Personal Access Token'
+     *      ],
+     *      'plainTextToken': '69|9r1lp8rbNmQ9d7FEHvIM9S34z6S5X0TSEuZgI9aw'
+     * }
      */
     public function __invoke(LoginAuthRequest $request)
     {
@@ -23,7 +31,7 @@ class LoginController extends Controller
 
         $user = User::where('email', $validated['email'])->first();
 
-        if (! $user || ! Hash::check($validated['password'], $user->password)) {
+        if (!$user || !Hash::check($validated['password'], $user->password)) {
             throw ValidationException::withMessages([
                 'credentials' => ['The provided credentials are incorrect.'],
             ]);

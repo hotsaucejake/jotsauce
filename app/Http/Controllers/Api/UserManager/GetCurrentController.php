@@ -9,8 +9,10 @@ use Illuminate\Http\Request;
 class GetCurrentController extends Controller
 {
     /**
-     * Handle the incoming request.
+     * Current User
      *
+     * @group User Manager
+     * @authenticated
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */

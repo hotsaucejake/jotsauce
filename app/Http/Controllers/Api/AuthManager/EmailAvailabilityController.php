@@ -8,8 +8,9 @@ use App\Http\Requests\Auth\EmailAvailabilityRequest;
 class EmailAvailabilityController extends Controller
 {
     /**
-     * Handle the incoming request.
+     * Email Availability
      *
+     * @group Authentication
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */

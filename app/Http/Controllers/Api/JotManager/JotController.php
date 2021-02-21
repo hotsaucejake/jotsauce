@@ -11,8 +11,10 @@ use Illuminate\Http\Request;
 class JotController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Jots list
      *
+     * @group Jot Manager
+     * @authenticated
      * @return \Illuminate\Http\Response
      */
     public function index(Request $request)
@@ -24,8 +26,10 @@ class JotController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Create a new Jot
      *
+     * @group Jot Manager
+     * @authenticated
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
@@ -35,8 +39,10 @@ class JotController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Return specified Jot
      *
+     * @group Jot Manager
+     * @authenticated
      * @param  \App\Models\Jot  $jot
      * @return \Illuminate\Http\Response
      */
@@ -46,8 +52,10 @@ class JotController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update the specified Jot
      *
+     * @group Jot Manager
+     * @authenticated
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Models\Jot  $jot
      * @return \Illuminate\Http\Response
@@ -58,8 +66,10 @@ class JotController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Remove the specified Jot
      *
+     * @group Jot Manager
+     * @authenticated
      * @param  \App\Models\Jot  $jot
      * @return \Illuminate\Http\Response
      */

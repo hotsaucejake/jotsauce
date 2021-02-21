@@ -24,7 +24,21 @@ class EmailAvailabilityRequest extends FormRequest
     public function rules()
     {
         return [
-            'email' => ['nullable', 'string', 'email', 'max:255', 'unique:users,email'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users,email'],
+        ];
+    }
+
+    /**
+     * Body Parameters for API docs
+     *
+     * @return array
+     */
+    public function bodyParameters()
+    {
+        return [
+            'email' => [
+                'description' => "An email that doesn't already exist.",
+            ],
         ];
     }
 }

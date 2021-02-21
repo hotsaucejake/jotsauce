@@ -9,8 +9,10 @@ use Illuminate\Http\Request;
 class UserController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Users list
      *
+     * @group User Manager
+     * @authenticated
      * @return \Illuminate\Http\Response
      */
     public function index()
@@ -19,8 +21,10 @@ class UserController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Create a new User
      *
+     * @group User Manager
+     * @authenticated
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
@@ -30,8 +34,10 @@ class UserController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Return specified User
      *
+     * @group User Manager
+     * @authenticated
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
@@ -41,8 +47,10 @@ class UserController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update the specified User
      *
+     * @group User Manager
+     * @authenticated
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
@@ -53,8 +61,10 @@ class UserController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Remove the specified User
      *
+     * @group User Manager
+     * @authenticated
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */

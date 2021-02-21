@@ -44,7 +44,7 @@
                             <li><a href='http://github.com/knuckleswtf/scribe'>Documentation powered by Scribe ✍</a></li>
                     </ul>
             <ul class="toc-footer" id="last-updated">
-            <li>Last updated: February 20 2021</li>
+            <li>Last updated: February 21 2021</li>
         </ul>
 </div>
 <div class="page-wrapper">
@@ -63,10 +63,10 @@ You can switch the language used with the tabs at the top right (or from the nav
 <p>Base URL</p>
 </blockquote>
 <pre><code class="language-yaml">http://jotsauce.test</code></pre><h1>Authenticating requests</h1>
-<p>To authenticate requests, include an <strong><code>Authorization</code></strong> header with the value <strong><code>"Bearer {YOUR_AUTH_KEY}"</code></strong>.</p>
+<p>This API is authenticated by sending an <strong><code>Authorization</code></strong> header with the value <strong><code>"Bearer {YOUR_AUTH_KEY}"</code></strong>.</p>
 <p>All authenticated endpoints are marked with a <code>requires authentication</code> badge in the documentation below.</p>
-<p>You can retrieve your token by visiting your dashboard and clicking <b>Generate API token</b>.</p><h1>Endpoints</h1>
-<h2>Handle the incoming request.</h2>
+<p>You can retrieve your token by visiting your dashboard and clicking <b>Generate API token</b>.</p><h1>Authentication</h1>
+<h2>Login</h2>
 <blockquote>
 <p>Example request:</p>
 </blockquote>
@@ -74,7 +74,7 @@ You can switch the language used with the tabs at the top right (or from the nav
     "http://jotsauce.test/api/auth/login" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json" \
-    -d '{"email":"fabian.welch@example.org","password":"incidunt","remember_me":false}'
+    -d '{"email":"magdalen25@example.net","password":"facere","remember_me":false}'
 </code></pre>
 <pre><code class="language-javascript">const url = new URL(
     "http://jotsauce.test/api/auth/login"
@@ -86,8 +86,8 @@ let headers = {
 };
 
 let body = {
-    "email": "fabian.welch@example.org",
-    "password": "incidunt",
+    "email": "magdalen25@example.net",
+    "password": "facere",
     "remember_me": false
 }
 
@@ -97,15 +97,15 @@ fetch(url, {
     body: JSON.stringify(body),
 }).then(response =&gt; response.json());</code></pre>
 <blockquote>
-<p>Example response (422):</p>
+<p>Example response (200):</p>
 </blockquote>
-<pre><code class="language-json">{
-    "message": "The given data was invalid.",
-    "errors": {
-        "credentials": [
-            "The provided credentials are incorrect."
-        ]
-    }
+<pre><code class="language-json">
+{
+     'accessToken': [
+         'abilities': ['*'],
+         'name': 'Personal Access Token'
+     ],
+     'plainTextToken': '69|9r1lp8rbNmQ9d7FEHvIM9S34z6S5X0TSEuZgI9aw'
 }</code></pre>
 <div id="execution-results-POSTapi-auth-login" hidden>
     <blockquote>Received response<span id="execution-response-status-POSTapi-auth-login"></span>:</blockquote>
@@ -142,10 +142,13 @@ The value must be a valid email address.</p>
 <label data-endpoint="POSTapi-auth-login" hidden><input type="radio" name="remember_me" value="true" data-endpoint="POSTapi-auth-login" data-component="body" ><code>true</code></label>
 <label data-endpoint="POSTapi-auth-login" hidden><input type="radio" name="remember_me" value="false" data-endpoint="POSTapi-auth-login" data-component="body" ><code>false</code></label>
 <br>
-</p>
+Frontend setting to remember email.</p>
 
 </form>
-<h2>Handle the incoming request.</h2>
+<h2>Register</h2>
+<p>Before submitting a Register request, you may use the
+Email Availability and Username Availability endpoints
+to determine if they're already in use</p>
 <blockquote>
 <p>Example request:</p>
 </blockquote>
@@ -153,7 +156,7 @@ The value must be a valid email address.</p>
     "http://jotsauce.test/api/auth/register" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json" \
-    -d '{"username":"eos","email":"leuschke.eldon@example.net","password":"quam"}'
+    -d '{"username":"corporis","email":"djohnston@example.org","password":"voluptates"}'
 </code></pre>
 <pre><code class="language-javascript">const url = new URL(
     "http://jotsauce.test/api/auth/register"
@@ -165,9 +168,9 @@ let headers = {
 };
 
 let body = {
-    "username": "eos",
-    "email": "leuschke.eldon@example.net",
-    "password": "quam"
+    "username": "corporis",
+    "email": "djohnston@example.org",
+    "password": "voluptates"
 }
 
 fetch(url, {
@@ -182,7 +185,6 @@ fetch(url, {
     "message": "The given data was invalid.",
     "errors": {
         "password": [
-            "The password must be at least 8 characters.",
             "The password confirmation does not match."
         ]
     }
@@ -211,20 +213,20 @@ fetch(url, {
 <b><code>username</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
 <input type="text" name="username" data-endpoint="POSTapi-auth-register" data-component="body" required  hidden>
 <br>
-</p>
+A username that doesn't already exist.</p>
 <p>
 <b><code>email</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
 <input type="text" name="email" data-endpoint="POSTapi-auth-register" data-component="body" required  hidden>
 <br>
-The value must be a valid email address.</p>
+An email that doesn't already exist. The value must be a valid email address.</p>
 <p>
 <b><code>password</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
 <input type="text" name="password" data-endpoint="POSTapi-auth-register" data-component="body" required  hidden>
 <br>
-</p>
+Minimum of 8 characters.</p>
 
 </form>
-<h2>Handle the incoming request.</h2>
+<h2>Username Availability</h2>
 <blockquote>
 <p>Example request:</p>
 </blockquote>
@@ -232,7 +234,7 @@ The value must be a valid email address.</p>
     "http://jotsauce.test/api/auth/username-availability" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json" \
-    -d '{"username":"ut"}'
+    -d '{"username":"sint"}'
 </code></pre>
 <pre><code class="language-javascript">const url = new URL(
     "http://jotsauce.test/api/auth/username-availability"
@@ -244,7 +246,7 @@ let headers = {
 };
 
 let body = {
-    "username": "ut"
+    "username": "sint"
 }
 
 fetch(url, {
@@ -253,16 +255,9 @@ fetch(url, {
     body: JSON.stringify(body),
 }).then(response =&gt; response.json());</code></pre>
 <blockquote>
-<p>Example response (422):</p>
+<p>Example response (200):</p>
 </blockquote>
-<pre><code class="language-json">{
-    "message": "The given data was invalid.",
-    "errors": {
-        "username": [
-            "The username must be at least 3 characters."
-        ]
-    }
-}</code></pre>
+<pre><code class="language-json">true</code></pre>
 <div id="execution-results-POSTapi-auth-username-availability" hidden>
     <blockquote>Received response<span id="execution-response-status-POSTapi-auth-username-availability"></span>:</blockquote>
     <pre class="json"><code id="execution-response-content-POSTapi-auth-username-availability"></code></pre>
@@ -284,13 +279,13 @@ fetch(url, {
 </p>
 <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
 <p>
-<b><code>username</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
-<input type="text" name="username" data-endpoint="POSTapi-auth-username-availability" data-component="body"  hidden>
+<b><code>username</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+<input type="text" name="username" data-endpoint="POSTapi-auth-username-availability" data-component="body" required  hidden>
 <br>
-</p>
+A username that doesn't already exist.</p>
 
 </form>
-<h2>Handle the incoming request.</h2>
+<h2>Email Availability</h2>
 <blockquote>
 <p>Example request:</p>
 </blockquote>
@@ -298,7 +293,7 @@ fetch(url, {
     "http://jotsauce.test/api/auth/email-availability" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json" \
-    -d '{"email":"nsatterfield@example.net"}'
+    -d '{"email":"aditya.larkin@example.org"}'
 </code></pre>
 <pre><code class="language-javascript">const url = new URL(
     "http://jotsauce.test/api/auth/email-availability"
@@ -310,7 +305,7 @@ let headers = {
 };
 
 let body = {
-    "email": "nsatterfield@example.net"
+    "email": "aditya.larkin@example.org"
 }
 
 fetch(url, {
@@ -343,13 +338,13 @@ fetch(url, {
 </p>
 <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
 <p>
-<b><code>email</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
-<input type="text" name="email" data-endpoint="POSTapi-auth-email-availability" data-component="body"  hidden>
+<b><code>email</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+<input type="text" name="email" data-endpoint="POSTapi-auth-email-availability" data-component="body" required  hidden>
 <br>
-The value must be a valid email address.</p>
+An email that doesn't already exist. The value must be a valid email address.</p>
 
 </form>
-<h2>Handle the incoming request.</h2>
+<h2>Logout</h2>
 <blockquote>
 <p>Example request:</p>
 </blockquote>
@@ -397,329 +392,15 @@ fetch(url, {
 <small class="badge badge-green">GET</small>
  <b><code>api/auth/logout</code></b>
 </p>
-</form>
-<h2>Handle the incoming request.</h2>
-<blockquote>
-<p>Example request:</p>
-</blockquote>
-<pre><code class="language-bash">curl -X GET \
-    -G "http://jotsauce.test/api/user/current" \
-    -H "Content-Type: application/json" \
-    -H "Accept: application/json"</code></pre>
-<pre><code class="language-javascript">const url = new URL(
-    "http://jotsauce.test/api/user/current"
-);
-
-let headers = {
-    "Content-Type": "application/json",
-    "Accept": "application/json",
-};
-
-fetch(url, {
-    method: "GET",
-    headers,
-}).then(response =&gt; response.json());</code></pre>
-<blockquote>
-<p>Example response (403):</p>
-</blockquote>
-<pre><code class="language-json">{
-    "success": false,
-    "message": "Unauthenticated.",
-    "data": []
-}</code></pre>
-<div id="execution-results-GETapi-user-current" hidden>
-    <blockquote>Received response<span id="execution-response-status-GETapi-user-current"></span>:</blockquote>
-    <pre class="json"><code id="execution-response-content-GETapi-user-current"></code></pre>
-</div>
-<div id="execution-error-GETapi-user-current" hidden>
-    <blockquote>Request failed with error:</blockquote>
-    <pre><code id="execution-error-message-GETapi-user-current"></code></pre>
-</div>
-<form id="form-GETapi-user-current" data-method="GET" data-path="api/user/current" data-authed="0" data-hasfiles="0" data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('GETapi-user-current', this);">
-<h3>
-    Request&nbsp;&nbsp;&nbsp;
-        <button type="button" style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-tryout-GETapi-user-current" onclick="tryItOut('GETapi-user-current');">Try it out ⚡</button>
-    <button type="button" style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-canceltryout-GETapi-user-current" onclick="cancelTryOut('GETapi-user-current');" hidden>Cancel</button>&nbsp;&nbsp;
-    <button type="submit" style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-executetryout-GETapi-user-current" hidden>Send Request 💥</button>
-    </h3>
-<p>
-<small class="badge badge-green">GET</small>
- <b><code>api/user/current</code></b>
-</p>
-</form>
-<h2>Display a listing of the resource.</h2>
-<blockquote>
-<p>Example request:</p>
-</blockquote>
-<pre><code class="language-bash">curl -X GET \
-    -G "http://jotsauce.test/api/user" \
-    -H "Content-Type: application/json" \
-    -H "Accept: application/json"</code></pre>
-<pre><code class="language-javascript">const url = new URL(
-    "http://jotsauce.test/api/user"
-);
-
-let headers = {
-    "Content-Type": "application/json",
-    "Accept": "application/json",
-};
-
-fetch(url, {
-    method: "GET",
-    headers,
-}).then(response =&gt; response.json());</code></pre>
-<blockquote>
-<p>Example response (403):</p>
-</blockquote>
-<pre><code class="language-json">{
-    "success": false,
-    "message": "Unauthenticated.",
-    "data": []
-}</code></pre>
-<div id="execution-results-GETapi-user" hidden>
-    <blockquote>Received response<span id="execution-response-status-GETapi-user"></span>:</blockquote>
-    <pre class="json"><code id="execution-response-content-GETapi-user"></code></pre>
-</div>
-<div id="execution-error-GETapi-user" hidden>
-    <blockquote>Request failed with error:</blockquote>
-    <pre><code id="execution-error-message-GETapi-user"></code></pre>
-</div>
-<form id="form-GETapi-user" data-method="GET" data-path="api/user" data-authed="0" data-hasfiles="0" data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('GETapi-user', this);">
-<h3>
-    Request&nbsp;&nbsp;&nbsp;
-        <button type="button" style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-tryout-GETapi-user" onclick="tryItOut('GETapi-user');">Try it out ⚡</button>
-    <button type="button" style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-canceltryout-GETapi-user" onclick="cancelTryOut('GETapi-user');" hidden>Cancel</button>&nbsp;&nbsp;
-    <button type="submit" style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-executetryout-GETapi-user" hidden>Send Request 💥</button>
-    </h3>
-<p>
-<small class="badge badge-green">GET</small>
- <b><code>api/user</code></b>
-</p>
-</form>
-<h2>Store a newly created resource in storage.</h2>
-<blockquote>
-<p>Example request:</p>
-</blockquote>
-<pre><code class="language-bash">curl -X POST \
-    "http://jotsauce.test/api/user" \
-    -H "Content-Type: application/json" \
-    -H "Accept: application/json"</code></pre>
-<pre><code class="language-javascript">const url = new URL(
-    "http://jotsauce.test/api/user"
-);
-
-let headers = {
-    "Content-Type": "application/json",
-    "Accept": "application/json",
-};
-
-fetch(url, {
-    method: "POST",
-    headers,
-}).then(response =&gt; response.json());</code></pre>
-<blockquote>
-<p>Example response (403):</p>
-</blockquote>
-<pre><code class="language-json">{
-    "success": false,
-    "message": "Unauthenticated.",
-    "data": []
-}</code></pre>
-<div id="execution-results-POSTapi-user" hidden>
-    <blockquote>Received response<span id="execution-response-status-POSTapi-user"></span>:</blockquote>
-    <pre class="json"><code id="execution-response-content-POSTapi-user"></code></pre>
-</div>
-<div id="execution-error-POSTapi-user" hidden>
-    <blockquote>Request failed with error:</blockquote>
-    <pre><code id="execution-error-message-POSTapi-user"></code></pre>
-</div>
-<form id="form-POSTapi-user" data-method="POST" data-path="api/user" data-authed="0" data-hasfiles="0" data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('POSTapi-user', this);">
-<h3>
-    Request&nbsp;&nbsp;&nbsp;
-        <button type="button" style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-tryout-POSTapi-user" onclick="tryItOut('POSTapi-user');">Try it out ⚡</button>
-    <button type="button" style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-canceltryout-POSTapi-user" onclick="cancelTryOut('POSTapi-user');" hidden>Cancel</button>&nbsp;&nbsp;
-    <button type="submit" style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-executetryout-POSTapi-user" hidden>Send Request 💥</button>
-    </h3>
-<p>
-<small class="badge badge-black">POST</small>
- <b><code>api/user</code></b>
-</p>
-</form>
-<h2>Display the specified resource.</h2>
-<blockquote>
-<p>Example request:</p>
-</blockquote>
-<pre><code class="language-bash">curl -X GET \
-    -G "http://jotsauce.test/api/user/sit" \
-    -H "Content-Type: application/json" \
-    -H "Accept: application/json"</code></pre>
-<pre><code class="language-javascript">const url = new URL(
-    "http://jotsauce.test/api/user/sit"
-);
-
-let headers = {
-    "Content-Type": "application/json",
-    "Accept": "application/json",
-};
-
-fetch(url, {
-    method: "GET",
-    headers,
-}).then(response =&gt; response.json());</code></pre>
-<blockquote>
-<p>Example response (403):</p>
-</blockquote>
-<pre><code class="language-json">{
-    "success": false,
-    "message": "Unauthenticated.",
-    "data": []
-}</code></pre>
-<div id="execution-results-GETapi-user--user-" hidden>
-    <blockquote>Received response<span id="execution-response-status-GETapi-user--user-"></span>:</blockquote>
-    <pre class="json"><code id="execution-response-content-GETapi-user--user-"></code></pre>
-</div>
-<div id="execution-error-GETapi-user--user-" hidden>
-    <blockquote>Request failed with error:</blockquote>
-    <pre><code id="execution-error-message-GETapi-user--user-"></code></pre>
-</div>
-<form id="form-GETapi-user--user-" data-method="GET" data-path="api/user/{user}" data-authed="0" data-hasfiles="0" data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('GETapi-user--user-', this);">
-<h3>
-    Request&nbsp;&nbsp;&nbsp;
-        <button type="button" style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-tryout-GETapi-user--user-" onclick="tryItOut('GETapi-user--user-');">Try it out ⚡</button>
-    <button type="button" style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-canceltryout-GETapi-user--user-" onclick="cancelTryOut('GETapi-user--user-');" hidden>Cancel</button>&nbsp;&nbsp;
-    <button type="submit" style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-executetryout-GETapi-user--user-" hidden>Send Request 💥</button>
-    </h3>
-<p>
-<small class="badge badge-green">GET</small>
- <b><code>api/user/{user}</code></b>
-</p>
-<h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
-<p>
-<b><code>user</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
-<input type="text" name="user" data-endpoint="GETapi-user--user-" data-component="url" required  hidden>
-<br>
-</p>
-</form>
-<h2>Update the specified resource in storage.</h2>
-<blockquote>
-<p>Example request:</p>
-</blockquote>
-<pre><code class="language-bash">curl -X PUT \
-    "http://jotsauce.test/api/user/dolor" \
-    -H "Content-Type: application/json" \
-    -H "Accept: application/json"</code></pre>
-<pre><code class="language-javascript">const url = new URL(
-    "http://jotsauce.test/api/user/dolor"
-);
-
-let headers = {
-    "Content-Type": "application/json",
-    "Accept": "application/json",
-};
-
-fetch(url, {
-    method: "PUT",
-    headers,
-}).then(response =&gt; response.json());</code></pre>
-<blockquote>
-<p>Example response (403):</p>
-</blockquote>
-<pre><code class="language-json">{
-    "success": false,
-    "message": "Unauthenticated.",
-    "data": []
-}</code></pre>
-<div id="execution-results-PUTapi-user--user-" hidden>
-    <blockquote>Received response<span id="execution-response-status-PUTapi-user--user-"></span>:</blockquote>
-    <pre class="json"><code id="execution-response-content-PUTapi-user--user-"></code></pre>
-</div>
-<div id="execution-error-PUTapi-user--user-" hidden>
-    <blockquote>Request failed with error:</blockquote>
-    <pre><code id="execution-error-message-PUTapi-user--user-"></code></pre>
-</div>
-<form id="form-PUTapi-user--user-" data-method="PUT" data-path="api/user/{user}" data-authed="0" data-hasfiles="0" data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('PUTapi-user--user-', this);">
-<h3>
-    Request&nbsp;&nbsp;&nbsp;
-        <button type="button" style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-tryout-PUTapi-user--user-" onclick="tryItOut('PUTapi-user--user-');">Try it out ⚡</button>
-    <button type="button" style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-canceltryout-PUTapi-user--user-" onclick="cancelTryOut('PUTapi-user--user-');" hidden>Cancel</button>&nbsp;&nbsp;
-    <button type="submit" style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-executetryout-PUTapi-user--user-" hidden>Send Request 💥</button>
-    </h3>
-<p>
-<small class="badge badge-darkblue">PUT</small>
- <b><code>api/user/{user}</code></b>
-</p>
-<p>
-<small class="badge badge-purple">PATCH</small>
- <b><code>api/user/{user}</code></b>
-</p>
-<h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
-<p>
-<b><code>user</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
-<input type="text" name="user" data-endpoint="PUTapi-user--user-" data-component="url" required  hidden>
-<br>
-</p>
-</form>
-<h2>Remove the specified resource from storage.</h2>
-<blockquote>
-<p>Example request:</p>
-</blockquote>
-<pre><code class="language-bash">curl -X DELETE \
-    "http://jotsauce.test/api/user/et" \
-    -H "Content-Type: application/json" \
-    -H "Accept: application/json"</code></pre>
-<pre><code class="language-javascript">const url = new URL(
-    "http://jotsauce.test/api/user/et"
-);
-
-let headers = {
-    "Content-Type": "application/json",
-    "Accept": "application/json",
-};
-
-fetch(url, {
-    method: "DELETE",
-    headers,
-}).then(response =&gt; response.json());</code></pre>
-<blockquote>
-<p>Example response (403):</p>
-</blockquote>
-<pre><code class="language-json">{
-    "success": false,
-    "message": "Unauthenticated.",
-    "data": []
-}</code></pre>
-<div id="execution-results-DELETEapi-user--user-" hidden>
-    <blockquote>Received response<span id="execution-response-status-DELETEapi-user--user-"></span>:</blockquote>
-    <pre class="json"><code id="execution-response-content-DELETEapi-user--user-"></code></pre>
-</div>
-<div id="execution-error-DELETEapi-user--user-" hidden>
-    <blockquote>Request failed with error:</blockquote>
-    <pre><code id="execution-error-message-DELETEapi-user--user-"></code></pre>
-</div>
-<form id="form-DELETEapi-user--user-" data-method="DELETE" data-path="api/user/{user}" data-authed="0" data-hasfiles="0" data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('DELETEapi-user--user-', this);">
-<h3>
-    Request&nbsp;&nbsp;&nbsp;
-        <button type="button" style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-tryout-DELETEapi-user--user-" onclick="tryItOut('DELETEapi-user--user-');">Try it out ⚡</button>
-    <button type="button" style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-canceltryout-DELETEapi-user--user-" onclick="cancelTryOut('DELETEapi-user--user-');" hidden>Cancel</button>&nbsp;&nbsp;
-    <button type="submit" style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-executetryout-DELETEapi-user--user-" hidden>Send Request 💥</button>
-    </h3>
-<p>
-<small class="badge badge-red">DELETE</small>
- <b><code>api/user/{user}</code></b>
-</p>
-<h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
-<p>
-<b><code>user</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
-<input type="text" name="user" data-endpoint="DELETEapi-user--user-" data-component="url" required  hidden>
-<br>
-</p>
-</form>
-<h2>Display a listing of the resource.</h2>
+</form><h1>Jot Manager</h1>
+<h2>Jots list</h2>
+<p><small class="badge badge-darkred">requires authentication</small></p>
 <blockquote>
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-bash">curl -X GET \
     -G "http://jotsauce.test/api/jot" \
+    -H "Authorization: Bearer {YOUR_AUTH_KEY}" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"</code></pre>
 <pre><code class="language-javascript">const url = new URL(
@@ -727,6 +408,7 @@ fetch(url, {
 );
 
 let headers = {
+    "Authorization": "Bearer {YOUR_AUTH_KEY}",
     "Content-Type": "application/json",
     "Accept": "application/json",
 };
@@ -751,7 +433,7 @@ fetch(url, {
     <blockquote>Request failed with error:</blockquote>
     <pre><code id="execution-error-message-GETapi-jot"></code></pre>
 </div>
-<form id="form-GETapi-jot" data-method="GET" data-path="api/jot" data-authed="0" data-hasfiles="0" data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('GETapi-jot', this);">
+<form id="form-GETapi-jot" data-method="GET" data-path="api/jot" data-authed="1" data-hasfiles="0" data-headers='{"Authorization":"Bearer {YOUR_AUTH_KEY}","Content-Type":"application\/json","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('GETapi-jot', this);">
 <h3>
     Request&nbsp;&nbsp;&nbsp;
         <button type="button" style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-tryout-GETapi-jot" onclick="tryItOut('GETapi-jot');">Try it out ⚡</button>
@@ -762,13 +444,18 @@ fetch(url, {
 <small class="badge badge-green">GET</small>
  <b><code>api/jot</code></b>
 </p>
+<p>
+<label id="auth-GETapi-jot" hidden>Authorization header: <b><code>Bearer </code></b><input type="text" name="Authorization" data-prefix="Bearer " data-endpoint="GETapi-jot" data-component="header"></label>
+</p>
 </form>
-<h2>Store a newly created resource in storage.</h2>
+<h2>Create a new Jot</h2>
+<p><small class="badge badge-darkred">requires authentication</small></p>
 <blockquote>
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-bash">curl -X POST \
     "http://jotsauce.test/api/jot" \
+    -H "Authorization: Bearer {YOUR_AUTH_KEY}" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"</code></pre>
 <pre><code class="language-javascript">const url = new URL(
@@ -776,6 +463,7 @@ fetch(url, {
 );
 
 let headers = {
+    "Authorization": "Bearer {YOUR_AUTH_KEY}",
     "Content-Type": "application/json",
     "Accept": "application/json",
 };
@@ -800,7 +488,7 @@ fetch(url, {
     <blockquote>Request failed with error:</blockquote>
     <pre><code id="execution-error-message-POSTapi-jot"></code></pre>
 </div>
-<form id="form-POSTapi-jot" data-method="POST" data-path="api/jot" data-authed="0" data-hasfiles="0" data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('POSTapi-jot', this);">
+<form id="form-POSTapi-jot" data-method="POST" data-path="api/jot" data-authed="1" data-hasfiles="0" data-headers='{"Authorization":"Bearer {YOUR_AUTH_KEY}","Content-Type":"application\/json","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('POSTapi-jot', this);">
 <h3>
     Request&nbsp;&nbsp;&nbsp;
         <button type="button" style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-tryout-POSTapi-jot" onclick="tryItOut('POSTapi-jot');">Try it out ⚡</button>
@@ -811,20 +499,26 @@ fetch(url, {
 <small class="badge badge-black">POST</small>
  <b><code>api/jot</code></b>
 </p>
+<p>
+<label id="auth-POSTapi-jot" hidden>Authorization header: <b><code>Bearer </code></b><input type="text" name="Authorization" data-prefix="Bearer " data-endpoint="POSTapi-jot" data-component="header"></label>
+</p>
 </form>
-<h2>Display the specified resource.</h2>
+<h2>Return specified Jot</h2>
+<p><small class="badge badge-darkred">requires authentication</small></p>
 <blockquote>
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-bash">curl -X GET \
-    -G "http://jotsauce.test/api/jot/optio" \
+    -G "http://jotsauce.test/api/jot/sunt" \
+    -H "Authorization: Bearer {YOUR_AUTH_KEY}" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"</code></pre>
 <pre><code class="language-javascript">const url = new URL(
-    "http://jotsauce.test/api/jot/optio"
+    "http://jotsauce.test/api/jot/sunt"
 );
 
 let headers = {
+    "Authorization": "Bearer {YOUR_AUTH_KEY}",
     "Content-Type": "application/json",
     "Accept": "application/json",
 };
@@ -849,7 +543,7 @@ fetch(url, {
     <blockquote>Request failed with error:</blockquote>
     <pre><code id="execution-error-message-GETapi-jot--jot-"></code></pre>
 </div>
-<form id="form-GETapi-jot--jot-" data-method="GET" data-path="api/jot/{jot}" data-authed="0" data-hasfiles="0" data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('GETapi-jot--jot-', this);">
+<form id="form-GETapi-jot--jot-" data-method="GET" data-path="api/jot/{jot}" data-authed="1" data-hasfiles="0" data-headers='{"Authorization":"Bearer {YOUR_AUTH_KEY}","Content-Type":"application\/json","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('GETapi-jot--jot-', this);">
 <h3>
     Request&nbsp;&nbsp;&nbsp;
         <button type="button" style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-tryout-GETapi-jot--jot-" onclick="tryItOut('GETapi-jot--jot-');">Try it out ⚡</button>
@@ -860,6 +554,9 @@ fetch(url, {
 <small class="badge badge-green">GET</small>
  <b><code>api/jot/{jot}</code></b>
 </p>
+<p>
+<label id="auth-GETapi-jot--jot-" hidden>Authorization header: <b><code>Bearer </code></b><input type="text" name="Authorization" data-prefix="Bearer " data-endpoint="GETapi-jot--jot-" data-component="header"></label>
+</p>
 <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
 <p>
 <b><code>jot</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
@@ -867,19 +564,22 @@ fetch(url, {
 <br>
 </p>
 </form>
-<h2>Update the specified resource in storage.</h2>
+<h2>Update the specified Jot</h2>
+<p><small class="badge badge-darkred">requires authentication</small></p>
 <blockquote>
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-bash">curl -X PUT \
-    "http://jotsauce.test/api/jot/sed" \
+    "http://jotsauce.test/api/jot/earum" \
+    -H "Authorization: Bearer {YOUR_AUTH_KEY}" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"</code></pre>
 <pre><code class="language-javascript">const url = new URL(
-    "http://jotsauce.test/api/jot/sed"
+    "http://jotsauce.test/api/jot/earum"
 );
 
 let headers = {
+    "Authorization": "Bearer {YOUR_AUTH_KEY}",
     "Content-Type": "application/json",
     "Accept": "application/json",
 };
@@ -904,7 +604,7 @@ fetch(url, {
     <blockquote>Request failed with error:</blockquote>
     <pre><code id="execution-error-message-PUTapi-jot--jot-"></code></pre>
 </div>
-<form id="form-PUTapi-jot--jot-" data-method="PUT" data-path="api/jot/{jot}" data-authed="0" data-hasfiles="0" data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('PUTapi-jot--jot-', this);">
+<form id="form-PUTapi-jot--jot-" data-method="PUT" data-path="api/jot/{jot}" data-authed="1" data-hasfiles="0" data-headers='{"Authorization":"Bearer {YOUR_AUTH_KEY}","Content-Type":"application\/json","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('PUTapi-jot--jot-', this);">
 <h3>
     Request&nbsp;&nbsp;&nbsp;
         <button type="button" style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-tryout-PUTapi-jot--jot-" onclick="tryItOut('PUTapi-jot--jot-');">Try it out ⚡</button>
@@ -919,6 +619,9 @@ fetch(url, {
 <small class="badge badge-purple">PATCH</small>
  <b><code>api/jot/{jot}</code></b>
 </p>
+<p>
+<label id="auth-PUTapi-jot--jot-" hidden>Authorization header: <b><code>Bearer </code></b><input type="text" name="Authorization" data-prefix="Bearer " data-endpoint="PUTapi-jot--jot-" data-component="header"></label>
+</p>
 <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
 <p>
 <b><code>jot</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
@@ -926,19 +629,22 @@ fetch(url, {
 <br>
 </p>
 </form>
-<h2>Remove the specified resource from storage.</h2>
+<h2>Remove the specified Jot</h2>
+<p><small class="badge badge-darkred">requires authentication</small></p>
 <blockquote>
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-bash">curl -X DELETE \
-    "http://jotsauce.test/api/jot/maiores" \
+    "http://jotsauce.test/api/jot/fugiat" \
+    -H "Authorization: Bearer {YOUR_AUTH_KEY}" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"</code></pre>
 <pre><code class="language-javascript">const url = new URL(
-    "http://jotsauce.test/api/jot/maiores"
+    "http://jotsauce.test/api/jot/fugiat"
 );
 
 let headers = {
+    "Authorization": "Bearer {YOUR_AUTH_KEY}",
     "Content-Type": "application/json",
     "Accept": "application/json",
 };
@@ -963,7 +669,7 @@ fetch(url, {
     <blockquote>Request failed with error:</blockquote>
     <pre><code id="execution-error-message-DELETEapi-jot--jot-"></code></pre>
 </div>
-<form id="form-DELETEapi-jot--jot-" data-method="DELETE" data-path="api/jot/{jot}" data-authed="0" data-hasfiles="0" data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('DELETEapi-jot--jot-', this);">
+<form id="form-DELETEapi-jot--jot-" data-method="DELETE" data-path="api/jot/{jot}" data-authed="1" data-hasfiles="0" data-headers='{"Authorization":"Bearer {YOUR_AUTH_KEY}","Content-Type":"application\/json","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('DELETEapi-jot--jot-', this);">
 <h3>
     Request&nbsp;&nbsp;&nbsp;
         <button type="button" style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-tryout-DELETEapi-jot--jot-" onclick="tryItOut('DELETEapi-jot--jot-');">Try it out ⚡</button>
@@ -974,10 +680,365 @@ fetch(url, {
 <small class="badge badge-red">DELETE</small>
  <b><code>api/jot/{jot}</code></b>
 </p>
+<p>
+<label id="auth-DELETEapi-jot--jot-" hidden>Authorization header: <b><code>Bearer </code></b><input type="text" name="Authorization" data-prefix="Bearer " data-endpoint="DELETEapi-jot--jot-" data-component="header"></label>
+</p>
 <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
 <p>
 <b><code>jot</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
 <input type="text" name="jot" data-endpoint="DELETEapi-jot--jot-" data-component="url" required  hidden>
+<br>
+</p>
+</form><h1>User Manager</h1>
+<h2>Current User</h2>
+<p><small class="badge badge-darkred">requires authentication</small></p>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X GET \
+    -G "http://jotsauce.test/api/user/current" \
+    -H "Authorization: Bearer {YOUR_AUTH_KEY}" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json"</code></pre>
+<pre><code class="language-javascript">const url = new URL(
+    "http://jotsauce.test/api/user/current"
+);
+
+let headers = {
+    "Authorization": "Bearer {YOUR_AUTH_KEY}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre>
+<blockquote>
+<p>Example response (403):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "success": false,
+    "message": "Unauthenticated.",
+    "data": []
+}</code></pre>
+<div id="execution-results-GETapi-user-current" hidden>
+    <blockquote>Received response<span id="execution-response-status-GETapi-user-current"></span>:</blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-user-current"></code></pre>
+</div>
+<div id="execution-error-GETapi-user-current" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-user-current"></code></pre>
+</div>
+<form id="form-GETapi-user-current" data-method="GET" data-path="api/user/current" data-authed="1" data-hasfiles="0" data-headers='{"Authorization":"Bearer {YOUR_AUTH_KEY}","Content-Type":"application\/json","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('GETapi-user-current', this);">
+<h3>
+    Request&nbsp;&nbsp;&nbsp;
+        <button type="button" style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-tryout-GETapi-user-current" onclick="tryItOut('GETapi-user-current');">Try it out ⚡</button>
+    <button type="button" style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-canceltryout-GETapi-user-current" onclick="cancelTryOut('GETapi-user-current');" hidden>Cancel</button>&nbsp;&nbsp;
+    <button type="submit" style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-executetryout-GETapi-user-current" hidden>Send Request 💥</button>
+    </h3>
+<p>
+<small class="badge badge-green">GET</small>
+ <b><code>api/user/current</code></b>
+</p>
+<p>
+<label id="auth-GETapi-user-current" hidden>Authorization header: <b><code>Bearer </code></b><input type="text" name="Authorization" data-prefix="Bearer " data-endpoint="GETapi-user-current" data-component="header"></label>
+</p>
+</form>
+<h2>Users list</h2>
+<p><small class="badge badge-darkred">requires authentication</small></p>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X GET \
+    -G "http://jotsauce.test/api/user" \
+    -H "Authorization: Bearer {YOUR_AUTH_KEY}" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json"</code></pre>
+<pre><code class="language-javascript">const url = new URL(
+    "http://jotsauce.test/api/user"
+);
+
+let headers = {
+    "Authorization": "Bearer {YOUR_AUTH_KEY}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre>
+<blockquote>
+<p>Example response (403):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "success": false,
+    "message": "Unauthenticated.",
+    "data": []
+}</code></pre>
+<div id="execution-results-GETapi-user" hidden>
+    <blockquote>Received response<span id="execution-response-status-GETapi-user"></span>:</blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-user"></code></pre>
+</div>
+<div id="execution-error-GETapi-user" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-user"></code></pre>
+</div>
+<form id="form-GETapi-user" data-method="GET" data-path="api/user" data-authed="1" data-hasfiles="0" data-headers='{"Authorization":"Bearer {YOUR_AUTH_KEY}","Content-Type":"application\/json","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('GETapi-user', this);">
+<h3>
+    Request&nbsp;&nbsp;&nbsp;
+        <button type="button" style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-tryout-GETapi-user" onclick="tryItOut('GETapi-user');">Try it out ⚡</button>
+    <button type="button" style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-canceltryout-GETapi-user" onclick="cancelTryOut('GETapi-user');" hidden>Cancel</button>&nbsp;&nbsp;
+    <button type="submit" style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-executetryout-GETapi-user" hidden>Send Request 💥</button>
+    </h3>
+<p>
+<small class="badge badge-green">GET</small>
+ <b><code>api/user</code></b>
+</p>
+<p>
+<label id="auth-GETapi-user" hidden>Authorization header: <b><code>Bearer </code></b><input type="text" name="Authorization" data-prefix="Bearer " data-endpoint="GETapi-user" data-component="header"></label>
+</p>
+</form>
+<h2>Create a new User</h2>
+<p><small class="badge badge-darkred">requires authentication</small></p>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X POST \
+    "http://jotsauce.test/api/user" \
+    -H "Authorization: Bearer {YOUR_AUTH_KEY}" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json"</code></pre>
+<pre><code class="language-javascript">const url = new URL(
+    "http://jotsauce.test/api/user"
+);
+
+let headers = {
+    "Authorization": "Bearer {YOUR_AUTH_KEY}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "POST",
+    headers,
+}).then(response =&gt; response.json());</code></pre>
+<blockquote>
+<p>Example response (403):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "success": false,
+    "message": "Unauthenticated.",
+    "data": []
+}</code></pre>
+<div id="execution-results-POSTapi-user" hidden>
+    <blockquote>Received response<span id="execution-response-status-POSTapi-user"></span>:</blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-user"></code></pre>
+</div>
+<div id="execution-error-POSTapi-user" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-user"></code></pre>
+</div>
+<form id="form-POSTapi-user" data-method="POST" data-path="api/user" data-authed="1" data-hasfiles="0" data-headers='{"Authorization":"Bearer {YOUR_AUTH_KEY}","Content-Type":"application\/json","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('POSTapi-user', this);">
+<h3>
+    Request&nbsp;&nbsp;&nbsp;
+        <button type="button" style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-tryout-POSTapi-user" onclick="tryItOut('POSTapi-user');">Try it out ⚡</button>
+    <button type="button" style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-canceltryout-POSTapi-user" onclick="cancelTryOut('POSTapi-user');" hidden>Cancel</button>&nbsp;&nbsp;
+    <button type="submit" style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-executetryout-POSTapi-user" hidden>Send Request 💥</button>
+    </h3>
+<p>
+<small class="badge badge-black">POST</small>
+ <b><code>api/user</code></b>
+</p>
+<p>
+<label id="auth-POSTapi-user" hidden>Authorization header: <b><code>Bearer </code></b><input type="text" name="Authorization" data-prefix="Bearer " data-endpoint="POSTapi-user" data-component="header"></label>
+</p>
+</form>
+<h2>Return specified User</h2>
+<p><small class="badge badge-darkred">requires authentication</small></p>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X GET \
+    -G "http://jotsauce.test/api/user/et" \
+    -H "Authorization: Bearer {YOUR_AUTH_KEY}" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json"</code></pre>
+<pre><code class="language-javascript">const url = new URL(
+    "http://jotsauce.test/api/user/et"
+);
+
+let headers = {
+    "Authorization": "Bearer {YOUR_AUTH_KEY}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre>
+<blockquote>
+<p>Example response (403):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "success": false,
+    "message": "Unauthenticated.",
+    "data": []
+}</code></pre>
+<div id="execution-results-GETapi-user--user-" hidden>
+    <blockquote>Received response<span id="execution-response-status-GETapi-user--user-"></span>:</blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-user--user-"></code></pre>
+</div>
+<div id="execution-error-GETapi-user--user-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-user--user-"></code></pre>
+</div>
+<form id="form-GETapi-user--user-" data-method="GET" data-path="api/user/{user}" data-authed="1" data-hasfiles="0" data-headers='{"Authorization":"Bearer {YOUR_AUTH_KEY}","Content-Type":"application\/json","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('GETapi-user--user-', this);">
+<h3>
+    Request&nbsp;&nbsp;&nbsp;
+        <button type="button" style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-tryout-GETapi-user--user-" onclick="tryItOut('GETapi-user--user-');">Try it out ⚡</button>
+    <button type="button" style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-canceltryout-GETapi-user--user-" onclick="cancelTryOut('GETapi-user--user-');" hidden>Cancel</button>&nbsp;&nbsp;
+    <button type="submit" style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-executetryout-GETapi-user--user-" hidden>Send Request 💥</button>
+    </h3>
+<p>
+<small class="badge badge-green">GET</small>
+ <b><code>api/user/{user}</code></b>
+</p>
+<p>
+<label id="auth-GETapi-user--user-" hidden>Authorization header: <b><code>Bearer </code></b><input type="text" name="Authorization" data-prefix="Bearer " data-endpoint="GETapi-user--user-" data-component="header"></label>
+</p>
+<h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+<p>
+<b><code>user</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+<input type="text" name="user" data-endpoint="GETapi-user--user-" data-component="url" required  hidden>
+<br>
+</p>
+</form>
+<h2>Update the specified User</h2>
+<p><small class="badge badge-darkred">requires authentication</small></p>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X PUT \
+    "http://jotsauce.test/api/user/amet" \
+    -H "Authorization: Bearer {YOUR_AUTH_KEY}" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json"</code></pre>
+<pre><code class="language-javascript">const url = new URL(
+    "http://jotsauce.test/api/user/amet"
+);
+
+let headers = {
+    "Authorization": "Bearer {YOUR_AUTH_KEY}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "PUT",
+    headers,
+}).then(response =&gt; response.json());</code></pre>
+<blockquote>
+<p>Example response (403):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "success": false,
+    "message": "Unauthenticated.",
+    "data": []
+}</code></pre>
+<div id="execution-results-PUTapi-user--user-" hidden>
+    <blockquote>Received response<span id="execution-response-status-PUTapi-user--user-"></span>:</blockquote>
+    <pre class="json"><code id="execution-response-content-PUTapi-user--user-"></code></pre>
+</div>
+<div id="execution-error-PUTapi-user--user-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-PUTapi-user--user-"></code></pre>
+</div>
+<form id="form-PUTapi-user--user-" data-method="PUT" data-path="api/user/{user}" data-authed="1" data-hasfiles="0" data-headers='{"Authorization":"Bearer {YOUR_AUTH_KEY}","Content-Type":"application\/json","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('PUTapi-user--user-', this);">
+<h3>
+    Request&nbsp;&nbsp;&nbsp;
+        <button type="button" style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-tryout-PUTapi-user--user-" onclick="tryItOut('PUTapi-user--user-');">Try it out ⚡</button>
+    <button type="button" style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-canceltryout-PUTapi-user--user-" onclick="cancelTryOut('PUTapi-user--user-');" hidden>Cancel</button>&nbsp;&nbsp;
+    <button type="submit" style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-executetryout-PUTapi-user--user-" hidden>Send Request 💥</button>
+    </h3>
+<p>
+<small class="badge badge-darkblue">PUT</small>
+ <b><code>api/user/{user}</code></b>
+</p>
+<p>
+<small class="badge badge-purple">PATCH</small>
+ <b><code>api/user/{user}</code></b>
+</p>
+<p>
+<label id="auth-PUTapi-user--user-" hidden>Authorization header: <b><code>Bearer </code></b><input type="text" name="Authorization" data-prefix="Bearer " data-endpoint="PUTapi-user--user-" data-component="header"></label>
+</p>
+<h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+<p>
+<b><code>user</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+<input type="text" name="user" data-endpoint="PUTapi-user--user-" data-component="url" required  hidden>
+<br>
+</p>
+</form>
+<h2>Remove the specified User</h2>
+<p><small class="badge badge-darkred">requires authentication</small></p>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X DELETE \
+    "http://jotsauce.test/api/user/alias" \
+    -H "Authorization: Bearer {YOUR_AUTH_KEY}" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json"</code></pre>
+<pre><code class="language-javascript">const url = new URL(
+    "http://jotsauce.test/api/user/alias"
+);
+
+let headers = {
+    "Authorization": "Bearer {YOUR_AUTH_KEY}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "DELETE",
+    headers,
+}).then(response =&gt; response.json());</code></pre>
+<blockquote>
+<p>Example response (403):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "success": false,
+    "message": "Unauthenticated.",
+    "data": []
+}</code></pre>
+<div id="execution-results-DELETEapi-user--user-" hidden>
+    <blockquote>Received response<span id="execution-response-status-DELETEapi-user--user-"></span>:</blockquote>
+    <pre class="json"><code id="execution-response-content-DELETEapi-user--user-"></code></pre>
+</div>
+<div id="execution-error-DELETEapi-user--user-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-DELETEapi-user--user-"></code></pre>
+</div>
+<form id="form-DELETEapi-user--user-" data-method="DELETE" data-path="api/user/{user}" data-authed="1" data-hasfiles="0" data-headers='{"Authorization":"Bearer {YOUR_AUTH_KEY}","Content-Type":"application\/json","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('DELETEapi-user--user-', this);">
+<h3>
+    Request&nbsp;&nbsp;&nbsp;
+        <button type="button" style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-tryout-DELETEapi-user--user-" onclick="tryItOut('DELETEapi-user--user-');">Try it out ⚡</button>
+    <button type="button" style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-canceltryout-DELETEapi-user--user-" onclick="cancelTryOut('DELETEapi-user--user-');" hidden>Cancel</button>&nbsp;&nbsp;
+    <button type="submit" style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-executetryout-DELETEapi-user--user-" hidden>Send Request 💥</button>
+    </h3>
+<p>
+<small class="badge badge-red">DELETE</small>
+ <b><code>api/user/{user}</code></b>
+</p>
+<p>
+<label id="auth-DELETEapi-user--user-" hidden>Authorization header: <b><code>Bearer </code></b><input type="text" name="Authorization" data-prefix="Bearer " data-endpoint="DELETEapi-user--user-" data-component="header"></label>
+</p>
+<h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+<p>
+<b><code>user</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+<input type="text" name="user" data-endpoint="DELETEapi-user--user-" data-component="url" required  hidden>
 <br>
 </p>
 </form>

@@ -8,8 +8,9 @@ use App\Http\Requests\Auth\UsernameAvailabilityRequest;
 class UsernameAvailabilityController extends Controller
 {
     /**
-     * Handle the incoming request.
+     * Username Availability
      *
+     * @group Authentication
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
