@@ -39,6 +39,12 @@ Route::name('api.')->namespace('Api')->group(function () {
             Route::apiResource('jot', 'JotController')->scoped([
                 'jot' => 'slug',
             ]);
+            Route::apiResource('jot.entries', JotEntryController::class)->scoped([
+                'jot' => 'slug',
+            ]);
+            Route::apiResource('jot.jottings', JottingController::class)->scoped([
+                'jot' => 'slug',
+            ]);
         });
     });
 });

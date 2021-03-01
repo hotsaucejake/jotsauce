@@ -218,7 +218,7 @@ fetch(url, {
 
 ```bash
 curl -X GET \
-    -G "http://jotsauce.test/api/user/et" \
+    -G "http://jotsauce.test/api/user/velit" \
     -H "Authorization: Bearer {YOUR_AUTH_KEY}" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"
@@ -226,7 +226,7 @@ curl -X GET \
 
 ```javascript
 const url = new URL(
-    "http://jotsauce.test/api/user/et"
+    "http://jotsauce.test/api/user/velit"
 );
 
 let headers = {
@@ -293,7 +293,7 @@ fetch(url, {
 
 ```bash
 curl -X PUT \
-    "http://jotsauce.test/api/user/amet" \
+    "http://jotsauce.test/api/user/nobis" \
     -H "Authorization: Bearer {YOUR_AUTH_KEY}" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"
@@ -301,7 +301,7 @@ curl -X PUT \
 
 ```javascript
 const url = new URL(
-    "http://jotsauce.test/api/user/amet"
+    "http://jotsauce.test/api/user/nobis"
 );
 
 let headers = {
@@ -372,7 +372,7 @@ fetch(url, {
 
 ```bash
 curl -X DELETE \
-    "http://jotsauce.test/api/user/alias" \
+    "http://jotsauce.test/api/user/ullam" \
     -H "Authorization: Bearer {YOUR_AUTH_KEY}" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"
@@ -380,7 +380,7 @@ curl -X DELETE \
 
 ```javascript
 const url = new URL(
-    "http://jotsauce.test/api/user/alias"
+    "http://jotsauce.test/api/user/ullam"
 );
 
 let headers = {

@@ -29,10 +29,22 @@ class Jotting extends Model
      * ************************************
      * ************************************
      */
-    public function jot()
+
+    public function jotEntry()
     {
-        $this->belongsTo(\App\Models\Jot::class);
+        return $this->belongsTo(\App\Models\JotEntry::class);
     }
 
-    // user hasonethrough
+    public function formElementType()
+    {
+        return $this->belongsTo(\App\Models\FormElementType::class);
+    }
+
+    /**
+     * Get the parent jottingable model
+     */
+    public function jottingable()
+    {
+        return $this->morphTo();
+    }
 }

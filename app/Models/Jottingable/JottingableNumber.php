@@ -41,6 +41,6 @@ class JottingableNumber extends Model
      */
     public function jottings()
     {
-        return $this->morphMany(\App\Models\Jotting::class, 'jottingables');
+        return $this->morphMany(\App\Models\Jotting::class, 'jottingable');
     }
 }

@@ -13,7 +13,7 @@ curl -X POST \
     "http://jotsauce.test/api/auth/login" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json" \
-    -d '{"email":"magdalen25@example.net","password":"facere","remember_me":false}'
+    -d '{"email":"wstoltenberg@example.net","password":"porro","remember_me":false}'
 
 ```
 
@@ -28,8 +28,8 @@ let headers = {
 };
 
 let body = {
-    "email": "magdalen25@example.net",
-    "password": "facere",
+    "email": "wstoltenberg@example.net",
+    "password": "porro",
     "remember_me": false
 }
 
@@ -107,7 +107,7 @@ curl -X POST \
     "http://jotsauce.test/api/auth/register" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json" \
-    -d '{"username":"corporis","email":"djohnston@example.org","password":"voluptates"}'
+    -d '{"username":"qui","email":"damon.lehner@example.net","password":"unde"}'
 
 ```
 
@@ -122,9 +122,9 @@ let headers = {
 };
 
 let body = {
-    "username": "corporis",
-    "email": "djohnston@example.org",
-    "password": "voluptates"
+    "username": "qui",
+    "email": "damon.lehner@example.net",
+    "password": "unde"
 }
 
 fetch(url, {
@@ -142,6 +142,7 @@ fetch(url, {
     "message": "The given data was invalid.",
     "errors": {
         "password": [
+            "The password must be at least 8 characters.",
             "The password confirmation does not match."
         ]
     }
@@ -198,7 +199,7 @@ curl -X POST \
     "http://jotsauce.test/api/auth/username-availability" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json" \
-    -d '{"username":"sint"}'
+    -d '{"username":"hic"}'
 
 ```
 
@@ -213,7 +214,7 @@ let headers = {
 };
 
 let body = {
-    "username": "sint"
+    "username": "hic"
 }
 
 fetch(url, {
@@ -270,7 +271,7 @@ curl -X POST \
     "http://jotsauce.test/api/auth/email-availability" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json" \
-    -d '{"email":"aditya.larkin@example.org"}'
+    -d '{"email":"hilpert.charlene@example.org"}'
 
 ```
 
@@ -285,7 +286,7 @@ let headers = {
 };
 
 let body = {
-    "email": "aditya.larkin@example.org"
+    "email": "hilpert.charlene@example.org"
 }
 
 fetch(url, {

@@ -16,10 +16,19 @@ class CreateJottingsTable extends Migration
         // whenever a new entry is made for a a jot
         Schema::create('jottings', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('jot_id');
-            $table->timestamps();
+            $table->unsignedBigInteger('jot_entry_id');
 
-            $table->foreign('jot_id')->references('id')->on('jots')->onDelete('cascade');
+            // reference to the data type, form element type id
+            // instead of using form_element_type_jot table because a user can add/edit/delete form element types associated with jots
+            // instead we should record the value as it is at the time
+            // user can see past jottings/entries as they were originally entered
+            $table->unsignedBigInteger('form_element_type_id');
+
+            $table->morphs('jottingable'); // jottingable_type jottingable_id (integer, datetime, etc...)
+            // $table->timestamps(); // we can get timestamps from the jot_entry (touch the parent)
+
+            $table->foreign('jot_entry_id')->references('id')->on('jot_entries')->onDelete('cascade');
+            $table->foreign('form_element_type_id')->references('id')->on('form_element_types')->onDelete('restrict');
         });
     }
 
@@ -30,6 +39,6 @@ class CreateJottingsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('jot_entries');
+        Schema::dropIfExists('jottings');
     }
 }

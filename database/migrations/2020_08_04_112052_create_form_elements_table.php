@@ -33,7 +33,7 @@ class CreateFormElementsTable extends Migration
             'element' => 'input',
         ]);
 
-        $input->types()->createMany([
+        $input->formElementTypes()->createMany([
             ['type' => 'button'],
             ['type' => 'checkbox'],
             ['type' => 'color'],
@@ -66,7 +66,7 @@ class CreateFormElementsTable extends Migration
             'element' => 'select',
         ]);
 
-        $select->types()->createMany([
+        $select->formElementTypes()->createMany([
             ['type' => 'option'],
             ['type' => 'optgroup'],
         ]);
@@ -79,7 +79,7 @@ class CreateFormElementsTable extends Migration
             'element' => 'button',
         ]);
 
-        $button->types()->createMany([
+        $button->formElementTypes()->createMany([
             ['type' => 'button'],
             ['type' => 'reset'],
             ['type' => 'submit'],
@@ -89,13 +89,13 @@ class CreateFormElementsTable extends Migration
             'element' => 'fieldset',
         ]);
 
-        $fieldset->types()->create(['type' => 'legend']);
+        $fieldset->formElementTypes()->create(['type' => 'legend']);
 
         $datalist = FormElement::create([
             'element' => 'datalist',
         ]);
 
-        $datalist->types()->create(['type' => 'option']);
+        $datalist->formElementTypes()->create(['type' => 'option']);
     }
 
     /**

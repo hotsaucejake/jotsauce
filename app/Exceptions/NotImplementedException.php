@@ -25,6 +25,9 @@ class NotImplementedException extends Exception
      */
     public function render($request)
     {
-        return response()->json([], 501);
+        return response()->json([
+            "success" => false,
+            "message" => "Not implemented.",
+        ], 501);
     }
 }

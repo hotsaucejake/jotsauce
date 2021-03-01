@@ -54,9 +54,9 @@ class Jot extends Model
      * ************************************
      * ************************************
      */
-    public function jottings()
+    public function jotEntries()
     {
-        return $this->hasMany(\App\Models\Jotting::class);
+        return $this->hasMany(\App\Models\JotEntry::class);
     }
 
     public function user()
