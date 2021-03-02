@@ -3,6 +3,7 @@
 namespace App\Http\Resources;
 
 use App\Http\Resources\FormElementType;
+use App\Http\Resources\JotEntry;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class Jot extends JsonResource
@@ -25,6 +26,7 @@ class Jot extends JsonResource
             'form_element_types' => FormElementType::collection($this->formElementTypes),
             'created_at'         => $this->created_at,
             'updated_at'         => $this->updated_at,
+            'jot_entries'        => JotEntry::collection($this->whenLoaded('jotEntries')),
         ];
     }
 }

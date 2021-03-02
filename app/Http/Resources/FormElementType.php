@@ -15,14 +15,16 @@ class FormElementType extends JsonResource
     public function toArray($request)
     {
         return [
-            'id'           => $this->pivot->id,
-            'form_element' => $this->formElement,
-            'type'         => $this->type,
-            'title'        => $this->pivot->title,
-            'description'  => $this->pivot->description,
-            'order_column' => $this->pivot->order_column,
-            'created_at'   => $this->pivot->created_at,
-            'updated_at'   => $this->pivot->updated_at,
+            'form_element_id' => $this->formElement->id,
+            'form_element'    => $this->formElement->element,
+            'type_id'         => $this->id,
+            'type'            => $this->type,
+            'jot_type_id'     => $this->whenPivotLoaded('form_element_type_jot', function () {return $this->pivot->id;}),
+            'title'           => $this->whenPivotLoaded('form_element_type_jot', function () {return $this->pivot->title;}),
+            'description'     => $this->whenPivotLoaded('form_element_type_jot', function () {return $this->pivot->description;}),
+            'order_column'    => $this->whenPivotLoaded('form_element_type_jot', function () {return $this->pivot->order_column;}),
+            'created_at'      => $this->whenPivotLoaded('form_element_type_jot', function () {return $this->pivot->created_at;}),
+            'updated_at'      => $this->whenPivotLoaded('form_element_type_jot', function () {return $this->pivot->updated_at;}),
         ];
     }
 }

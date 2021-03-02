@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api\JotManager;
 
 use App\Exceptions\NotImplementedException;
 use App\Http\Controllers\Controller;
+use App\Http\Resources\Jot as JotResource;
 use App\Models\Jot;
 use App\Models\JotEntry;
 use Illuminate\Http\Request;
@@ -19,7 +20,7 @@ class JotEntryController extends Controller
      */
     public function index(Jot $jot)
     {
-        $jotEntries = $jot->jotEntries;
+        return new JotResource($jot->load('jotEntries.jottings.formElementType', 'jotEntries.jottings.jottingable'));
 
         return json_encode($jotEntries->load('jottings.formElementType', 'jottings.jottingable'));
     }

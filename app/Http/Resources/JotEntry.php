@@ -2,11 +2,10 @@
 
 namespace App\Http\Resources;
 
-use App\Http\Resources\FormElementType;
-use App\Http\Resources\Jottingable;
+use App\Http\Resources\Jotting;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class Jotting extends JsonResource
+class JotEntry extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -17,9 +16,10 @@ class Jotting extends JsonResource
     public function toArray($request)
     {
         return [
-            'id'           => $this->id,
-            'form_element' => new FormElementType($this->formElementType),
-            'jottingable'  => new Jottingable($this->whenLoaded('jottingable')),
+            'id'         => $this->id,
+            'jottings'   => Jotting::collection($this->whenLoaded('jottings')),
+            'created_at' => $this->created_at,
+            'updated_at' => $this->updated_at,
         ];
     }
 }
