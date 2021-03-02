@@ -33,8 +33,14 @@ class FormElement extends Model
      * ************************************
      * ************************************
      */
+
     public function formElementTypes()
     {
         return $this->hasMany(\App\Models\FormElementType::class);
+    }
+
+    public function formElementAttributes()
+    {
+        return $this->hasMany(\App\Models\FormElementAttribute::class);
     }
 }
