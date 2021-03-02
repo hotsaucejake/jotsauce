@@ -21,8 +21,6 @@ class JotEntryController extends Controller
     public function index(Jot $jot)
     {
         return new JotResource($jot->load('jotEntries.jottings.formElementType', 'jotEntries.jottings.jottingable'));
-
-        return json_encode($jotEntries->load('jottings.formElementType', 'jottings.jottingable'));
     }
 
     /**
