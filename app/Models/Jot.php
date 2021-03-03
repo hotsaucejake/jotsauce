@@ -37,6 +37,14 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Jot extends Model
 {
+    protected $fillable = [
+        'title',
+        'description',
+        'slug',
+        'order_column',
+        'archived',
+    ];
+
     /**
      * The "booted" method of the model.
      *
