@@ -34,6 +34,8 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|Jot whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Jot whereUserId($value)
  * @mixin \Eloquent
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\JotEntry[] $jotEntries
+ * @property-read int|null $jot_entries_count
  */
 class Jot extends Model
 {

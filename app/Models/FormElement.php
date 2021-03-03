@@ -17,6 +17,8 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|FormElement whereElement($value)
  * @method static \Illuminate\Database\Eloquent\Builder|FormElement whereId($value)
  * @mixin \Eloquent
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\FormElementAttribute[] $formElementAttributes
+ * @property-read int|null $form_element_attributes_count
  */
 class FormElement extends Model
 {

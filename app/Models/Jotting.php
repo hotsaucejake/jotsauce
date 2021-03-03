@@ -19,6 +19,17 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|Jotting whereJotId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Jotting whereUpdatedAt($value)
  * @mixin \Eloquent
+ * @property int $jot_entry_id
+ * @property int $form_element_type_id
+ * @property string $jottingable_type
+ * @property int $jottingable_id
+ * @property-read \App\Models\FormElementType $formElementType
+ * @property-read \App\Models\JotEntry $jotEntry
+ * @property-read Model|\Eloquent $jottingable
+ * @method static \Illuminate\Database\Eloquent\Builder|Jotting whereFormElementTypeId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Jotting whereJotEntryId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Jotting whereJottingableId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Jotting whereJottingableType($value)
  */
 class Jotting extends Model
 {
