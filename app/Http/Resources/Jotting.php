@@ -2,7 +2,6 @@
 
 namespace App\Http\Resources;
 
-use App\Http\Resources\FormElementType;
 use App\Http\Resources\Jottingable;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -18,7 +17,7 @@ class Jotting extends JsonResource
     {
         return [
             'id'           => $this->id,
-            'form_element' => new FormElementType($this->formElementType),
+            'form_element' => new FormElement($this->formElement),
             'jottingable'  => new Jottingable($this->whenLoaded('jottingable')),
         ];
     }

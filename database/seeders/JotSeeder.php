@@ -25,12 +25,18 @@ class JotSeeder extends Seeder
         $user->jots()->save($weightJot);
         $user->refresh();
 
-        $input  = \App\Models\FormElement::whereElement('input')->firstOrFail();
-        $number = \App\Models\FormElementType::whereFormElementId($input->id)->whereType('number')->firstOrFail();
-        $date   = \App\Models\FormElementType::whereFormElementId($input->id)->whereType('date')->firstOrFail();
+        $input      = \App\Models\FormElement::whereElement('input')->firstOrFail();
+        $input_type = \App\Models\FormElementAttribute::whereFormElementId($input->id)->whereAttribute('type')->firstOrFail();
 
         $weightJot = \App\Models\Jot::withoutGlobalScopes()->whereUserId($user->id)->whereSlug('weight')->firstOrFail();
-        $weightJot->formElementTypes()->attach($number, ['title' => 'Weight', 'description' => 'Weight in lbs', 'order_column' => 1]);
-        $weightJot->formElementTypes()->attach($date, ['title' => 'Date', 'description' => 'Recorded date of weight', 'order_column' => 2]);
+
+        $input->jots()->attach($weightJot, ['title' => 'Weight', 'description' => 'Weight in lbs', 'order_column' => 1]);
+        $input->jots()->attach($weightJot, ['title' => 'Date', 'description' => 'Recorded date of weight', 'order_column' => 2]);
+
+        $weight_number = \App\Models\FormElementJot::whereTitle('Weight')->firstOrFail();
+        $weight_date   = \App\Models\FormElementJot::whereTitle('Date')->firstOrFail();
+
+        $input_type->formElementJots()->attach($weight_number, ['value' => 'number']);
+        $input_type->formElementJots()->attach($weight_date, ['value' => 'date']);
     }
 }

@@ -11,6 +11,8 @@ use Illuminate\Database\Eloquent\Model;
  * @property int $form_element_id
  * @property string $attribute
  * @property-read \App\Models\FormElement $formElement
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\FormElementJot[] $formElementJots
+ * @property-read int|null $form_element_jots_count
  * @method static \Illuminate\Database\Eloquent\Builder|FormElementAttribute newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|FormElementAttribute newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|FormElementAttribute query()
@@ -38,5 +40,15 @@ class FormElementAttribute extends Model
     public function formElement()
     {
         return $this->belongsTo(\App\Models\FormElement::class, 'form_element_id');
+    }
+
+    public function formElementJots()
+    {
+        //     return $this->belongsToMany(\App\Models\FormElementJot::class, 'form_element_attribute_form_element_jot')
+        //         ->withPivot('id', 'value', 'created_at', 'updated_at');
+
+        return $this
+            ->belongsToMany(\App\Models\FormElementJot::class, 'form_element_attribute_form_element_jot', 'form_element_attribute_id', 'form_element_jot_id')
+            ->using(\App\Models\FormElementAttributeFormElementJot::class);
     }
 }

@@ -8,28 +8,22 @@ use Illuminate\Database\Eloquent\Model;
  * App\Models\Jotting
  *
  * @property int $id
- * @property int $jot_id
- * @property \Illuminate\Support\Carbon|null $created_at
- * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property int $jot_entry_id
+ * @property int $form_element_jot_id
+ * @property string $jottingable_type
+ * @property int $jottingable_id
+ * @property-read \App\Models\FormElementJot $formElementJot
+ * @property-read \App\Models\JotEntry $jotEntry
+ * @property-read Model|\Eloquent $jottingable
  * @method static \Illuminate\Database\Eloquent\Builder|Jotting newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Jotting newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Jotting query()
- * @method static \Illuminate\Database\Eloquent\Builder|Jotting whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Jotting whereFormElementJotId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Jotting whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Jotting whereJotId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Jotting whereUpdatedAt($value)
- * @mixin \Eloquent
- * @property int $jot_entry_id
- * @property int $form_element_type_id
- * @property string $jottingable_type
- * @property int $jottingable_id
- * @property-read \App\Models\FormElementType $formElementType
- * @property-read \App\Models\JotEntry $jotEntry
- * @property-read Model|\Eloquent $jottingable
- * @method static \Illuminate\Database\Eloquent\Builder|Jotting whereFormElementTypeId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Jotting whereJotEntryId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Jotting whereJottingableId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Jotting whereJottingableType($value)
+ * @mixin \Eloquent
  */
 class Jotting extends Model
 {
@@ -46,9 +40,9 @@ class Jotting extends Model
         return $this->belongsTo(\App\Models\JotEntry::class);
     }
 
-    public function formElementType()
+    public function formElementJot()
     {
-        return $this->belongsTo(\App\Models\FormElementType::class);
+        return $this->belongsTo(\App\Models\FormElementJot::class);
     }
 
     /**

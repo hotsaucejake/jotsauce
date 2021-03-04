@@ -14,19 +14,10 @@ class CreateFormElementsTable extends Migration
      */
     public function up()
     {
+        // https://developer.mozilla.org/en-US/docs/Web/HTML/Element#forms
         Schema::create('form_elements', function (Blueprint $table) {
             $table->id();
             $table->string('element')->unique();
-        });
-
-        Schema::create('form_element_types', function (Blueprint $table) {
-            $table->id();
-            $table->unsignedBigInteger('form_element_id');
-            $table->string('type');
-
-            $table->unique(['form_element_id', 'type']);
-
-            $table->foreign('form_element_id')->references('id')->on('form_elements')->onDelete('cascade');
         });
 
         Schema::create('form_element_attributes', function (Blueprint $table) {
@@ -39,35 +30,58 @@ class CreateFormElementsTable extends Migration
             $table->foreign('form_element_id')->references('id')->on('form_elements')->onDelete('cascade');
         });
 
-        $input = FormElement::create([
-            'element' => 'input',
+        $button   = FormElement::create(['element' => 'button']);
+        $datalist = FormElement::create(['element' => 'datalist']);
+        $fieldset = FormElement::create(['element' => 'fieldset']);
+        $form     = FormElement::create(['element' => 'form']);
+        $input    = FormElement::create(['element' => 'input']);
+        $label    = FormElement::create(['element' => 'label']);
+        $legend   = FormElement::create(['element' => 'legend']);
+        $meter    = FormElement::create(['element' => 'meter']);
+        $optgroup = FormElement::create(['element' => 'optgroup']);
+        $option   = FormElement::create(['element' => 'option']);
+        $output   = FormElement::create(['element' => 'output']);
+        $progress = FormElement::create(['element' => 'progress']);
+        $select   = FormElement::create(['element' => 'select']);
+        $textarea = FormElement::create(['element' => 'textarea']);
+
+        $button->formElementAttributes()->createMany([
+            ['attribute' => 'autofocus'],
+            ['attribute' => 'disabled'],
+            ['attribute' => 'form'],
+            ['attribute' => 'formaction'],
+            ['attribute' => 'formenctype'],
+            ['attribute' => 'formmethod'],
+            ['attribute' => 'formnovalidate'],
+            ['attribute' => 'formtarget'],
+            ['attribute' => 'name'],
+            ['attribute' => 'type'], // submit, reset, button
+            ['attribute' => 'value'],
         ]);
 
-        $input->formElementTypes()->createMany([
-            ['type' => 'button'],
-            ['type' => 'checkbox'],
-            ['type' => 'color'],
-            ['type' => 'date'],
-            ['type' => 'datetime-local'],
-            ['type' => 'email'],
-            ['type' => 'file'],
-            ['type' => 'hidden'],
-            ['type' => 'image'],
-            ['type' => 'month'],
-            ['type' => 'number'],
-            ['type' => 'password'],
-            ['type' => 'radio'],
-            ['type' => 'range'],
-            ['type' => 'reset'],
-            ['type' => 'search'],
-            ['type' => 'submit'],
-            ['type' => 'tel'],
-            ['type' => 'text'],
-            ['type' => 'time'],
-            ['type' => 'url'],
-            ['type' => 'week'],
+        $fieldset->formElementAttributes()->createMany([
+            ['attribute' => 'disabled'],
+            ['attribute' => 'form'],
+            ['attribute' => 'name'],
         ]);
 
+        $form->formElementAttributes()->createMany([
+            ['attribute' => 'accept-charset'],
+            ['attribute' => 'autocomplete'],
+            ['attribute' => 'rel'],
+            ['attribute' => 'action'],
+            ['attribute' => 'enctype'], // application/x-www-form-urlencoded, multipart/form-data, text/plain
+            ['attribute' => 'method'], // post, get, dialog
+            ['attribute' => 'novalidate'],
+            ['attribute' => 'target'], // _self, _blank, _parent, _top
+        ]);
+
+        /**
+         * TYPES
+         *
+         * button, checkbox, color, date, datetime-local, email, file, hidden, image, month, number, password, radio, range, reset, search, submit, tel, text,
+         * time, url, week
+         */
         $input->formElementAttributes()->createMany([
             ['attribute' => 'accept'], // type = file
             ['attribute' => 'alt'], // type = image
@@ -103,21 +117,41 @@ class CreateFormElementsTable extends Migration
             ['attribute' => 'width'], // type = image
         ]);
 
-        $label = FormElement::create([
-            'element' => 'label',
-        ]);
-
         $label->formElementAttributes()->createMany([
             ['attribute' => 'for'],
         ]);
 
-        $select = FormElement::create([
-            'element' => 'select',
+        $meter->formElementAttributes()->createMany([
+            ['attribute' => 'form'],
+            ['attribute' => 'high'],
+            ['attribute' => 'low'],
+            ['attribute' => 'max'],
+            ['attribute' => 'min'],
+            ['attribute' => 'optimum'],
+            ['attribute' => 'value'],
         ]);
 
-        $select->formElementTypes()->createMany([
-            ['type' => 'option'],
-            ['type' => 'optgroup'],
+        $optgroup->formElementAttributes()->createMany([
+            ['attribute' => 'disabled'],
+            ['attribute' => 'label'],
+        ]);
+
+        $option->formElementAttributes()->createMany([
+            ['attribute' => 'disabled'],
+            ['attribute' => 'label'],
+            ['attribute' => 'selected'],
+            ['attribute' => 'value'],
+        ]);
+
+        $output->formElementAttributes()->createMany([
+            ['attribute' => 'for'],
+            ['attribute' => 'form'],
+            ['attribute' => 'name'],
+        ]);
+
+        $progress->formElementAttributes()->createMany([
+            ['attribute' => 'max'],
+            ['attribute' => 'value'],
         ]);
 
         $select->formElementAttributes()->createMany([
@@ -129,10 +163,6 @@ class CreateFormElementsTable extends Migration
             ['attribute' => 'name'],
             ['attribute' => 'required'],
             ['attribute' => 'size'],
-        ]);
-
-        $textarea = FormElement::create([
-            'element' => 'textarea',
         ]);
 
         $textarea->formElementAttributes()->createMany([
@@ -152,47 +182,6 @@ class CreateFormElementsTable extends Migration
             ['attribute' => 'wrap'],
         ]);
 
-        $button = FormElement::create([
-            'element' => 'button',
-        ]);
-
-        $button->formElementTypes()->createMany([
-            ['type' => 'button'],
-            ['type' => 'reset'],
-            ['type' => 'submit'],
-        ]);
-
-        $button->formElementAttributes()->createMany([
-            ['attribute' => 'autofocus'],
-            ['attribute' => 'disabled'],
-            ['attribute' => 'form'],
-            ['attribute' => 'formaction'],
-            ['attribute' => 'formenctype'],
-            ['attribute' => 'formmethod'],
-            ['attribute' => 'formnovalidate'],
-            ['attribute' => 'formtarget'],
-            ['attribute' => 'name'],
-            ['attribute' => 'type'],
-            ['attribute' => 'value'],
-        ]);
-
-        $fieldset = FormElement::create([
-            'element' => 'fieldset',
-        ]);
-
-        $fieldset->formElementTypes()->create(['type' => 'legend']);
-
-        $fieldset->formElementAttributes()->createMany([
-            ['attribute' => 'disabled'],
-            ['attribute' => 'form'],
-            ['attribute' => 'name'],
-        ]);
-
-        $datalist = FormElement::create([
-            'element' => 'datalist',
-        ]);
-
-        $datalist->formElementTypes()->create(['type' => 'option']);
     }
 
     /**
@@ -203,7 +192,6 @@ class CreateFormElementsTable extends Migration
     public function down()
     {
         Schema::dropIfExists('form_elements');
-        Schema::dropIfExists('form_element_types');
         Schema::dropIfExists('form_element_attributes');
     }
 }

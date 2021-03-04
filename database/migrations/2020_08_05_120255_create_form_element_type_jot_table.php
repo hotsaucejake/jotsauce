@@ -13,9 +13,9 @@ class CreateFormElementTypeJotTable extends Migration
      */
     public function up()
     {
-        Schema::create('form_element_type_jot', function (Blueprint $table) {
+        Schema::create('form_element_jot', function (Blueprint $table) {
             $table->id(); // we actually need an id because we'll reference it with a jottingable
-            $table->unsignedBigInteger('form_element_type_id');
+            $table->unsignedBigInteger('form_element_id');
             $table->unsignedBigInteger('jot_id');
 
             $table->string('title');
@@ -24,30 +24,30 @@ class CreateFormElementTypeJotTable extends Migration
             $table->integer('order_column')->nullable(); // user preference for order
             $table->timestamps();
 
-            $table->foreign('form_element_type_id')
+            $table->foreign('form_element_id')
                 ->references('id')
-                ->on('form_element_types')
-                ->onDelete('restrict'); // you cannot delete a form_element_type, sorry
+                ->on('form_elements')
+                ->onDelete('restrict'); // you cannot delete a form_element, sorry
             $table->foreign('jot_id')
                 ->references('id')
                 ->on('jots')
                 ->onDelete('cascade'); // you can delete a jot
         });
 
-        Schema::create('form_element_type_jot_form_element_attribute', function (Blueprint $table) {
+        Schema::create('form_element_attribute_form_element_jot', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('form_element_type_jot_id');
             $table->unsignedBigInteger('form_element_attribute_id');
+            $table->unsignedBigInteger('form_element_jot_id');
 
             $table->string('value');
 
             $table->timestamps();
 
-            $table->foreign('form_element_type_jot_id', 'attribute_form_element_type_jot')
+            $table->foreign('form_element_jot_id', 'form_element_jot_attribute_jot_foreign')
                 ->references('id')
-                ->on('form_element_type_jot')
+                ->on('form_element_jot')
                 ->onDelete('cascade');
-            $table->foreign('form_element_attribute_id', 'attribute_form_element_attribute')
+            $table->foreign('form_element_attribute_id', 'form_element_jot_attribute_attribute_foreign')
                 ->references('id')
                 ->on('form_element_attributes')
                 ->onDelete('restrict'); // you can't delete a form_element_attribute
@@ -61,7 +61,7 @@ class CreateFormElementTypeJotTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('form_element_type_jot');
-        Schema::dropIfExists('form_element_type_jot_form_element_attribute');
+        Schema::dropIfExists('form_element_jot');
+        Schema::dropIfExists('form_element_attribute_form_element_jot');
     }
 }

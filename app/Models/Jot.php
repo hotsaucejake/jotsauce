@@ -17,10 +17,10 @@ use Illuminate\Database\Eloquent\Model;
  * @property string|null $archived
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\FormElementType[] $formElementTypes
- * @property-read int|null $form_element_types_count
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Jotting[] $jottings
- * @property-read int|null $jottings_count
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\FormElement[] $formElements
+ * @property-read int|null $form_elements_count
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\JotEntry[] $jotEntries
+ * @property-read int|null $jot_entries_count
  * @method static \Illuminate\Database\Eloquent\Builder|Jot newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Jot newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Jot query()
@@ -34,8 +34,6 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|Jot whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Jot whereUserId($value)
  * @mixin \Eloquent
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\JotEntry[] $jotEntries
- * @property-read int|null $jot_entries_count
  */
 class Jot extends Model
 {
@@ -74,10 +72,12 @@ class Jot extends Model
         $this->belongsTo(\App\User::class);
     }
 
-    public function formElementTypes()
+    public function formElements()
     {
-        return $this->belongsToMany(\App\Models\FormElementType::class, 'form_element_type_jot')
-            ->withPivot('id', 'title', 'description', 'order_column', 'created_at', 'updated_at')
-            ->orderBy('form_element_type_jot.order_column');
+        //     return $this->belongsToMany(\App\Models\FormElement::class, 'form_element_jot')
+        //         ->withPivot('id', 'title', 'description', 'order_column', 'created_at', 'updated_at')
+        //         ->orderBy('form_element_type_jot.order_column');
+
+        return $this->belongsToMany(\App\Models\FormElement::class)->using(\App\Models\FormElementJot::class);
     }
 }
