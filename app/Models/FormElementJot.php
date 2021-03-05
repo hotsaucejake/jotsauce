@@ -67,11 +67,12 @@ class FormElementJot extends Pivot
 
     public function formElementAttributes()
     {
-        //     return $this->belongsToMany(\App\Models\FormElementAttribute::class, 'form_element_attribute_form_element_jot')
-        //         ->withPivot('id', 'value', 'created_at', 'updated_at');
-
         return $this
-            ->belongsToMany(\App\Models\FormElementAttribute::class, 'form_element_attribute_form_element_jot', 'form_element_jot_id', 'form_element_attribute_id')
-            ->using(\App\Models\FormElementAttributeFormElementJot::class);
+            ->belongsToMany(\App\Models\FormElementAttribute::class,
+                'form_element_attribute_form_element_jot',
+                'form_element_jot_id',
+                'form_element_attribute_id')
+            ->using(\App\Models\FormElementAttributeFormElementJot::class)
+            ->withPivot('id', 'value', 'created_at', 'updated_at');
     }
 }

@@ -48,7 +48,7 @@ class JotController extends Controller
      */
     public function show(Jot $jot)
     {
-        return new JotResource($jot);
+        return new JotResource($jot->load(['formElements']));
     }
 
     /**

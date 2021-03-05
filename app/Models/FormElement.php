@@ -43,10 +43,9 @@ class FormElement extends Model
 
     public function jots()
     {
-        //     return $this->belongsToMany(\App\Models\Jot::class, 'form_element_jot')
-        //         ->withPivot('id', 'title', 'description', 'order_column', 'created_at', 'updated_at')
-        //         ->orderBy('form_element_type_jot.order_column');
-
-        return $this->belongsToMany(\App\Models\Jot::class)->using(\App\Models\FormElementJot::class);
+        return $this->belongsToMany(\App\Models\Jot::class)
+            ->using(\App\Models\FormElementJot::class)
+            ->withPivot('id', 'title', 'description', 'order_column', 'created_at', 'updated_at')
+            ->orderBy('order_column');
     }
 }
