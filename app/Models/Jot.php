@@ -34,6 +34,9 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|Jot whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Jot whereUserId($value)
  * @mixin \Eloquent
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\FormElementJot[] $formElementJots
+ * @property-read int|null $form_element_jots_count
+ * @property-read \App\User $user
  */
 class Jot extends Model
 {
@@ -69,7 +72,7 @@ class Jot extends Model
 
     public function user()
     {
-        $this->belongsTo(\App\User::class);
+        return $this->belongsTo(\App\User::class);
     }
 
     public function formElements()
@@ -78,5 +81,10 @@ class Jot extends Model
             ->using(\App\Models\FormElementJot::class)
             ->withPivot('id', 'title', 'description', 'order_column', 'created_at', 'updated_at')
             ->orderBy('order_column');
+    }
+
+    public function formElementJots()
+    {
+        return $this->hasMany(\App\Models\FormElementJot::class);
     }
 }

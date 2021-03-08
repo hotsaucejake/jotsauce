@@ -3,6 +3,7 @@
 namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Support\Arr;
 
 class FormElementAttribute extends JsonResource
 {
@@ -14,15 +15,15 @@ class FormElementAttribute extends JsonResource
      */
     public function toArray($request)
     {
-        // return parent::toArray($request);
-        return [
-            'attribute_id'                               => $this->id,
-            'attribute'                                  => $this->attribute,
-            'value'                                      => $this->whenPivotLoaded(new \App\Models\FormElementAttributeFormElementJot(), function () {return $this->pivot->value;}),
-            'form_element_attribute_form_element_jot_id' => $this->whenPivotLoaded(new \App\Models\FormElementAttributeFormElementJot(), function () {return $this->pivot->id;}),
-            'created_at'                                 => $this->whenPivotLoaded(new \App\Models\FormElementAttributeFormElementJot(), function () {return $this->pivot->created_at;}),
-            'updated_at'                                 => $this->whenPivotLoaded(new \App\Models\FormElementAttributeFormElementJot(), function () {return $this->pivot->updated_at;}),
-            // 'form_element_attribute_form_element_jot'    => $this->whenPivotLoaded(new \App\Models\FormElementAttributeFormElementJot(), function () {return $this->pivot->toArray();}),
+        $formElementAttribute = [
+            'id'        => $this->id,
+            'attribute' => $this->attribute,
         ];
+
+        if (!$this->whenLoaded('formElement')) {
+            $formElementAttribute = Arr::add($formElementAttribute, 'form_element', new FormElement($this->formElement));
+        }
+
+        return $formElementAttribute;
     }
 }

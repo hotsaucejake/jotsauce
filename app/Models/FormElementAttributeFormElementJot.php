@@ -23,6 +23,8 @@ use Illuminate\Database\Eloquent\Relations\Pivot;
  * @method static \Illuminate\Database\Eloquent\Builder|FormElementAttributeFormElementJot whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|FormElementAttributeFormElementJot whereValue($value)
  * @mixin \Eloquent
+ * @property-read \App\Models\FormElementAttribute $formElementAttribute
+ * @property-read \App\Models\FormElementJot $formElementJot
  */
 class FormElementAttributeFormElementJot extends Pivot
 {
@@ -49,11 +51,11 @@ class FormElementAttributeFormElementJot extends Pivot
 
     public function formElementJot()
     {
-        $this->belongsTo(\App\Models\FormElementJot::class, 'form_element_jot_id');
+        return $this->belongsTo(\App\Models\FormElementJot::class, 'form_element_jot_id');
     }
 
     public function formElementAttribute()
     {
-        $this->belongsTo(\App\Models\FormElementAttribute::class, 'form_element_attribute_id');
+        return $this->belongsTo(\App\Models\FormElementAttribute::class, 'form_element_attribute_id');
     }
 }

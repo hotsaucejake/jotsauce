@@ -29,6 +29,12 @@ use Illuminate\Database\Eloquent\Relations\Pivot;
  * @method static \Illuminate\Database\Eloquent\Builder|FormElementJot whereTitle($value)
  * @method static \Illuminate\Database\Eloquent\Builder|FormElementJot whereUpdatedAt($value)
  * @mixin \Eloquent
+ * @property-read \App\Models\FormElement $formElement
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\FormElementAttributeFormElementJot[] $formElementAttributeFormElementJots
+ * @property-read int|null $form_element_attribute_form_element_jots_count
+ * @property-read \App\Models\Jot $jot
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Jotting[] $jottings
+ * @property-read int|null $jottings_count
  */
 class FormElementJot extends Pivot
 {
@@ -57,12 +63,12 @@ class FormElementJot extends Pivot
 
     public function jot()
     {
-        $this->belongsTo(\App\Models\Jot::class);
+        return $this->belongsTo(\App\Models\Jot::class);
     }
 
     public function formElement()
     {
-        $this->belongsTo(\App\Models\FormElement::class);
+        return $this->belongsTo(\App\Models\FormElement::class);
     }
 
     public function formElementAttributes()
@@ -74,5 +80,15 @@ class FormElementJot extends Pivot
                 'form_element_attribute_id')
             ->using(\App\Models\FormElementAttributeFormElementJot::class)
             ->withPivot('id', 'value', 'created_at', 'updated_at');
+    }
+
+    public function formElementAttributeFormElementJots()
+    {
+        return $this->hasMany(\App\Models\FormElementAttributeFormElementJot::class, 'form_element_jot_id', 'id');
+    }
+
+    public function jottings()
+    {
+        return $this->hasMany(\App\Models\Jotting::class, 'form_element_jot_id', 'id');
     }
 }
