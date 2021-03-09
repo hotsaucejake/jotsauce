@@ -16,7 +16,7 @@ class Jot extends JsonResource
     public function toArray($request)
     {
         return [
-            'jot_id'            => $this->id,
+            'id'                => $this->id,
             // 'user_id'           => $this->user_id, // removing for now - too much info given to the user
             'title'             => $this->title,
             'description'       => $this->description,
